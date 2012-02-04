@@ -1,6 +1,6 @@
-#summary How to extend the libarchive test suites.
+How to extend the libarchive test suites.
 
-= Introduction =
+== Introduction ==
 
 Libarchive is now a fairly complex piece of software that runs on
 a number of different platforms.  A thorough test suite is essential
@@ -11,7 +11,7 @@ Any significant change to libarchive, including most bug fixes, should
 be accompanied by new tests or changes to existing tests.  This article
 explains how the libarchive test suites work and how to extend them.
 
-= Building and Running the Test Programs =
+== Building and Running the Test Programs ==
 
 Each major component--libarchive, bsdtar, and bsdcpio--has a test
 program that exercises the functionality of that component.
@@ -19,8 +19,8 @@ These test programs are compiled in the same way that the rest
 of the libarchive suite is compiled.
 
 To run the test programs, you need to give them two pieces of information:
- * The full path to the directory holding the "reference files"
- * The full path to the executable program being tested (not applicable to libarchive_test since libarchive is compiled into the test program)
+* The full path to the directory holding the "reference files"
+* The full path to the executable program being tested (not applicable to libarchive_test since libarchive is compiled into the test program)
 
 The reference files are a collection of known inputs that are used in the test process.  They are all stored in uuencoded format in files with a ".uu" extension.  The test programs look in a few standard locations; if none of those work, you'll need to specify the `-r` option with the full pathname to the appropriate directory.
 
@@ -28,7 +28,7 @@ The bsdtar_test and bsdcpio_test programs run bsdtar or bsdcpio repeatedly; they
 
 When run, the test programs output a progress message for each test, an error message for each failed assertion, and a final summary:
 
-{{{
+```text
  Running tests in: /tmp/bsdtar_test.2009-02-17T21.30.40-000
  Reference files will be read from:    /home/tim/libarchive/trunk/tar/test
  Running tests on: /home/tim/libarchive/trunk/bsdtar
@@ -49,17 +49,17 @@ When run, the test programs output a progress message for each test, an error me
   Total of 105097 assertions checked.
   Total of 264 assertions failed.
   Total of 0 assertions skipped.
-}}}
+```
 
 The header lines here record:
- * the directory that will be used for scratch files during the test.  If a test fails, the scratch files will be left behind in this directory for further debugging.
- * The directory from which the reference files will be read.
- * For bsdtar_test and bsdcpio_test, the full path to the executable being exercised.
- * Basic version information about the target.
+* the directory that will be used for scratch files during the test.  If a test fails, the scratch files will be left behind in this directory for further debugging.
+* The directory from which the reference files will be read.
+* For bsdtar_test and bsdcpio_test, the full path to the executable being exercised.
+* Basic version information about the target.
 
 In this case, the trailer indicates that one test failed.  As you can see, there was a single assertion in the code that failed 264 times.  The first time it failed, it was because an `lstat()` call returned -1 instead of the zero that was expected.
 
-= Basic test terminology =
+== Basic test terminology ==
 
 Each test program consists of a number of "tests".
 Each test has a name and is implemented in a C source file with the same name as the test.
@@ -67,7 +67,7 @@ Tests work by performing some series of operations and making "assertions" about
 
 Here is a somewhat edited excerpt from `test_compat_zip`, which verifies compatibility with various ZIP format archives:
 
-{{{
+```c
   DEFINE_TEST(test_compat_zip)
   {
     /* ... setup omitted ... */
@@ -83,7 +83,7 @@ Here is a somewhat edited excerpt from `test_compat_zip`, which verifies compati
      /* Read first entry. */
      assertEqualInt(ARCHIVE_OK, archive_read_next_header(a, &ae));
      assertEqualString("META-INF/MANIFEST.MF", archive_entry_pathname(ae));
-}}}
+```
 
 The `assertXXXX` macros check that their arguments satisfy
 certain conditions.  If the assertion fails--for example, if the name
@@ -100,7 +100,7 @@ of specific tests.  These specific versions (such as `assertEqualInt` and
 messages on failure.  In particular, they print the value of both
 arguments; this greatly simplifies diagnosing failures.
 
-= Life cycle of a test =
+== Life cycle of a test ==
 
 Each test resides in a C source file with the same name as the test.
 The test itself is a function that takes no arguments.
@@ -112,59 +112,59 @@ the names of all of the tests.  This makes it very easy to add new tests.)
 
 The test harness determines which tests to run.  It goes through the
 following steps whenever it runs a test:
- * ~~Closes all file descriptors except for stdin, stdout, and stderr.~~ (This screws up libc on some platforms so has been removed.)
- * Creates a temporary directory whose name matches the name of the test and switches into that directory.
- * Resets the current locale.
- * Calls the test function.
- * If there were no assertion failures, it will remove the temporary directory.  (If `-k` is specified, temporary directory are left even if the test succeeds.)
- * ~~If there are any open file descriptors other than stdin, stdout, and stderr, it reports an error.~~  Tests should never leave open file descriptors.
+* <del>Closes all file descriptors except for stdin, stdout, and stderr.</del> (This screws up libc on some platforms so has been removed.)
+* Creates a temporary directory whose name matches the name of the test and switches into that directory.
+* Resets the current locale.
+* Calls the test function.
+* If there were no assertion failures, it will remove the temporary directory.  (If `-k` is specified, temporary directory are left even if the test succeeds.)
+* <del>If there are any open file descriptors other than stdin, stdout, and stderr, it reports an error.</del>  Tests should never leave open file descriptors.
 
 In particular, tests can safely assume that:
- * The current directory is empty when the test starts.
- * Any files created in the current directory will be removed for you.
- * The current locale is the default "C" locale.
+* The current directory is empty when the test starts.
+* Any files created in the current directory will be removed for you.
+* The current locale is the default "C" locale.
 
 Tests should:
- * Release all memory.  The test suites are occasionally run under a memory debugger to detect leaks in the libarchive library.
- * Close all opened files.  This helps to catch file descriptor leaks in libarchive.
- * Not read or write absolute paths.
+* Release all memory.  The test suites are occasionally run under a memory debugger to detect leaks in the libarchive library.
+* Close all opened files.  This helps to catch file descriptor leaks in libarchive.
+* Not read or write absolute paths.
 
-= Platform variation =
+== Platform variation ==
 
 Some tests are specific to a particular platform.
 Such tests should use appropriate platform-specific macros as follows:
-{{{
+```c
 #if __PLATFORM
-... various helper functions ...
+/* ... various helper functions ... */
 #endif
 
 DEFINE_TEST(foo_platform)
 {
 #if __PLATFORM
-   ... tests as usual ....
+   /* ... tests as usual .... */
 #else
    skipping("platform-specific tests");
 #endif
 }
-}}}
+```
 
 In particular, note that all tests are compiled and run on all platforms.
 
 Most tests are not platform-specific and will thus end up running
 on many different platforms.
 In order to simplify writing such tests, try to use platform-independent coding:
- * Use stdio `fopen()`, `fwrite()`, `fread()`, and `fclose()` to access files whenever feasible.
- * Look through the `test.h` header to see if there are assertXxx() functions that you can use.  There's a list of the more popular ones below, but new ones are often added.
+* Use stdio `fopen()`, `fwrite()`, `fread()`, and `fclose()` to access files whenever feasible.
+* Look through the `test.h` header to see if there are assertXxx() functions that you can use.  There's a list of the more popular ones below, but new ones are often added.
 
-= Assert macros =
+== Assert macros ==
 
 The following is a necessarily incomplete list of assert functions available to tests:
- * Basic equality: `assertEqualInt`, `assertEqualString`, `assertEqualMem`
- * File creation: `assertMakeFile`, `assertMakeSymlink`, `assertMakeHardlink`, `assertMakeDir`
- * File tests: `assertIsReg`, `assertIsDir`, `assertIsSymlink`, `assertFileSize`, `assertFileNlinks`, `assertFileMtime`
- * File contents: `assertFileEmpty`, `assertFileNonEmpty`, `assertFileContents`, `assertTextFileContents`
+* Basic equality: `assertEqualInt`, `assertEqualString`, `assertEqualMem`
+* File creation: `assertMakeFile`, `assertMakeSymlink`, `assertMakeHardlink`, `assertMakeDir`
+* File tests: `assertIsReg`, `assertIsDir`, `assertIsSymlink`, `assertFileSize`, `assertFileNlinks`, `assertFileMtime`
+* File contents: `assertFileEmpty`, `assertFileNonEmpty`, `assertFileContents`, `assertTextFileContents`
 
-= Reference Files =
+== Reference Files ==
 
 Many tests require reading a pre-constructed reference file.
 Such files are stored with the source code for the associated test suite.
@@ -173,9 +173,9 @@ Reference files are named according to the test and must be uuencoded to be chec
 For example, if you need a reference tar archive to use with `test_foo`, the file should be named `test_foo.tar` and stored in source control as `test_foo.tar.uu`.
 
 Within the test code, you can recover the reference file with:
-{{{
+```c
     extract_reference_file("test_foo.tar");
-}}}
+```
 The `extract_reference_file()` function will uudecode the requested file and put the result in the current directory.
 
 Look at `test_read_format_cpio_bin_be.c` for a simple example of this usage.
@@ -184,21 +184,21 @@ A few of the older tests store reference data within the source code as a hex-en
 array of characters.
 This was common before `extract_reference_file()` was added and is not recommended for new code.
 
-= Dos and Donts =
+== Dos and Donts ==
 
-  * DO use asserts liberally.  It's common to have an assert on almost every line.
-  * DO use assertEqualInt, assertEqualString, assertEqualMem to test equality instead of plain assert(); the specialized forms give a lot more information on a failure.
-  * DO test your tests; experiment by changing a piece of code and make sure your test fails.  If you think you've found a bug, we recommend writing the test first, make sure the test fails, then fixing the bug.
-  * DO run all of the tests before submitting a change.  Depending on your build environment, `make test` or `make check` will usually run all of the tests.
-  * DON'T rely on `HAVE_` macros from config.h.  (If the tests use the same `HAVE_` macros as the code being tested then configuration problems will be covered up.)
-  * DO use runtime tests for platform features.  For example, the ACL tests try to set an ACL on a file and read it back to determine if ACL support is available, then they exercise the libarchive ACL handling.
-  * DO look at existing tests.  Often, a bug can be tested by adding just a couple of asserts to an existing test instead of writing a new one.
-  * DO improve existing tests.  In particular, if you see a test failure that is hard to understand, consider adding a failure() message or comments so the next person will have an easier time.
-  * DO ask on the mailing lists if you have questions.  Some tests are better written than others.
+* DO use asserts liberally.  It's common to have an assert on almost every line.
+* DO use assertEqualInt, assertEqualString, assertEqualMem to test equality instead of plain assert(); the specialized forms give a lot more information on a failure.
+* DO test your tests; experiment by changing a piece of code and make sure your test fails.  If you think you've found a bug, we recommend writing the test first, make sure the test fails, then fixing the bug.
+* DO run all of the tests before submitting a change.  Depending on your build environment, `make test` or `make check` will usually run all of the tests.
+* DON'T rely on `HAVE_` macros from config.h.  (If the tests use the same `HAVE_` macros as the code being tested then configuration problems will be covered up.)
+* DO use runtime tests for platform features.  For example, the ACL tests try to set an ACL on a file and read it back to determine if ACL support is available, then they exercise the libarchive ACL handling.
+* DO look at existing tests.  Often, a bug can be tested by adding just a couple of asserts to an existing test instead of writing a new one.
+* DO improve existing tests.  In particular, if you see a test failure that is hard to understand, consider adding a failure() message or comments so the next person will have an easier time.
+* DO ask on the mailing lists if you have questions.  Some tests are better written than others.
 
-= Some examples of tests =
+== Some examples of tests ==
 
-== Libarchive read tests ==
+=== Libarchive read tests ===
 
 There are quite a few read tests that simply read a pre-built input file and
 verify the results.
@@ -206,14 +206,14 @@ These use `extract_reference_file()` to decode a uuencoded input file, then open
 file with libarchive and verify the results.
 Most of these are pretty straightforward.
 
-== Libarchive read/write tests ==
+=== Libarchive read/write tests ===
 
 Most of the write tests really just verify that libarchive can read what it writes.
 These generally use the memory interfaces.
 They feed archive entries into the writer to create an archive in memory and
 then open the memory again to read the data back and verify that it is the same.
 
-== Libarchive write validators ==
+=== Libarchive write validators ===
 
 A few write tests write an archive into memory and then inspect the actual
 bytes to verify that the archive was created correctly.
@@ -223,7 +223,7 @@ There are also a couple of such validators for bsdtar and bsdcpio.
 These are very tricky since the exact data contains values that
 the test cannot completely control (such as the current time or username).
 
-== Disk tests ==
+=== Disk tests ===
 
 Libarchive's disk I/O APIs, as well as bsdtar and bsdcpio, need to
 operate by verifying files on disk.
@@ -233,7 +233,7 @@ These assertions use appropriate system calls for each platform;
 new tests should try to avoid using `stat()`, which is not uniformly
 available.
 
-== Fuzz tester ==
+=== Fuzz tester ===
 
 The fuzz tester is one of the few tests that does not aggressively use assertions.
 Its purpose is to try and crash libarchive by feeding it input that is slightly damaged.
@@ -245,7 +245,7 @@ If libarchive crashes the entire tester, the input that caused the crash will be
 Although it is unusual for a test program to use random input, the fuzz tester has proven quite useful at uncovering poor error handling.
 Unfortunately, the need to write the data to disk before each test is a significant performance issue.
 
-== Large tar tester ==
+=== Large tar tester ===
 
 The large tar tester attempts to exercise boundary cases with very large entries, up to 1 terabyte.
 Of course, writing a 1 terabyte entry to an uncompressed archive on disk or memory is unacceptable, both for performance and space reasons.
