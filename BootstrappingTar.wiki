@@ -21,7 +21,7 @@ Once you have the unpacked files, you can then follow
 the [BuildInstructions Build Instructions] to build
 bsdtar.
 
-= Gunzip =
+== Gunzip ==
 
 For ease of downloading, the libarchive distribution is compressed.
 To use the "untar" program below, you'll need to first
@@ -37,7 +37,7 @@ onto a system that has gzip, decompress it there,
 then copy the uncompressed libarchive-XX.YY.ZZ.tar
 onto the target system and untar it.
 
-= Untar =
+== Untar ==
 
 I've created an extremely minimal C
 program called "untar" that knows just enough about the tar format
