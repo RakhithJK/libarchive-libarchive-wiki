@@ -1,6 +1,6 @@
 How libarchive automatically determines the format of data.
 
-= Introduction =
+== Introduction ==
 
 Libarchive uses an internal "bidding" process in which
 multiple modules inspect the incoming data.
@@ -14,7 +14,7 @@ It also works with any input source, including pipes,
 sockets, and other data sources that cannot rewind
 the input.
 
-= Modules and Bidding =
+== Modules and Bidding ==
 
 Libarchive is broken into separate modules for every
 format that it supports.
@@ -23,7 +23,7 @@ how to inspect the incoming data and provide a number
 that indicates how certain that module is that it
 can recognize that data.
 
-= Simplest example: A tar archive =
+== Simplest example: A tar archive ==
 
 When you use libarchive, you create the libarchive object
 and then invoke functions that register different modules.
@@ -69,7 +69,7 @@ will be handled internally by the tar reader module:
    }
 ```
 
-= A more complex example: input.tar.gz.uu =
+== A more complex example: input.tar.gz.uu ==
 
 Of course, tar archives are often compressed and sometimes processed even further.
 Consider a tar archive that has been compressed with `gzip` and then encoded
