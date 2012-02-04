@@ -8,17 +8,17 @@ The first thing you should do is create a fork of libarchive via Github's web in
 
 # Go to [https://github.com/libarchive/libarchive]
 # At the top of the page, you should see a button that says ''Fork''. Click this button.
-# A popup will appear asking ''Where do you want to fork this to?'' Click the button that says ''Fork to <username>'' where username is your account name in github.
+# A popup will appear asking ''Where do you want to fork this to?'' Click the button that says ''Fork to &lt;username&gt;'' where username is your account name in github.
 # A progress page will appear showing the progress of the forking processing. After the forking is done, the page will refresh to a page of your newly created fork of libarchive under your username.
 
 == Cloning ==
 
 Next, you will of course need to clone the newly created fork down to your system. The next lines will show how to clone your fork and then add the main libarchive repository as a "remote" repository in your cloned repository.
 
-# Go to your fork's webpage, i.e. [https://github.com/<username>/libarchive]
+# Go to your fork's webpage, i.e. [https://github.com/&lt;username&gt;/libarchive]
 # Somewhere at the top of the page, you should see three buttons with the labels "SSH", "HTTP", and "Git Read-Only" followed by a URL. Assuming you want to use SSH, click the "SSH" button, then copy the URL.
 # In a terminal, 'cd' into a directory where you want the libarchive clone to reside.
-# Run the command 'git clone git@github.com:<username>/libarchive.git'.
+# Run the command 'git clone git@github.com:&lt;username&gt;/libarchive.git'.
 # 'cd' into the newly cloned repository, i.e. 'cd libarchive'.
 # Add the main libarchive repository as a "remote", i.e. 'git remote add libarchive git@github.com:libarchive/libarchive.git'.
 # Fetch the sources from the newly added "remote", i.e. 'git fetch libarchive'.
@@ -27,5 +27,5 @@ Next, you will of course need to clone the newly created fork down to your syste
 
 Here are some other guides that may be useful in getting initiated development of libarchive in Github.
 
-* [http://help.github.com/linux-set-up-git/|Setting up git]
-* [http://help.github.com/fork-a-repo/|Forking a repo]
+* [http://help.github.com/linux-set-up-git Setting up git]
+* [http://help.github.com/fork-a-repo Forking a repo]
