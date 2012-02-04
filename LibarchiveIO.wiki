@@ -1,13 +1,13 @@
-#summary How to provide custom I/O callbacks for libarchive.
+How to provide custom I/O callbacks for libarchive.
 
-= Introduction =
+== Introduction ==
 
 Libarchive uses an I/O abstraction that has been carefully designed to
 balance high performance against client simplicity.
 
 Most users of libarchive will be content with the provided _open_ functions:
- * `archive_read_open_filename` and `archive_write_open_filename` connect libarchive's internal machinery to any named file (pass in NULL to open stdin or stdout).
- * `archive_read_open_memory` and `archive_write_open_memory` can be used to read/write archives to an in-memory buffer or an mmapped file.
+* `archive_read_open_filename` and `archive_write_open_filename` connect libarchive's internal machinery to any named file (pass in NULL to open stdin or stdout).
+* `archive_read_open_memory` and `archive_write_open_memory` can be used to read/write archives to an in-memory buffer or an mmapped file.
 
 All of the standard open functions work by providing suitable
 callbacks to libarchive's core machinery.
@@ -25,37 +25,37 @@ The read callback is expected to provide a _block_ of data to libarchive each ti
 
 Blocks can be of any size or alignment at all.
 There are only two requirements:
- * Each block must be at least one byte long.  (A zero-byte block indicates end-of-file.)
- * When you return a pointer to a block, the memory where the block is stored must be stable until the next time your read function is called.
+* Each block must be at least one byte long.  (A zero-byte block indicates end-of-file.)
+* When you return a pointer to a block, the memory where the block is stored must be stable until the next time your read function is called.
 
 Your read callback should be declared like this:
-{{{
+```c
    ssize_t  my_reader(struct archive *a, void *client_data, const void **block)
-}}}
+```
 
 After you've read a block of data, update `*block` to point to your new block and return the size of the block.
 If there is a fatal read error, return `ARCHIVE_FATAL` (which is a negative value).
 (Because libarchive makes no requirements about block size, short reads are typically not fatal.)
 
 To register your function with libarchive, you can use the `archive_read_open()` or `archive_read_open2()` utility functions, but the preferred method is to register your callback separately and then call `archive_read_open1()`:
-{{{
+```c
     archive_read_set_read_callback(a, my_read);
     archive_read_set_callback_data(a, my_data);
     return (archive_read_open1(a));
-}}}
-The _callback data_ will be passed as the second argument to your read function.
+```
+The ''callback data'' will be passed as the second argument to your read function.
 It is typically a structure allocated on the heap that you will release later on.
 
 You can see a slightly more complete example in [ManPageArchiveRead3].
 
-Although the read callback is the only callback that is required, you will probably also want to provide a _close_ callback.
+Although the read callback is the only callback that is required, you will probably also want to provide a ''close'' callback.
 This will be invoked by libarchive when the archive is closed (typically as a result of someone calling `archive_read_close`).
 The close callback should release any system resources, including releasing the memory used by your private data.
 
 If you read the documentation carefully, you will also see references to other callback functions that you can register:
- * _open_ callback.  This is still supported for backwards compatibility but you should not use it.  Instead, simply open your file before calling `archive_read_open1()`.
- * _skip_ callback.  This is never required but can provide a significant performance improvement in some cases (see below).
- * _seek_ callback.  This is required for reading some file types but is tricky to implement correctly (see below).
+* ''open'' callback.  This is still supported for backwards compatibility but you should not use it.  Instead, simply open your file before calling `archive_read_open1()`.
+* ''skip'' callback.  This is never required but can provide a significant performance improvement in some cases (see below).
+* ''seek'' callback.  This is required for reading some file types but is tricky to implement correctly (see below).
 
 == Optimizing Read Support ==
 
@@ -106,9 +106,9 @@ The only requirement is a _write callback_ that libarchive will
 call each time it is ready to write a block.
 
 You can set the block size by calling
-{{{
+```c
     archive_write_set_bytes_in_block()
-}}}
+```
 Libarchive will allocate an internal block buffer and call you whenever this
 buffer fills so you can write it.
 (The default value if you fail to call this is 10240 bytes, which
