@@ -15,7 +15,7 @@ XXX TODO Example here XXX
 
 === Caveat: Don't mix _raw_ with other handlers ===
 
-If you are using the raw handler, you should generally not enable any other handler (except possibly for the [FormatEmpty empty handler]).
+If you are using the raw handler, you should generally not enable any other handler (except possibly for the [[FormatEmpty|empty handler]]).
 
 Many of the formats supported by libarchive were not designed with automatic format detection in mind.
 Although libarchive generally does a very good job of distinguishing different archive formats, mixing non-archive files can produce surprising results.
