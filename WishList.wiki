@@ -1,4 +1,4 @@
-#summary Ideas that would be nice to implement someday.
+Ideas that would be nice to implement someday.
 
 If you would like to see any of these implemented, let us know by either posting a comment to this page or sending a note to the libarchive-discuss mailing list.
 If you'd like to take a stab at implementing any of these, definitely let us know.
@@ -10,32 +10,30 @@ a guided tour of how libarchive works and ask on the
 libarchive-discuss@googlegroups.com mailing list
 if you have any questions.
 
-<wiki:toc>
-
-= Better Build Documentation =
+== Better Build Documentation ==
 
 The existing build documentation is a little hard to navigate.
 It would be nice to break it out into separate pages by platform and provide more in the way of screenshots for the graphical tools and command examples for the command-line tools.
 
-= Man Page Updates =
+== Man Page Updates ==
 
 The man pages are a little out-of-date now; some of the newer changes need to be added.
 
-= Better documentation conversions =
+== Better documentation conversions ==
 
 The existing conversion scripts don't do a bad job but could probably stand improvement.
 
-= CMake-based install target =
+== CMake-based install target ==
 
 The CMake-based build has basic install support, but could use improvement.
 
-= CMake-based distribution building =
+== CMake-based distribution building ==
 
 Currently, the distribution can only be built from the autoconf build system.
 This is one of the few capabilities of the autoconf-based build that
 is not implemented in the CMake-based build.
 
-= Command-line parsing for compress_program =
+== Command-line parsing for compress_program ==
 
 The `archive_read_support_compress_program()` and `archive_write_set_compress_program()`
 use external programs to compress or decompress data.
@@ -46,7 +44,7 @@ for decompressing gzip streams instead of the more portable "gzip -d".
 The parsing requirements are not difficult, so this should be a relatively
 easy project for someone.
 
-= Extended Attribute interoperability =
+== Extended Attribute interoperability ==
 
 libarchive's handling of POSIX.1e-style extended attributes
 in pax files should be interoperable across systems,
@@ -56,7 +54,7 @@ portions for more operating systems.  (Currently, only Linux and
 FreeBSD are fully supported; it should be easy to add Mac OS and
 Solaris and possibly others.)
 
-= Linux `FILE_OFFSET_BITS` intelligence =
+== Linux `FILE_OFFSET_BITS` intelligence ==
 
 Libarchive is always compiled with `FILE_OFFSET_BITS=64` on Linux.
 Of course, this is not the default on 32-bit Linux systems, which leads
@@ -68,28 +66,28 @@ But there is still an issue with `struct stat`.
 
 Through careful macro trickery, we could define several versions of
 `archive_entry_copy_stat()` so that:
- * `archive_entry_copy_stat32()` accepts a `struct stat32`
- * `archive_entry_copy_stat64()` accepts a `struct stat64`
- * `archive_entry_copy_stat()` refers to whichever of the above is appropriate for the current compilation environment.
+* `archive_entry_copy_stat32()` accepts a `struct stat32`
+* `archive_entry_copy_stat64()` accepts a `struct stat64`
+* `archive_entry_copy_stat()` refers to whichever of the above is appropriate for the current compilation environment.
 
 If done correctly, programs that use `FILE_OFFSET_BITS=32`
 or `FILE_OFFSET_BITS=64` on Linux could compile and link
 correctly against the same libarchive library without issues.
 
-= Pax front-end =
+== Pax front-end ==
 
 It should be feasible to build a POSIX-compliant pax on top of libarchive.
 Michihiro has been working on this for a while in an SVN branch;
 he would certainly appreciate assistance.
 
-= cpio as archive translation =
+== cpio as archive translation ==
 
 Essentially all of cpio's operation can be viewed as
 archive translation (where "archive" means "description
 of a series of filesystem objects"):
- * *cpio -o* reads a list of filenames and writes a cpio or tar archive
- * *cpio -p* reads a list of filenames and writes filesystem objects to disk
- * *cpio -i* reads an archive and writes filesystem objects to disk
+* '''cpio -o''' reads a list of filenames and writes a cpio or tar archive
+* '''cpio -p''' reads a list of filenames and writes filesystem objects to disk
+* '''cpio -i''' reads an archive and writes filesystem objects to disk
 libarchive's mtree reader demonstrates that a list of filenames
 can be viewed as an archive, and `archive_write_disk()`
 shows that a series of filesystem objects can be written to
@@ -102,11 +100,11 @@ Some tweaks to libarchive APIs might be necessary to make
 this really clean, of course.
 The end result should be a very simple cpio implementation that does everything the
 standard requires with a few nice new features:
- * *cpio -o* can do arbitrary archive translation; if it can read a list of filenames, there's no reason it can't read a tar archive as well.
- * The common `find|cpio` idiom can use mtree format.  In particular, using mtree format between find and cpio allows the use of sed, grep, and awk to modify metadata (e.g., create a ustar archive where every file is owned by root).
- * A more modular libarchive interface will be more useful to other applications; this exercise will help in identifying some of the remaining rough edges.  (In particular, implementing *cpio -pl* efficiently will require some careful thought about how `sourcepath` should be handled.)
+* '''cpio -o''' can do arbitrary archive translation; if it can read a list of filenames, there's no reason it can't read a tar archive as well.
+* The common `find|cpio` idiom can use mtree format.  In particular, using mtree format between find and cpio allows the use of sed, grep, and awk to modify metadata (e.g., create a ustar archive where every file is owned by root).
+* A more modular libarchive interface will be more useful to other applications; this exercise will help in identifying some of the remaining rough edges.  (In particular, implementing *cpio -pl* efficiently will require some careful thought about how `sourcepath` should be handled.)
 
-= Virtualizing archive_entry =
+== Virtualizing archive_entry ==
 
 The username, group name, uid, and gid lookups are awkward.
 These lookups are expensive to do so we'd like to avoid them when we can.
@@ -132,14 +130,14 @@ that can't utilize such information.
 feed to a cpio writer currently pulls ACLs, extended attributes,
 and user/group names that are never actually used.)
 
-= Filtering directory traversals in archive_read_disk =
+== Filtering directory traversals in archive_read_disk ==
 
 Now that archive_read_disk can handle directory
 traversals, there's a tricky
 problem around file filtering that will need some
 creative thought.
 
-= Explicit read pipelines =
+== Explicit read pipelines ==
 
 Today, read filters are configured and then read pipelines
 are assembled automatically.
@@ -164,7 +162,7 @@ and make sure that the final API is clean and easy to
 understand (and backwards compatible with existing clients
 if that's possible).
 
-= Encrypted backup support =
+== Encrypted backup support ==
 
 This should be a straightforward use of OpenSSL wrapped
 up in matching read and write filters.
@@ -172,11 +170,11 @@ There should also be a standalone pair of encrypt/decrypt
 command-line tools.
 I have a rough design of how to implement this; ask for details.
 
-= Multivolume Writing =
+== Multivolume Writing ==
 
 This requires two changes to the internal write filter API:
- * A "bytes remaining" call that the format writer can make against the write filters.  Most write filters will just pass it downstream and possibly reduce the return value to account for data they have currently buffered (and any end-of-file overhead).  Compression filters shouldn't try to adjust for compression ratio; underestimates are okay here but overestimates can be fatal.
- * A "volume change" call that the format writer can make to prompt each write filter to flush, invoke it's downstream, then reinitialize.  (Maybe just call close() and then open() callbacks?)
+* A "bytes remaining" call that the format writer can make against the write filters.  Most write filters will just pass it downstream and possibly reduce the return value to account for data they have currently buffered (and any end-of-file overhead).  Compression filters shouldn't try to adjust for compression ratio; underestimates are okay here but overestimates can be fatal.
+* A "volume change" call that the format writer can make to prompt each write filter to flush, invoke it's downstream, then reinitialize.  (Maybe just call close() and then open() callbacks?)
 
 The interesting part will be working through the format writers to actually support this.
 For tar and cpio, it might be as simple as invoking
@@ -194,7 +192,7 @@ an ISO burner program to burn a disk, then reopens the ISO writer.
 (Bonus points, of course, if the burner program runs while the next ISO is being
 created.)
 
-= Multivolume Reading =
+== Multivolume Reading ==
 
 Proper multivolume reading requires that each layer appropriately
 detect end-of-input and invoke close()/open() on the next layer up.
@@ -207,11 +205,11 @@ return end-of-archive only if the open() returns end-of-archive.
 Similar changes can be made to the gzip decompressor, for instance.
 If properly done, libarchive will be able to transparently handle
 all of the following scenarios:
- * A tar.gz archive that has been processed by `split`.  In this case, the I/O functions will reassemble the file without any intervention by the decompression or format handler.
- * A tar archive that has been `split` and then each piece separately gzip compressed.  In this case, the gzip decompressor will invoke close()/open() on the I/O functions to advance to the next file but the tar reader will see nothing.
- * A GNU-style multivolume tar archive with each volume separately compressed.  In this case, the tar format handler will see the end-of-archive markers and invoke close() that will ripple through the gzip decompressor and the I/O handler.  Of course, some additional work will be required for the tar reader to handle entries that have been split across volumes.
+* A tar.gz archive that has been processed by `split`.  In this case, the I/O functions will reassemble the file without any intervention by the decompression or format handler.
+* A tar archive that has been `split` and then each piece separately gzip compressed.  In this case, the gzip decompressor will invoke close()/open() on the I/O functions to advance to the next file but the tar reader will see nothing.
+* A GNU-style multivolume tar archive with each volume separately compressed.  In this case, the tar format handler will see the end-of-archive markers and invoke close() that will ripple through the gzip decompressor and the I/O handler.  Of course, some additional work will be required for the tar reader to handle entries that have been split across volumes.
 
-= RMT support =
+== RMT support ==
 
 RMT hasn't been a priority simply because noone has ever asked for it.
 However, it is one of the few features that is both
@@ -227,7 +225,7 @@ couple of different rmt servers.
 This would be a good project for someone who is trying
 to learn network programming.
 
-= Seeking input files =
+== Seeking input files ==
 
 This is partially supported now, but could be improved
 further:
@@ -236,7 +234,7 @@ and 7-Zip readers can exploit that to read the archive directory
 from the end of the archive first, then seek to the individual
 files as needed.
 
-= Seek in archives =
+== Seek in archives ==
 
 A few people have asked for the ability to efficiently
 "re-read" particular archive entries.
@@ -253,7 +251,7 @@ restore back to that checkpoint.
 The checkpoint object could be complex if you have a series of
 stacked read filters plus state in the format handler itself.
 
-= fadvise() and O_DIRECT =
+== fadvise() and O_DIRECT ==
 
 Libarchive's streaming operation should allow the kernel to
 optimize I/O very cleanly.
@@ -268,7 +266,7 @@ to align the copy buffers used within bsdtar so that
 O_DIRECT can be used; there is probably more that
 could be done.
 
-= File I/O strategy development =
+== File I/O strategy development ==
 
 The `archive_read_open_filename` module now has a basic
 notion of "strategy" for reading files from different sources.
@@ -285,7 +283,7 @@ a simple wrapper around `archive_read_open_fd`,
 but there are a couple of small mismatches in the current
 code that would need to be resolved.
 
-= MMap and async I/O performance experiments =
+== MMap and async I/O performance experiments ==
 
 It should be possible to read archives using mmap()
 or async I/O and it might be significantly faster than
@@ -323,7 +321,7 @@ extracted to, and reading from a separate disk.
 I've not yet experimented to see if I can find any
 benefits from async I/O when writing archives to tape.
 
-= BSD-style long filename support for GNU ld and other ld implementations =
+== BSD-style long filename support for GNU ld and other ld implementations ==
 
 The GNU/SysV ar format is ugly to write because you need to collect a filename table in advance.
 This complicates programs that write ar format.
@@ -331,7 +329,7 @@ The BSD ar format avoids this problem but GNU ld doesn't support it.
 If GNU ld could read the BSD ar format, then it would be easier
 to create library-management tools on top of libarchive.
 
-= Single-pass ar writer =
+== Single-pass ar writer ==
 
 Another option is for libarchive's ar writer to simply
 store the entire archive in memory (.a files are rarely
