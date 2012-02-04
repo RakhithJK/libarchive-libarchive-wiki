@@ -1,4 +1,4 @@
-#summary How libarchive automatically determines the format of data.
+How libarchive automatically determines the format of data.
 
 = Introduction =
 
@@ -29,11 +29,11 @@ When you use libarchive, you create the libarchive object
 and then invoke functions that register different modules.
 Suppose you use the following:
 
-{{{
+```c
    struct archive *a = archive_read_new();
    archive_read_support_format_tar(a);
    archive_read_support_format_cpio(a);
-}}}
+```
 
 This registers two bidders with libarchive's read core:
 one bidder understands tar archives and the other understands
@@ -41,9 +41,9 @@ cpio archives.
 
 You can then open a file and prepare to read the archive contents:
 
-{{{
+```c
    archive_read_open_filename(a, "input.tar", 10240);
-}}}
+```
 
 This function is a shorthand for calling `archive_read_open1()` after
 registering an input function that reads blocks from a file.
@@ -63,11 +63,11 @@ So libarchive's read core will initialize the tar reader.
 Now you can ask for data from the archive and those requests
 will be handled internally by the tar reader module:
 
-{{{
+```c
    while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
-      ... process next entry ...
+      /* ... process next entry ... */
    }
-}}}
+```
 
 = A more complex example: input.tar.gz.uu =
 
@@ -89,11 +89,11 @@ much of the code here.)
 
 So let's start over and create a new archive reader:
 
-{{{
+```c
    struct archive *a = archive_read_new();
    archive_read_support_format_all();
    archive_read_support_filter_all();
-}}}
+```
 
 This time, I used two convenience functions that register
 all formats and all filters that are supported by libarchive.
@@ -122,10 +122,10 @@ list, it will ask format modules to bid.
 
 When all of the bidding is complete, libarchive will end up with
 an internal list that looks like this:
- # File input function
- # UUdecode filter module
- # Gzip decompression module
- # Tar format module
+* File input function
+* UUdecode filter module
+* Gzip decompression module
+* Tar format module
 
 When you ask for the next header, libarchive will pass that
 to the tar module, which will request data from the filter
