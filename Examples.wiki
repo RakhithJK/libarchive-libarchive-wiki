@@ -8,7 +8,7 @@ You may use it for any purpose whatsoever.
 (Please note that libarchive itself is not in the public domain; please read the license information in the source distribution for details.)
 If there is an example you'd like to see added to this page, please ask.
 
-= List contents of Archive stored in File =
+== List contents of Archive stored in File ==
 
 Libarchive is based around two types of "objects":  archive objects (pointers to `struct archive`) and entry objects (pointers to `struct archive_entry`).
 These are opaque references: you cannot directly access the structure fields, you can only invoke libarchive functions that create, manipulate, and destroy these objects for you.
@@ -58,7 +58,7 @@ Note 3:  This function was called `archive_read_finish()` in
 earlier versions of libarchive.
 That name will remain available for at least a few years.
 
-= List contents of Archive stored in Memory =
+== List contents of Archive stored in Memory ==
 
 There are several variants of the "open" functions.
 The "filename" variant used above is intended to be simple to use in the common case, but you may find the "memory" variant more useful sometimes:
@@ -75,7 +75,7 @@ In the memory case, all that's needed is the total size of the archive stored in
 
 There are also variants to read from an already-opened file descriptor (which is useful if you need to skip the first part of a file before using libarchive to extract the rest) or `FILE *` pointer.
 
-= List contents of Archive with custom read functions =
+== List contents of Archive with custom read functions ==
 
 Sometimes, none of the packaged "open" functions will work for you.
 In that case, you can use the lower-level `archive_read_open` function.
@@ -135,7 +135,7 @@ myclose(struct archive *a, void *client_data)
 
 [[LibarchiveIO]] has more details about designing and implementing effective I/O callback functions.
 
-== A note about the skip callback ==
+=== A note about the skip callback ===
 
 The `archive_read_open2` function is like `archive_read_open` but it accepts an additional "skip" callback function.
 The skip callback is never required.
@@ -160,7 +160,7 @@ earlier versions, you may need to define different types of your callbacks
 depending on the `ARCHIVE_VERSION_NUMBER` macro.
 Ask on libarchive-discuss@groups.google.com if you have questions about this.
 
-= A Universal Decompressor =
+== A Universal Decompressor ==
 
 Starting with libarchive 2.8, there is a [FormatRaw "raw" format handler] that treats arbitrary binary input as a single-element archive.
 This is basically a cheat to allow you to get the output of a libarchive filter chain,
@@ -197,7 +197,7 @@ including files with multiple encodings such as `gz.uu` files:
 
 Note that the "raw" format is not enabled by `archive_read_support_format_all()`.
 
-= A Basic Write Example =
+== A Basic Write Example ==
 
 The following is a very simple example of using libarchive
 to write a group of files into a gzipped tar archive.
@@ -294,7 +294,7 @@ libarchive 2.x and libarchive 3.x, you should
 use the old name, but be aware that it will
 be removed when libarchive 4.x is released.
 
-= Constructing Objects On Disk =
+== Constructing Objects On Disk ==
 
 Libarchive includes an `archive_write_disk` facility that works
 very much like `archive_write`, except that it constructs objects
@@ -344,7 +344,7 @@ but you do have to initialize the entry a little differently:
 * Symlinks have a file type `AE_IFLNK` and require a target to be set with `archive_entry_set_symlink()`
 * Hardlinks require a target to be set with `archive_entry_set_hardlink()`; if this is set, the regular filetype is ignored.  If the entry describing a hardlink has a size, you must be prepared to write data to the linked files.  If you don't want to overwrite the file, leave the size unset.
 
-= A Complete Extractor =
+== A Complete Extractor ==
 
 Using the facilities described above, you can extract most archives
 to disk by simply copying entries from an `archive_read`
@@ -439,7 +439,7 @@ copy_data(struct archive *ar, struct archive *aw)
 }
 ```
 
-= Handling Errors =
+== Handling Errors ==
 
 For simplicity, the examples above do not all demonstrate proper error
 handling.
