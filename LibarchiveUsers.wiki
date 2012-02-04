@@ -1,32 +1,32 @@
-#summary A few projects and people who use libarchive.
+A few projects and people who use libarchive.
 
-= Who Uses Libarchive? =
+== Who Uses Libarchive? ==
 
- * FreeBSD
-  * libarchive was originally developed for [http://freebsd.org/ FreeBSD]; it was first released with FreeBSD 5.3 in November 2004.
-  * bsdtar is the default system tar starting with FreeBSD 6
-  * bsdcpio is the default system cpio starting with FreeBSD 8
-  * Kai Wang's "ar" is standard with FreeBSD 8
-  * Dag-Erling Smørgrav's "unzip" is standard with FreeBSD 8
+* FreeBSD
+** libarchive was originally developed for [http://freebsd.org/ FreeBSD]; it was first released with FreeBSD 5.3 in November 2004.
+** bsdtar is the default system tar starting with FreeBSD 6
+** bsdcpio is the default system cpio starting with FreeBSD 8
+** Kai Wang's "ar" is standard with FreeBSD 8
+** Dag-Erling Smørgrav's "unzip" is standard with FreeBSD 8
 
- * Package Managers
-  * [http://www.archlinux.org/pacman/ Pacman] package manager on [http://www.archlinux.org/ Arch Linux] uses libarchive
-  * [http://www.netbsd.org/ NetBSD]'s pkg_install package manager uses libarchive.
-  * [http://cmake.org/ CMake] uses libarchive
-  * [http://crux.nu/gitweb/?p=tools/pkgutils.git pkgutils] from the [http://crux.nu/ CRUX distribution] use libarchive
-  * The [http://paludis.pioto.org/ Paludis] multi-format package manager for [http://www.gentoo.org/ Gentoo] and [http://www.exherbo.org/ Exherbo] uses libarchive
+* Package Managers
+** [http://www.archlinux.org/pacman/ Pacman] package manager on [http://www.archlinux.org/ Arch Linux] uses libarchive
+** [http://www.netbsd.org/ NetBSD]'s pkg_install package manager uses libarchive.
+** [http://cmake.org/ CMake] uses libarchive
+** [http://crux.nu/gitweb/?p=tools/pkgutils.git pkgutils] from the [http://crux.nu/ CRUX distribution] use libarchive
+** The [http://paludis.pioto.org/ Paludis] multi-format package manager for [http://www.gentoo.org/ Gentoo] and [http://www.exherbo.org/ Exherbo] uses libarchive
 
- * Archiving tools and File Browsers
-  * The [http://www.tarsnap.com/ tarsnap] service uses libarchive in its client software.
-  * [http://www.springyarchiver.com Springy] for Mac OS X uses libarchive to process TAR, PAX and CPIO archives.
-  * [http://projects.gnome.org/nautilus/ Nautilus] file browser uses libarchive
-  * The [http://www.cybernoia.de/software/archivemount/ archivemount] filesystem (part of [http://fuse.sourceforge.net/ FUSE]) uses libarchive
-  * [http://kde.org/ KDE]'s [http://utils.kde.org/projects/ark/ ark] file browser uses libarchive for tar, deb, and ISO files.
+* Archiving tools and File Browsers
+** The [http://www.tarsnap.com/ tarsnap] service uses libarchive in its client software.
+** [http://www.springyarchiver.com Springy] for Mac OS X uses libarchive to process TAR, PAX and CPIO archives.
+** [http://projects.gnome.org/nautilus/ Nautilus] file browser uses libarchive
+** The [http://www.cybernoia.de/software/archivemount/ archivemount] filesystem (part of [http://fuse.sourceforge.net/ FUSE]) uses libarchive
+** [http://kde.org/ KDE]'s [http://utils.kde.org/projects/ark/ ark] file browser uses libarchive for tar, deb, and ISO files.
 
- * Ports of libarchive, bsdtar, etc.
-  * [http://gnuwin32.sourceforge.net/ GnuWin32] and [http://cygwin.org/ Cygwin] for Windows.
-  * [http://libarchive.darwinports.com/ Darwinports] for MacOS
-  * [http://packages.qa.debian.org/liba/libarchive.html Debian Linux]
-  * [http://packages.gentoo.org/package/app-arch/libarchive Gentoo]
+* Ports of libarchive, bsdtar, etc.
+** [http://gnuwin32.sourceforge.net/ GnuWin32] and [http://cygwin.org/ Cygwin] for Windows.
+** [http://libarchive.darwinports.com/ Darwinports] for MacOS
+** [http://packages.qa.debian.org/liba/libarchive.html Debian Linux]
+** [http://packages.gentoo.org/package/app-arch/libarchive Gentoo]
 
 If you know of other projects that should be in this list, please let us know.
