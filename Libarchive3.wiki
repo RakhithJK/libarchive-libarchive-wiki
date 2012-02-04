@@ -1,6 +1,6 @@
-#summary Transitioning to libarchive 3.0.
+Transitioning to libarchive 3.0.
 
-= Introduction =
+== Introduction ==
 
 Libarchive 3.0 was released in late December 2011.
 It represents nearly two years of development since libarchive 2.8 was released in early 2010.
@@ -14,46 +14,59 @@ Most of the changes involve either removing functionality that has long been dep
 The libarchive 3.0 release will also be deprecating some older functionality.
 This functionality will not be completely removed until libarchive 4.0, which should provide a transition window of at least two full years.
 
-= Functions that are being removed in libarchive 3.0 =
+== Functions that are being removed in libarchive 3.0 ==
 
 In all of these cases, the new function has been available for some time.
 If you are still using any of the old functions listed here, you should have already switched to the newer version.
 
-|| *Old function*            || *Function to use instead* ||
-|| archive_version()         || archive_version_string()  ||
-|| archive_version_stamp()   || archive_version_number()  ||
-|| archive_api_version()     || archive_version_number()  ||
-|| archive_feature_version() || archive_version_number()  ||
-|| archive_read_set_format_options() || archive_read_set_options() ||
-|| archive_write_set_format_options() || archive_write_set_options() ||
+{| 
+| '''Old function'''        || '''Function to use instead'''
+|-
+| archive_version()         || archive_version_string()
+|-
+| archive_version_stamp()   || archive_version_number()
+|-
+| archive_api_version()     || archive_version_number()
+|-
+| archive_feature_version() || archive_version_number()
+|-
+| archive_read_set_format_options() || archive_read_set_options()
+|-
+| archive_write_set_format_options() || archive_write_set_options()
+|}
 
-= Functions with argument changes =
+== Functions with argument changes ==
 
 These changes will break binary compatibility; the libarchive 3.0 distribution will have a new shared library version to reflect these changes.
 Most of these changes involve the use of portable wide types such as `int64_t` instead of less-portable types such as `off_t`, `gid_t`, `uid_t`, `dev_t`, and `ino_t`.
 
-|| *Function name*                             ||
-|| archive_entry_ino()                         ||
-|| archive_entry_set_ino()                     ||
-|| ... many others ...                             ||
+{|
+| '''Function name'''
+|-
+| archive_entry_ino()
+|-
+| archive_entry_set_ino()
+|-
+| ... many others ...
+|}
 
 There are a few cases where these changes will affect your source code:
 
-  * In some cases, libarchive's wider types will introduce the possibility of truncation:  For example, on a system with a 16-bit uid_t, you risk having uid 65536 be truncated to uid 0, which can cause serious security problems.
-  * Typedef function pointer types will be incompatible.  For example, if you define custom skip callbacks, you may have to use code similar to the following if you want to support building against libarchive 2.x and libarchive 3.x.
+* In some cases, libarchive's wider types will introduce the possibility of truncation:  For example, on a system with a 16-bit uid_t, you risk having uid 65536 be truncated to uid 0, which can cause serious security problems.
+* Typedef function pointer types will be incompatible.  For example, if you define custom skip callbacks, you may have to use code similar to the following if you want to support building against libarchive 2.x and libarchive 3.x.
 
-{{{
+```c
 #if ARCHIVE_VERSION_NUMBER < 3000000
 off_t my_skip_function(struct archive *a, void *v, off_t o)
 #else
 int64_t my_skip_function(struct archive *a, void *v, int64_t o)
 #endif
 {
-    ... implementation ...
+    /* ... implementation ... */
 }
-}}}
+```
 
-= Functions that are being renamed =
+== Functions that are being renamed ==
 
 The old function name will continue to be supported until libarchive 4.0
 is released, at which point the old name will be removed.
@@ -64,16 +77,25 @@ This should provide libarchive users with a transition window of at least two fu
 The new functions will sometimes have slightly different functionality.
 In particular, the `write_add_filter` functions extend the write pipeline with a new filter, whereas the old `write_set_compression` functions replaced any existing filter.
 
-|| *Old function*                           || *New name*                          ||
-|| archive_read_finish()                    || archive_read_free()                 ||
-|| archive_write_finish()                   || archive_write_free()                ||
-|| archive_write_set_compression_bzip2()    || archive_write_add_filter_bzip2()    ||
-|| archive_write_set_compression_compress() || archive_write_add_filter_compress() ||
-|| archive_write_set_compression_gzip()     || archive_write_add_filter_gzip()     ||
-|| archive_write_set_compression_lzma()     || archive_write_add_filter_lzma()     ||
-|| archive_write_set_compression_xz()       || archive_write_add_filter_xz()       ||
+{|
+| '''Old function'''                       || '''New name'''
+|-
+| archive_read_finish()                    || archive_read_free()
+|-
+| archive_write_finish()                   || archive_write_free()
+|-
+| archive_write_set_compression_bzip2()    || archive_write_add_filter_bzip2()
+|-
+| archive_write_set_compression_compress() || archive_write_add_filter_compress()
+|-
+| archive_write_set_compression_gzip()     || archive_write_add_filter_gzip()
+|-
+| archive_write_set_compression_lzma()     || archive_write_add_filter_lzma()
+|-
+| archive_write_set_compression_xz()       || archive_write_add_filter_xz()
+|}
 
-= Character Set Handling =
+== Character Set Handling ==
 
 Libarchive 2 has some deep bugs around handling character sets.
 In particular, it assumes that the local platform uses Unicode as the native wchar_t encoding, which is true on Windows, modern Linux, and a few other systems, but is certainly not universal.
@@ -82,8 +104,8 @@ As a result, pax format archives are written incorrectly on some systems, since 
 Libarchive 3 now uses the standard iconv library to convert between character sets and is introducing the notion of a "default character set for the archive."
 To support this, `archive_entry` objects can now be bound to a particular archive when they are created.
 The automatic character set conversions performed by `archive_entry` objects when reading and writing filenames, usernames, and other strings will now use an appropriate default character set:
-  * If the `archive_entry` object is bound to an archive, it will use the default character set for that archive.
-  * The platform default character encoding (as returned by `nl_langinfo(CHARSET)`) will be used if nothing else is specified.
+* If the `archive_entry` object is bound to an archive, it will use the default character set for that archive.
+* The platform default character encoding (as returned by `nl_langinfo(CHARSET)`) will be used if nothing else is specified.
 
 We are also introducing `charset` options to many of the archive readers and writers to control the character set that will be used for filenames written in those archives.
 When possible, this will be set automatically based on information in the archive itself.
