@@ -1,9 +1,8 @@
-#summary Storing Extended Attributes in Tar Files
-#labels tar,format
+Storing Extended Attributes in Tar Files
 
-Also see: [TarNFS4ACLs] and [TarPosix1eACLs]
+Also see: [[TarNFS4ACLs]] and [[TarPosix1eACLs]]
 
-= Introduction =
+== Introduction ==
 
 Currently, I know of several different techniques for
 storing POSIX.1e-style extended attributes within
@@ -14,11 +13,11 @@ library (used by _bsdtar_) use pax extensions for
 this purpose.  Solaris and AIX added new tar entry
 types for this purpose.
 
-= libarchive =
+== libarchive ==
 
 Libarchive stores each POSIX.1e extended attribute
 as a separate pax attribute.  The pax attributes are
-named LIBARCHIVE.xattr._name_, where _name_ is the
+named LIBARCHIVE.xattr.''name'', where ''name'' is the
 name of the POSIX.1e attribute.  The name includes
 a namespace identifier (so an attribute "foo" in the
 user namespace from a FreeBSD system would get stored
@@ -36,7 +35,7 @@ but could be cumbersome for very large attributes.
 It also does not support extended metadata (such as
 per-EA ownership and permissions) supported on some systems.
 
-= star =
+== star ==
 
 Joerg Schilling's star uses a very similar approach.
 It stores each attribute under SCHILY.xattr._name_
@@ -53,7 +52,7 @@ based on patches contributed by Red Hat.
 
 Libarchive reads this format but does not currently write it.
 
-= Apple tar =
+== Apple tar ==
 
 Apple stores a separate resource file for each file written
 to a tar archive.  This is based on the
@@ -70,14 +69,14 @@ with this arrangement.
 For example, using Apple's patched GNU tar distributed
 with Mac OS X through version 10.5, a long filename
 would generate the following sequence in the tar archive:
- * 'L' header for the long filename of the resource file
- * Body of the 'L' header with the filename for the resource file
- * '0' header for the resource file itself
- * Contents of the resource file
- * 'L' header for the long filename of the file itself
- * Body of the 'L' header with the filename for the file
- * '0' header for the file
- * Contents of the file.
+* 'L' header for the long filename of the resource file
+* Body of the 'L' header with the filename for the resource file
+* '0' header for the resource file itself
+* Contents of the resource file
+* 'L' header for the long filename of the file itself
+* Body of the 'L' header with the filename for the file
+* '0' header for the file
+* Contents of the file.
 
 Since Mac OS 10.6, Apple is using a patched version of
 bsdtar.  Although this defaults to using pax extensions,
@@ -88,7 +87,7 @@ supports the Apple format on Mac OS.
 It does not parse the contents of the resource file or
 provide any support for Mac OS resources on other platforms.
 
-= AIX tar =
+== AIX tar ==
 
 AIX tar adds an 'E' entry following the regular file
 entry for each extended attribute attached to the file.
@@ -108,7 +107,7 @@ to use very small values.  Adapting libarchive to support
 AIX EAs would also be difficult; libarchive assumes that
 all metadata (including EAs) precede the file data.
 
-= Solaris tar =
+== Solaris tar ==
 
 I've seen references to an 'E' entry used by Solaris tar
 but haven't yet found any detailed documentation or examples
