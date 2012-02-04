@@ -1,0 +1,229 @@
+#summary How libarchive works
+
+<wiki:toc max_depth="2" />
+
+= Overview =
+
+Libarchive is broken into several distinct APIs.
+As far as possible, these APIs are completely independent and
+each one can be used separately from the others.
+
+Each API revolves around an object-like interface that is implemented
+as an opaque C structure reference.
+Generally, these objects have a similar lifecycle:  there is
+a new() function that creates the object, you can then invoke
+various functions to customize or configure the object, then
+you can do things with the object, and when you are done you
+can invoke a free() or finish() function to destroy the object.
+
+In order to minimize link pollution, the configuration functions
+generally fill in a function pointer in the structure.
+In this way, if you don't request that functionality, the
+function pointer simply remains NULL and the associated code
+will not need to be linked into your executable.
+As a result, libarchive should be usable even by very
+space-constrained applications since code you don't explicitly
+invoke will not be linked into your application.
+
+-----------------------------------------------------------------------
+
+== Entry Objects ==
+
+The entry objects satisfy the need for a single structure
+that holds all relevant metadata about a file.
+It includes all of the information included in typical
+`struct stat` as well as the filename, link information,
+file flags, ACLs, and extended attributes.
+
+=== set/unset tracking ===
+
+For many of the fields, the entry tracks whether or not the
+value has been set and provides calls to test whether it has
+been set and to unset it.
+
+For example, there is a big difference between an entry with
+a zero file size (it has no contents) and an entry whose size is
+unset (because we don't know the size).
+The latter situation occurs with file formats such as Zip files
+read in streaming mode.
+
+=== charset conversion handling ===
+
+XXX
+
+=== working with `struct stat` ===
+
+Of course, the entry object duplicates a lot of the information in the
+platform native `struct stat` (or the ByHandleFileInformation structure,
+which serves the same purpose on Windows).
+
+There are convenience functions to copy all of the data from
+`struct stat` into an entry object or return a `struct stat` object
+populated from the entry object.
+
+On 32-bit Linux and other systems that support more than one
+`struct stat`, you need to be very careful that your program is
+compiled in the same manner as libarchive.
+(Libarchive on Linux is always compiled with `FILE_OFFSET_BITS=64`.)
+Otherwise, you will get nonsensical results from the use
+of these functions.
+
+---------------------------------------------------------------
+
+== Read API ==
+
+The key issues with the read API are the I/O structure and
+the bidding process.
+Once you understand those and the lifecycle of a format
+provider, you should be able to read the code
+pretty easily.
+
+=== Read API I/O Model ===
+
+In order to minimize copying while still providing a convenient
+internal interface, libarchive provides a peek/consume read
+system internally, which allows data consumers to peek ahead
+at the available data and consume it as a separate action.
+
+Remember that the `archive_read_open()` functions accept a
+read callback that is invoked whenever data is needed.
+The read callback provides blocks of data by returning a
+pointer and a size.
+From the other side, when an internal component requires data,
+it calls one of two "read ahead" functions:
+The read filters call `__archive_read_filter_ahead()`
+to pull data from their upstream filter (the client-provided callback
+is merely the first filter in the chain); the format handlers
+call `__archive_read_ahead()` which pulls from the last filter
+in the chain.
+Within the read-ahead function, there are basically three
+cases:
+ * The request can be satisfied from the upstream provider's buffer.  In this case, a pointer/size can be returned with no copying.
+ * The request would span more than one block.  In this case, the read-ahead handler has to copy the data into an intermediate buffer.
+ * The request can't be filled.  In this case, the read-ahead handler returns a NULL pointer but does return a valid size.
+
+There are a couple of convenient idioms supported by this I/O framework:
+ * "Get some data."  If you ask for a minimum of 1 byte, you'll get a pointer and count of whatever data is most conveniently available.  You can then choose to consume however much or little of that data you wish.  A request for 1 byte will never induce copying, so is always very efficient.
+ * "Get a fixed block of data."  If you request a particular amount of data, you'll either receive a pointer to that much data or NULL if the request couldn't be satisfied.  If necessary, the read-ahead logic will copy the data into a dynamically-sized buffer to ensure that it can provide you with a contiguous block of data.  You will also receive a count of the data actually available (which will always be at least as large as your request).  You can then consume the amount you need.
+ * "Peek ahead."  The bidding functions, in particular, make heavy use of read-ahead without consuming the input.  This allows many handlers to inspect the upcoming bytes.
+
+=== Read API Bidding ===
+
+Bidding support, of course, was one of the key motivators for this I/O design.
+The read core instantiates an initial filter by wrapping the client-provided callback functions.
+It then recursively hands the most recent filter to each available filter bidder in turn.
+Those bidders can peek ahead to examine the initial bytes of the input and determine whether they can correctly handle this data.
+Once all filter bidders pass, the filter stack is complete and one additional round of bidding is done with the format handlers.
+
+A good bid function--sometimes called a "taster"--can do a lot more than just verify a couple of signature bytes.
+The cpio odc bidder, for instance, verifies that all of the initial bytes are octal.
+The tar bidder verifies the checksum included with the first header block.
+By doing careful verification, good bidders greatly reduce the possibilities of false positives.
+This does create some problems correctly handling slightly damaged input.
+For decompression filters, rejecting damaged input is probably wise,
+but libarchive should provide tools for forcing the format handler so that damaged archives can be read even if they fail the initial tasting.
+
+Starting with libarchive 3.0, some bidders inspect bytes from the end of the file instead of the beginning.
+This requires that the input file support seeking, so such bidders are designed to always fail if seeking is not available.
+
+=== Read format lifecycle ===
+
+A read format handler has a fairly straightforward lifecycle.
+Fortunately, the core of the read API ensures that your
+functions will only get called in certain orders.
+
+ * Setup function.  This is the public entry point, such as `archive_read_support_format_tar()`.  This registers the format with the read core.  The bidder and init function are required.  An options handler and associated configuration data are optional.  Note that few read formats need options handling.
+ * Bidder.  The bidder uses the internal read-ahead API to look at the next bytes in the stream.  It returns a positive bid if this looks like a stream that it can handle.
+ * Init.  The initialization function allocates a work area and registers additional functions.  If your format has a global header, it is reasonable to read it at this time.
+ * Read header.  Libarchive clients expect to alternate headers and data.  For formats such as tar or cpio, this is easy to implement:  your read header function reads the header, your read data function returns the data.
+ * Read data.  Read and return the next block of data.  This is pretty trivial unless the format uses compressed bodies (look at the Zip reader for an example of how to handle this) or can store sparse bodies (look at the tar reader handling for GNU sparse entries).
+ * Skip data.  If the client just calls "read header" repeatedly, the read core will call your "skip data" function to skip bodies.  If you have no "skip data" function, it will call your "read data" function to consume the body.  Most formats can optimize the skip operation.
+ * Finish.  Free your work data.
+
+---------------------------------------------------------------------------
+
+== Write API ==
+
+XXX
+
+---------------------------------------------------------------------------
+
+== Write-to-Disk API ==
+
+The "write-to-disk" API attempts to treat a directory on disk as if it were
+an archive, allowing you to create objects on disk using the same
+API calls you would use to write objects into an archive.
+
+There are a few differences, however XXXX
+
+XXX Security checks XXX
+
+XXX uid/gid lookups XXX
+
+XXX fixup pass XXX
+
+-----------------------------------------------------------------------------
+
+== Read-from-Disk API ==
+
+The "read-from-disk" API is rather thin right now.
+It might eventually provide functions for reading entire directory trees using the same API as is used to read objects from an archive.
+
+For now, it just provides a hook for populating an entry object from an object on disk.
+This includes a lot of platform-specific knowledge about reading links, extended attributes, ACLs, file flags, and other properties of the file.
+
+XXX uname/gname lookup XXX
+
+------------------------------------------------------------
+
+== Test Suite ==
+
+The libarchive test suite is contained in the "test" subdirectory of the
+libarchive source.
+The suite compiles into a single C program called `libarchive_test`.
+This program statically includes all of libarchive and all of the test
+code.
+
+The main test supervisor creates a work directory in /tmp (this can be overridden by the TMPDIR environment variable).
+It then creates subdirectories for each separate test.
+The supervisor switches the current directory into a new subdirectory before running the test, so test code can generally assume that it's safe to create files in the current directory.
+
+The test program can be built through the usual Makefile; just `make libarchive_test`.
+The test program accepts several command-line options:
+ * *-d* Dump core after any failure.  This is especially helpful in debugging certain types of failures.  The location of the core file will depend on your system; if your system leaves cores in the current directory, look inside the work directory.
+ * *-k* Keep all temp files.  By default, if a particular test reports no failures, the test supervisor will completely remove the associated directory and all of its contents.  This is usually very convenient; it prevents the test program from filling up your /tmp partition and makes it easier to find the remnants of failed tests.
+ * *-q* Quiet.  This suppresses most of the regular progress messages.
+ * *-v* Verbose.  Normally, the test supervisor condenses duplicate failures (failures in the same line of the same source file).  It provides full details for the first failure but then reports only a count of the total times a failure was reported on that line.  Again, this is normally what you want.  Some tests repeat certain loops tens of thousands of times and it is not helpful to repeat the message every time through the loop.
+ * *-r* _directory_.  Many of the tests need "reference" files.  These are typically archives that will be read.  All of the reference files are stored in uuencoded format; the test supervisor provides convenience functions to decode a reference file into the current directory.
+
+---------------------------------------------------------------------
+
+
+= How to add new functionality =
+
+Libarchive was designed to be highly extensible.
+The following sections outline how to add certain types of
+new functionality.
+
+== How to add a new test ==
+
+Any new functionality should be accompanied by a new test that
+verifies the operation of that functionality.  LibarchiveAddingTest explains how the test harnesses work and how to add new tests.
+
+== How to add a new read filter ==
+
+I've written a separate article describing in intimate detail how to add new read filters: LibarchiveAddingReadFilter.  After reading this article and browsing the source code for the existing filters, you should be able to write your own filters fairly easily.
+
+== How to add a new read format ==
+
+XXX
+
+== How to add a new write filter ==
+
+The write filter architecture works very similarly to the read
+filters, though of course there is no bid phase.
+Write filters are simply added directly to the write pipeline.
+
+== How to add a new write format ==
+
+XXX

@@ -1,0 +1,320 @@
+#summary Storing NFSv4/NTFS ACLs in tar archives.
+#labels tar,format
+
+<wiki:toc max_depth="2" />
+
+= Introduction =
+
+I have two goals for this page:  First, I want to
+develop an understanding of prior art for archiving
+NFSv4/NTFS ACLs.  With that in hand, I want to decide
+on an approach to implement in libarchive.  Obviously,
+it is possible for libarchive to read multiple formats,
+though it's unlikely that I'll write more than one format,
+certainly not in the first iteration.
+
+NFSv4 ACLs are still pretty new and the existing support
+varies widely.  The open-source communities are only beginning
+to seriously implement them and most Linux and BSD systems still
+lack support (even when the support has been implemented, it is
+usually disabled by default in shipping distributions).
+Unfortunately, NFSv4 does not define a portable format
+for representing ACLs.  Anyone attempting to create a portable
+way to store NFSv4 ACLs is likely going to have to implement
+their own format, including all parsing routines,
+since OS-specific library routines are unlikely to be useful.
+(Even when such routines do exist, they vary too much
+across platforms to support interchange.)
+
+It is also unfortunate that NFSv4 does not define
+a system interface for manipulating ACLs on local
+files.
+As a result, many people seem to be adapting the old
+POSIX.1e C language bindings for use with the newer
+ACL model.
+
+--------------------------------------------------------------------------
+
+= Prior Art =
+
+Of course, the existing work on supporting POSIX.1e-style
+ACLs is quite relevant.
+I've tried to document this at [TarPosix1eACLs].
+
+
+== Apple tar ==
+
+Apple used a patched version of GNU tar until Mac OS X 10.5 and
+uses a patched version of bsdtar starting with Mac OS X 10.6.
+Both of these store the ACLs as an extended attribute named com.apple.acl.text
+in the associated resource file.
+(See [TarExtendedAttributes] for my attempt to document the resource file storage.)
+
+I've not yet found documentation for the textual format used here, but it seems to use a large number of colon-separated fields for each entry:
+ * type
+ * 128-bit user/group GUID
+ * User/group name
+ * User/group ID
+ * XXX document these ??? XXXX
+
+The inclusion of both a POSIX-style numeric ID and a GUID for each user and group is very interesting.  I would like for libarchive to support NFSv4/NTFS ACLs on both Windows and MacOS, at least eventually, so there will need to be some provision for extended IDs of this sort.  (Although there are complications; Windows SIDs may prove to be too machine-specific for practical interchange.)
+
+== AIX tar ==
+
+AIX tar stores an additional 'A' header after the regular
+file body.  The pathname of this entry is "NFS4", the body
+is a binary formatted ACL.  Björn Jacke was kind enough
+to send me an example.  This is the contents of the
+'A' entry body:
+
+{{{
+00000400  4e 46 53 34 00 00 00 00  00 00 01 d4 00 00 00 01  |NFS4............|
+00000410  00 00 00 0f 00 00 00 20  00 00 00 02 00 00 00 01  |....... ........|
+00000420  00 00 00 01 00 00 00 00  00 00 00 20 4f 57 4e 45  |........... OWNE|
+00000430  52 40 00 00 00 00 00 1c  00 00 00 00 00 00 00 cd  |R@..............|
+00000440  00 00 00 01 00 00 00 00  00 01 00 26 00 00 00 00  |...........&....|
+00000450  00 00 00 1c 00 00 00 00  00 00 00 d1 00 00 00 01  |................|
+00000460  00 00 00 00 00 00 00 81  00 00 00 00 00 00 00 20  |............... |
+00000470  00 00 00 02 00 00 00 01  00 00 00 00 00 00 00 00  |................|
+00000480  00 0f 01 9f 4f 57 4e 45  52 40 00 00 00 00 00 20  |....OWNER@..... |
+00000490  00 00 00 02 00 00 00 02  00 00 00 00 00 00 00 40  |...............@|
+000004a0  00 00 00 81 47 52 4f 55  50 40 00 00 00 00 00 1c  |....GROUP@......|
+000004b0  00 00 00 00 00 00 00 d0  00 00 00 00 00 00 00 00  |................|
+000004c0  00 01 00 87 00 00 00 00  00 00 00 1c 00 00 00 00  |................|
+000004d0  00 00 00 0d 00 00 00 00  00 00 00 40 00 01 00 87  |...........@....|
+000004e0  00 00 00 00 00 00 00 1c  00 00 00 00 00 00 00 14  |................|
+000004f0  00 00 00 00 00 00 00 40  00 01 00 87 00 00 00 00  |.......@........|
+00000500  00 00 00 20 00 00 00 02  00 00 00 01 00 00 00 01  |... ............|
+00000510  00 00 00 00 00 19 00 7f  4f 57 4e 45 52 40 00 00  |........OWNER@..|
+00000520  00 00 00 20 00 00 00 02  00 00 00 02 00 00 00 01  |... ............|
+00000530  00 00 00 40 00 1f 01 ff  47 52 4f 55 50 40 00 00  |...@....GROUP@..|
+00000540  00 00 00 1c 00 00 00 00  00 00 00 d0 00 00 00 01  |................|
+00000550  00 00 00 00 00 1f 01 ff  00 00 00 00 00 00 00 1c  |................|
+00000560  00 00 00 00 00 00 00 0d  00 00 00 01 00 00 00 40  |...............@|
+00000570  00 1f 01 ff 00 00 00 00  00 00 00 1c 00 00 00 00  |................|
+00000580  00 00 00 14 00 00 00 01  00 00 00 40 00 1f 01 ff  |...........@....|
+00000590  00 00 00 00 00 00 00 24  00 00 00 02 00 00 00 03  |.......$........|
+000005a0  00 00 00 00 00 00 00 00  00 02 00 89 45 56 45 52  |............EVER|
+000005b0  59 4f 4e 45 40 00 00 00  00 00 00 24 00 00 00 02  |YONE@......$....|
+000005c0  00 00 00 03 00 00 00 01  00 00 00 00 00 01 00 26  |...............&|
+000005d0  45 56 45 52 59 4f 4e 45  40 00 00 00              |EVERYONE@...|
+}}}
+
+And this is the textual ACL from the file on disk.
+The relevant UIDs in this example are build=208, obnox=209, vl=205.
+The relevant GIDs in this example are system=0, lp=11, snapp=13, mail=6, and perf=20.
+
+{{{
+s:(OWNER@):     d       x
+u:vl:           d       wpxd
+u:obnox:        d       ra
+s:(OWNER@):     a       rwpRWaAdcCo
+s:(GROUP@):     a       ra
+u:build:        a       rwpad
+g:snapp:        a       rwpad
+g:perf:         a       rwpad
+s:(OWNER@):     d       rwpRWxDdos
+s:(GROUP@):     d       rwpRWxDaAdcCos
+u:build:        d       rwpRWxDaAdcCos
+g:snapp:        d       rwpRWxDaAdcCos
+g:perf:         d       rwpRWxDaAdcCos
+s:(EVERYONE@):  a       rRac
+s:(EVERYONE@):  d       wpxd
+}}}
+
+It's interesting to note that the textual format is actually significantly more compact than the binary version.
+Stripping spaces from the text version above gives 280 bytes versus 456 for the binary version.
+This textual format is also considerably more compact than the textual format used by Apple.
+Unfortunately, neither the binary nor text formats used by AIX are suitable for archiving, since neither format provides both user/group names and IDs.
+
+In addition, AIX tar's "A" record arrangement would be very difficult to support with libarchive, which expects all metadata to precede the file body.
+
+== AIXC ACLs ==
+
+Björn Jacke also sent me an example of the "AIXC" ACLs
+used on AIX.
+The AIXC ACLs are neither POSIX.1e nor NFSv4 compliant, of
+course, but this example does shed a little light on AIX tar's handling
+of NFSv4 ACLs.
+In particular, AIX tar again uses an "A" header, but this time the pathname
+is "AIXC"; it appears the pathname of the "A" header specifies the ACL type,
+duplicating the first four bytes of the entry body.
+Here's an sample body of such an "A" entry:
+
+{{{
+00000400  41 49 58 43 00 00 00 00  00 00 00 60 02 00 00 00  |AIXC.......`....|
+00000410  00 00 00 06 00 04 00 04  00 0c 40 06 00 08 00 01  |..........@.....|
+00000420  00 00 00 d0 00 14 80 04  00 08 00 01 00 00 00 d1  |................|
+00000430  00 08 00 02 00 00 00 00  00 1c c0 04 00 08 00 01  |................|
+00000440  00 00 00 cd 00 08 00 02  00 00 00 0b 00 08 00 02  |................|
+00000450  00 00 00 06 00 14 40 06  00 08 00 02 00 00 00 0d  |......@.........|
+00000460  00 08 00 02 00 00 00 14                           |........|
+}}}
+
+And here is a textual dump of the ACL from the corresponding
+file on disk:
+
+{{{
+* ACL_type   AIXC
+attributes:
+base permissions
+    owner(root):  rw-
+    group(system):  r--
+    others:  r--
+extended permissions
+    enabled
+    permit   rw-     u:build
+    deny     r--     u:obnox,g:system
+    specify  r--     u:vl,g:lp,g:mail
+    permit   rw-     g:snapp,g:perf
+}}}
+
+== Solaris tar ==
+
+Edward Thomas Napierala sent me an example of an archive from SunOS (version?) with an NFSv4 ACL.  This seems to follow the same outline used by SunOS for POSIX.1e ACLs.  The ACL is held by an 'A' entry in the tar archive that precedes the main entry for the file.
+
+The name of the 'A' entry matches the name of the file and the body of the 'A' entry contains an octal number, a null byte, and a textual representation of the ACL.
+I don't know how this interacts with long filename support.
+The octal number is 03000000 plus the number of entries in the ACL.
+In Edward's example, there are 7 entries, represented as follows (the line breaks here are added only for readability, they're not in the original).
+
+{{{
+    user:bin:----------c---:------:deny:2,
+    owner@:--x-----------:------:deny,
+    owner@:rw-p---A-W-Co-:------:allow,
+    group@:rwxp----------:------:deny,
+    group@:--------------:------:allow,
+    everyone@:rwxp---A-W-Co-:------:deny,
+    everyone@:------a-R-c--s:------:allow
+}}}
+
+This is pretty readable, and includes the UID, but is significantly bulkier than it needs to be (the '-' characters could easily have been omitted) and doesn't have any obvious provision for user or group GUIDs.
+
+== star? ==
+
+The star website and manpages have a couple of
+oblique references to NFSv4 ACL support, but I've
+not seen any documentation or announcement of such
+functionality.
+(I do know Joerg Schilling was involved with OpenSolaris
+work; the Solaris tar design above might be his?)
+
+== Others? ==
+
+If you know of other tar implementations that have
+full or partial support for NFS4-style ACLs, please
+let me know.
+
+------------------------------------------------------------------
+
+= Libarchive's implementation =
+
+_As of June 2010, I've started work on this approach and expect the
+final implementation to be pretty close to this._
+
+== Core requirements ==
+
+ * The ACL should be stored in a compact format.  This argues for a textual format similar to the AIX or Solaris format above.  Several OSes support some variant of this approach in their standard tools.
+ * The format should be portable and platform-independent so that ACLs can be correctly transferred between platforms.
+ * The ACL representation should be easy to reverse-engineer so that other tools can support the libarchive format.  This also argues for a textual representation.
+ * It should be easy to store such ACLs as pax extended attributes, which heavily favors a UTF-8 representation.
+ * Although pax has no such limitation, other formats may prefer a single-line format.
+ * It must have both numeric IDs and names for each user or group.
+ * It should provide an obvious path for adding extended GUID (MacOS) or SID (Windows) identifiers on each entry.
+
+== Proposed design ==
+
+I propose using the following format for storing NFSv4 ACLs in pax archives written by libarchive:
+ * Store the ACL in a pax attribute named LIBARCHIVE.acl.nfs4
+ * Textual format with entire ACL on one line.
+
+Example:
+{{{
+   -c::u:bin:2,
+   -x::o@,
+   +rwpAWCo::o@,
+   -rwxp::g@,
+   +::g@,
+   -rwxpAWCo::e@,
+   +aRcs::e@
+}}}
+The ACL here is the same one used in the Solaris example above.
+Compare these examples to better understand the proposed encoding.
+Note that the whitespace and line breaks here are purely for
+ease of reading.
+Within the archive, it would actually be stored as a single line:
+{{{
+-c::u:bin:2,-x::o@,+rwpAWCo::o@,-rwxp::g@,+::g@,-rwxpAWCo::e@,+aRcs::e@
+}}}
+
+Format description:
+The ACL consists of a series of ACEs separated by commas.
+Each ACE has the following format:
+ * Fixed fields that appear in every ACE:
+   * First character is type: '+' for allow, '-' for deny, '?' for audit
+   * Permission characters (following Solaris encoding)
+   * Colon
+   * Inheritance characters (following Solaris encoding)
+   * Colon
+   * Flag indicating who this applies to: 'u' for user, 'g' for group, 'o@' for owner, 'g@' for owning group, 'e@' for everyone
+ * If 'u' or 'g', user information follows:
+   * Colon
+   * Username
+   * Colon
+   * Numeric user ID
+   * Someday:  colon and GUID/SID
+
+This satisfies the concerns listed earlier:
+  * Textual.  Except for user/group names, everything here is 7-bit ASCII and is therefore UTF-8 compatible if the user/group names are.
+  * Compact. This has no extraneous whitespace or '-' characters
+  * Username is delimited by colons before and after.  (Many systems permit '.' or ',' characters in usernames.)
+  * Variable fields appear at end to simplify parsing.
+  * It will be easy to add an additional field for User/Group GUID if that proves useful.
+
+== Implementation checklist ==
+
+Implementing this requires changes to several different areas.
+Fortunately, most of these are pretty minor:
+
+ * Machine-independent
+  * archive_entry needs to be able to store and produce ACLs.
+   * Accept and parse a UTF-8 encoded text format.
+   * Produce such a string.
+   * Done: Add an entry to the existing ACL (provided as a set of broken-down fields)
+   * Done: Iterate over ACL entries providing broken-down fields.
+  * Pax writer
+   * Write a LIBARCHIVE.acl.nfs4 attribute when it exists in the entry
+  * Pax reader
+   * Read LIBARCHIVE.acl.nfs4 attribute
+   * Read Solaris tar 'A' record (?)
+ * Machine-dependent
+  * archive_read_entry_from_disk()
+   * FreeBSD 9
+   * Linux (?)
+   * Windows (?)
+   * Mac OS X (?)
+  * archive_write_disk()
+   * Done: FreeBSD 9
+   * Linux (?)
+   * Windows (?)
+   * Mac OS X (?)
+
+Note that with the above, bsdtar and bsdcpio will both pick up this capability for free.
+
+== More research is needed ==
+
+It would be nice to support NFS4 ACLs in a cpio extension.
+It would be nice to be able to read NFS4-style ACLs written by Mac OS 'tar'.
+
+-------------------------------------------------------------------
+= References =
+
+ * [http://tools.ietf.org/html/rfc3530.txt RFC 3530 - NFS4 specification]
+ * [http://tools.ietf.org/html/rfc5661 RFC 5661 - NFS4.1 specification]
+ * [http://tools.ietf.org/id/draft-ietf-nfsv4-acl-mapping-03.txt Internet Draft discussing possible mechanisms for mapping permission models] (Summary: Don't translate ACL models--such as between NFS4 and POSIX.1e--if you can possibly avoid it, it's way more complicated than you want to deal with or have to explain to your users.)
+
+The ACL model defined in NFSv4 is gaining traction rapidly.
+Unfortunately, NFSv4 does not define a system interface for
+manipulating ACLs, so most systems seem to be adapting
+the old POSIX.1e C language functions for use with NFSv4
+ACLs.

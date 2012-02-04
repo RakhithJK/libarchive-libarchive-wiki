@@ -1,0 +1,70 @@
+How to get a tar if you don't already have one.
+
+The libarchive distribution builds '''bsdtar''', which
+is a full-featured command-line tar program.
+
+The source code is distributed in two forms:
+* as a tar archive that has been compressed with gzip
+* as a zip archive
+
+If you don't already have software that can extract
+such archives, this may be problematic.
+The remainder of this article explains one way around
+this chicken-and-egg problem.
+
+You can use very simple tools to unpack the libarchive
+distribution in two steps:
+# uncompress the distribution file to obtain an uncompressed tar archive
+# untar the result to obtain the individual files
+
+Once you have the unpacked files, you can then follow
+the [BuildInstructions Build Instructions] to build
+bsdtar.
+
+= Gunzip =
+
+For ease of downloading, the libarchive distribution is compressed.
+To use the "untar" program below, you'll need to first
+uncompress the libarchive distribution to obtain
+an uncompressed tar archive.
+This can be done by the ''gunzip'' program, or by the
+''gzip'' program with the `-d` (decompress) option.
+Precompiled versions are available for most platforms;
+you can check http://www.gzip.org/ for details.
+
+Of course, you can also download the libarchive distribution
+onto a system that has gzip, decompress it there,
+then copy the uncompressed libarchive-XX.YY.ZZ.tar
+onto the target system and untar it.
+
+= Untar =
+
+I've created an extremely minimal C
+program called "untar" that knows just enough about the tar format
+to extract a simple uncompressed tar archive.
+It does not rely on libarchive, so it can be used to
+unpack the libarchive
+distribution after you decompress it.
+
+You can obtain the source for untar from:
+
+http://libarchive.googlecode.com/svn/trunk/contrib/untar.c
+
+The "untar" program is written using only Standard ISO C89
+(with one exception explained below).  As such,
+it should compile easily on any platform with a C compiler:
+* `cc -o untar untar.c`
+
+That one exception is the `mkdir()` function for creating
+a directory.  Unfortunately, ISO C does not provide a standard
+function for creating a directory, so I've used the POSIX.1
+standard `mkdir()` function.  Most platforms have `mkdir()`,
+though you may need to adjust the headers somewhat.  If your
+platform does not have `mkdir()`, you may need to edit the
+`create_dir` function to create a directory in some other way.
+
+The untar.c source code can also be used as an extremely
+small implementation of a tar unpacker for use in very
+space-constrained applications.
+The source is in the public domain, please feel free
+to use it as you see fit.

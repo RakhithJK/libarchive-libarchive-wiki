@@ -1,0 +1,173 @@
+How to compile and install libarchive, bsdtar, and bsdcpio from source code.
+
+= Using ''configure'' (for building from the command line on Linux, FreeBSD, Solaris, Cygwin, AIX, Interix, Mac OS X and other Unix-like systems) =
+
+The libarchive distribution includes a standard
+autoconf-generated "configure" script that should
+build and install libarchive, bsdtar, and bsdcpio
+on almost any POSIX-like system.
+
+Typical installation:
+* `tar xzf libarchive-2.7.0.tar.gz` ([BootstrappingTar if you don't have a tar program])
+* `cd libarchive-2.7.0`
+* `./configure`
+* `make`
+* `make check`
+* `make install`
+
+== Configure options ==
+
+By default, the configure-based build will build
+the libarchive library and bsdtar and bsdcpio command-line tools.
+It will install these into standard default locations.
+The configure program will attempt to automatically
+locate all other libraries and tools required.
+
+You can modify this by providing additional options
+to the `configure` program:
+* `./configure --help`  -- Lists all available options
+* `./configure --disable-bsdtar`  -- Suppresses build and install of bsdtar
+* `./configure --disable-bsdcpio` -- Suppresses build and install of bsdcpio
+
+---------------------------------
+
+= Using ''cmake'' (for most everything else, including non-POSIX systems and building with graphical IDEs) =
+
+The cmake-based build system can generate configuration files for
+a variety of IDEs, including Visual Studio on Windows and XCode on Mac OS.
+'''This requires libarchive 2.6.990a or later.'''
+
+== General usage ==
+
+This build system uses the ''cmake'' tool to generate
+appropriate solution, project, or Makefiles for your
+system.
+
+You will first need to obtain and install the appropriate
+version of the cmake tool for your platform.
+If your favorite package manager doesn't have a version
+already configured for your platform, you should check
+http://cmake.org/
+
+When you run the cmake tool, you need to provide three pieces of information:
+* The directory containing the unpacked libarchive sources.  This is the directory containing the `CMakeLists.txt` file.
+* A directory where output files will go.  This can be the same directory.
+* The "generator" appropriate for the development environment you're using.
+
+== Building on Windows ==
+
+CMake supports several popular Windows development environments.
+You'll need:
+* CMake for Windows, version 2.6 or later:  http://www.cmake.org/cmake/resources/software.html
+* If you want to check out source from SVN, I highly recommend [http://tortoisesvn.tigris.org TortoiseSVN].  You can also, of course, use the SVN command-line tool.
+
+Building is a three-step process:
+* Get the source code.  You can either:
+** Unpack a source distribution from [http://code.google.com/p/libarchive/downloads/list the Downloads page], or
+** Use SVN to checkout the source from the [http://code.google.com/p/libarchive/source/checkout Source Repository].
+* Use the CMake GUI to create the solution files:
+** Set cmake's source code parameter to the directory where you unpacked the source code (the directory containing the "!CmakeLists.txt" file)
+** Set the build output parameter to a directory where you will be building; this can be the same as the source directory.
+** Click *Configure* in the CMake GUI and select the appropriate Generator for your IDE.  CMake will parse the libarchive configuration files and verify the build environment.  This can take a few minutes the first time.
+** If this is the first time you've run CMake in this particular output directory, you will be given a chance to review the build variables.  When you're ready, select *Configure* again (it will take only a few seconds this time).
+** Click *Generate* in the CMake GUI to create the build files for your IDE.
+* Use your development environment of choice to build, test, and debug.
+
+
+Certain libarchive features require you to link against additional libraries.  The [http://gnuwin32.sourceforge.net/ GnuWin32] project distributes precompiled versions of most of the necessary libraries on their [http://gnuwin32.sourceforge.net/packages.html Packages Page].  If these libraries are correctly installed, you should be able to simply repeat the CMake GUI configuration and generation steps.  The libraries should be detected and used automatically.
+** Gzip compression, zip compression, and zisofs support: Install the [http://gnuwin32.sourceforge.net/packages/gzip.htm GnuWin32 gzip package] into `C:\Program Files\gnuwin32`.  (Note: You may need to edit `C:\Program Files\gnuwin32\include\zconf.h` and change the `#if` on line 287 to 0 instead of 1 unless you have unistd.h) XXX Shouldn't this be the zlib package? XXX
+** Bzip2 compression: Install the [http://gnuwin32.sourceforge.net/packages/bzip2.htm GnuWin32 bzip2 development package] into `C:\Program Files\gnuwin32`.
+** Lzma/Xz compression: There does not yet seem to be a pre-compiled version of the liblzma library.  alan.whiskers has some notes in the comments below you may find useful if you wish to build this yourself.
+** Xar support: Install the libxml2 libraries.  XXX This is untested? XXX
+** Mtree and Xar support for cryptographic hashes:  Install the OpenSSL libraries.  XXX This is untested? XXX
+
+=== Windows/Visual Studio ===
+
+A free version of Visual Studio C++ is available from Microsoft: http://www.microsoft.com/express/download/
+
+Building is then a straightforward process:
+* Get the source code, as described above.
+* Run the CMake GUI as above, choosing the "Visual Studio" generator.
+* Use Visual Studio to build the system:
+** Open the generated `libarchive.sln` in Visual Studio
+** Click *Rebuild Solution* to compile everything.
+* Test from within Visual Studio:
+** Right-click `RUN_TESTS`
+** Select *Build*
+** If there are any failures reported, please report it in our Issue Tracker
+
+=== Windows/MinGW ===
+
+MinGW is a free command-line development environment for Windows based
+on the popular GNU C compiler.
+
+* Get the source code, as described above.
+* Run the CMake GUI as above, choosing the "MinGW Makefiles" generator.
+* Use MinGW to build the system:
+** Open a command prompt (check that C:\MinGW\bin is in PATH)
+** Type `mingw32-make`
+* Run the tests:
+** Open a command prompt as above
+** Type `mingw32-make test`
+** If there are any failures, please file a report in the Issue Tracker.  Note that the `Testing\Temporary\LastTest.log` file will have additional information, including the full path to the test temporary directory where there should be full details about the failed tests.
+
+Note: The libarchive 2.7.0 release does not build properly in Windows/MinGW; this will be fixed in 2.8.
+
+== MacOS/Xcode ==
+
+You'll first need some standard development tools if you don't already have them:
+* Xcode itself is distributed with most new Macs on DVD.  The newest version is available from http://developer.apple.com/ after you sign up for a free Apple Developer Connection membership.
+* The !MacPorts package manager can install a variety of open-source software (http://www.macports.org/).  If you just want to use libarchive, you can skip all of the following by installing libarchive through !MacPorts: `sudo port install libarchive`
+* The cmake tool is available through !MacPorts: `sudo port install cmake`
+* The Subversion command-line tool for checking out source from !GoogleCode is also available through !MacPorts: `sudo port install subversion`
+
+Assuming that the libarchive source code is available in the 'libarchive' directory, you build the Xcode project files using cmake:
+* `cmake -G Xcode libarchive`
+
+You can then open `libarchive.xcodeproj` from within Xcode (or double-click it in Finder) to build, run, and debug the software.
+
+To run the tests, you'll need to manually adjust a few settings (if you know how to embed these into CMakeLists.txt so that this doesn't need to be done manually, please let me know!):
+* Executable -> libarchive_test, Ctrl-Click, then "Get-Info".  On the "Arguments" pane, set "-r _<Path to libarchive source>_/libarchive/test" so that the test program can read the files it needs.
+* Executable -> bsdtar_test, Ctrl-Click, then "Get-Info".  On the "Arguments" pane, add "-r _<Path to libarchive root>_/tar/test" and "-p _<Path to compiled bsdtar executable>_"
+* Executable -> bsdcpio_test, Ctrl-Click, then "Get-Info".  On the "Arguments" pane, add "-r _<Path to libarchive root>_/cpio/test" and "-p _<Path to compiled bsdcpio executable>_"
+
+XXX Need to verify which additional libraries are pre-installed on Mac OS and which need to be obtained from MacPorts. XXX
+
+== Build Variables for the Cmake-based build system ==
+
+Here is a list of the cmake variables you are most likely to want to change.
+The values listed here are the defaults:
+* CMAKE_INSTALL_PREFIX:PATH=/usr/local - Base install directory.
+* ENABLE_ACL:BOOL=ON - Controls whether the library includes support for reading and writing POSIX.1e ACLs to disk.  On Linux, this requires libacl; disable this if you want to distribute binaries to Linux systems that may lack libacl.  On FreeBSD, there should be no need to disable the ACL support.  Other platforms do not yet support ACLs at all and this will have no effect.
+* ENABLE_CPIO:BOOL=ON - Build bsdcpio.
+* ENABLE_CPIO_SHARED:BOOL=OFF - Build bsdcpio using the shared libarchive.
+* ENABLE_TAR:BOOL=ON - Build bsdtar.
+* ENABLE_TAR_SHARED:BOOL=OFF - Build bsdtar using the shared libarchive.
+* ENABLE_TEST:BOOL=ON - If this is _ON_, the test programs will be built.  You can then run `make test` to run the tests and verify that everything has been built and configured correctly on your system.  Please report any test failures on any platform.
+* ENABLE_XATTR:BOOL=ON - Controls whether the library includes support for reading and writing POSIX.1e-style extended file attributes to disk.  On Linux, this requires libxattr.  On FreeBSD, if you're using ZFS and experience hangs, try disabling this.  Other platforms do not yet support extended attributes at all and this will have no effect.
+
+I don't think it's ever necessary to change any of the following.
+If you find otherwise, please let me know:
+* CHECK_HEADER_STDC_path:PATH=/usr/include
+* CMAKE_BUILD_TYPE:STRING=
+* CRYPTO_LIBRARY:FILEPATH=/usr/lib/libcrypto.so
+
+-----------------------------------------
+
+= Building libarchive from SVN =
+
+Certain build files are created specifically as part
+of the distribution and are not stored in SVN.
+So if you want to build libarchive from an SVN checkout,
+you may have to do a little more work:
+
+== CMake builds ==
+
+Nothing additional is needed to perform CMake builds from an SVN checkout.
+Just follow the regular instructions above.
+
+== configure-based builds ==
+
+The `configure` script is created by GNU autoconf.
+In order to create this, you'll need suitable versions of GNU autoconf, GNU automake, and associated tools.
+There is a shell script called `build/autogen.sh` that will run the tools in the correct order to construct all the necessary files.
