@@ -1,7 +1,6 @@
-#summary Storing POSIX.1e-style ACLs in tar files
-#labels tar,format
+Storing POSIX.1e-style ACLs in tar files
 
-= Introduction =
+== Introduction ==
 
 I currently know of two approaches for storing POSIX.1e ACLs
 in tar archives.  The first was originally developed by
@@ -19,15 +18,15 @@ Some of these techniques are similar to ones used for
 storing POSIX.1e extended attributes.  See [TarExtendedAttributes]
 for more information.
 
-= star's approach =
+== star's approach ==
 
 Star stores POSIX.1e ACLs in pax attributes with the
 names SCHILY.acl.access and SCHILY.acl.default.  The
 values of these attributes are the textual ACL entries
 for the access and default ACLs, respectively.  The
 textual format follows POSIX.1e draft 17:
- * Individual entries are separated by commas.
- * A fourth colon-separated field is added to user and group entries with the numeric uid or gid.
+* Individual entries are separated by commas.
+* A fourth colon-separated field is added to user and group entries with the numeric uid or gid.
 
 In particular, note the necessity for storing both user/group
 names and IDs for each user or group referenced.  The names
@@ -37,17 +36,17 @@ as the user/group databases may be unavailable at restore time.
 (For example, you might be restoring a damaged user or group
 database.)
 
-= Solaris approach =
+== Solaris approach ==
 
 Prior to the standardization of the pax extended format,
 Sun introduced a separate entry in tar files to hold the
 ACL information.  This entry has type "A" and immediately
 precedes the file to which it applies.  The body of this
 entry consists of the following:
- * An ASCII number in octal followed by a single NULL byte.  The value is 01000000 plus the number of entries in the ACL.   The 01000000 value flags this as a POSIX.1e ACL; the count of entries is redundant and can generally be ignored.
- * A textual list of all ACL entries.  This list includes both default and access entries.  The default entries have the text "default" prepended (e.g., "defaultuser::rwx").  The entries are comma-separated.  Unlike the _star_ format, there is no additional field for the user/group ID.
+* An ASCII number in octal followed by a single NULL byte.  The value is 01000000 plus the number of entries in the ACL.   The 01000000 value flags this as a POSIX.1e ACL; the count of entries is redundant and can generally be ignored.
+* A textual list of all ACL entries.  This list includes both default and access entries.  The default entries have the text "default" prepended (e.g., "defaultuser::rwx").  The entries are comma-separated.  Unlike the _star_ format, there is no additional field for the user/group ID.
 
-= AIX approach =
+== AIX approach ==
 
 AIX implemented a system similar to Solaris but with
 a number of problems.
@@ -57,7 +56,7 @@ example, wants to see all metadata before reading the body).
 The format used is also pretty non-portable.
 The [TarNFS4ACLs] has some additional details about this format.
 
-= Footnote: About POSIX.1e =
+== Footnote: About POSIX.1e ==
 
 POSIX.1e was an attempt to define standard mechanisms for handling
 extended attributes and ACLs on POSIX systems.
