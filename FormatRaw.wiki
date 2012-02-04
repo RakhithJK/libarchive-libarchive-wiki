@@ -1,6 +1,6 @@
-#summary Libarchive's "raw" reader.
+Libarchive's "raw" reader.
 
-= Introduction =
+== Introduction ==
 
 Libarchive's automatic decompression and decoding support is sometimes useful by itself.
 
@@ -9,11 +9,11 @@ This provides a way to use libarchive's automatic decompression and decoding
 
 (Note:  There has been some discussion of splitting libarchive into two separate libraries.  "Libfilter" would expose just the decompression and decoding support, and "libarchive" would then become a user of "libfilter."  Initial work has been done but the project is currently looking for people to help complete it.)
 
-= Example Code =
+== Example Code ==
 
 XXX TODO Example here XXX
 
-== Caveat: Don't mix _raw_ with other handlers ==
+=== Caveat: Don't mix _raw_ with other handlers ===
 
 If you are using the raw handler, you should generally not enable any other handler (except possibly for the [FormatEmpty empty handler]).
 
