@@ -1,4 +1,4 @@
-#summary How each libarchive release gets built.
+How each libarchive release gets built.
 
 Libarchive development began in 2003 as a part of the FreeBSD operating system.
 During the early years, libarchive's release engineering was handled by the FreeBSD project.
@@ -39,25 +39,25 @@ In working with testers, I've found that many testers strongly prefer to work on
 
 Cutting a final release is pretty mechanical:
 
-  * `svn copy trunk releases/2.8`  --  Note that libarchive keeps a separate SVN branch for each minor version.  This step can be skipped for tiny versions.
+* `svn copy trunk releases/2.8`  --  Note that libarchive keeps a separate SVN branch for each minor version.  This step can be skipped for tiny versions.
 
-  * Update the `RELEASE` notes with high points of the current release, update the `version` file to 2007999 and submit these changes to SVN.
+* Update the `RELEASE` notes with high points of the current release, update the `version` file to 2007999 and submit these changes to SVN.
 
-  * From a clean checkout, run the commands below.  Note that the `distcheck` target also performs a cmake build and ctest test run, so a clean result here means that both build systems run and pass all tests on the local platform.  The final `svn commit` here checks in various files that have copies of the version number; these files get updated by the release.sh script.
-{{{
+* From a clean checkout, run the commands below.  Note that the `distcheck` target also performs a cmake build and ctest test run, so a clean result here means that both build systems run and pass all tests on the local platform.  The final `svn commit` here checks in various files that have copies of the version number; these files get updated by the release.sh script.
+```bash
     /bin/sh release.sh
     ./configure
     make distcheck
     make dist-zip
     svn commit
-}}}
+```
 
-  * The distcheck target runs the regression test suite. Depending on the file system used for /tmp, it might be necessary to export TMPDIR.
+* The distcheck target runs the regression test suite. Depending on the file system used for /tmp, it might be necessary to export TMPDIR.
 
-  * Upload the resulting tarball and zip file to googlecode.  Note that the description needs to specify the exact version and the branch and revision from which it was generated.  The suggested format is:
-{{{
+* Upload the resulting tarball and zip file to googlecode.  Note that the description needs to specify the exact version and the branch and revision from which it was generated.  The suggested format is:
+```text
    libarchive 2.8.0 (SVN releases/2.8 r2345)
-}}}
+```
 
 == Things that need special attention ==
 
