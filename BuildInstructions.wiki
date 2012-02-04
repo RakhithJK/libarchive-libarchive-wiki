@@ -1,6 +1,6 @@
 How to compile and install libarchive, bsdtar, and bsdcpio from source code.
 
-= Using ''configure'' (for building from the command line on Linux, FreeBSD, Solaris, Cygwin, AIX, Interix, Mac OS X and other Unix-like systems) =
+== Using ''configure'' (for building from the command line on Linux, FreeBSD, Solaris, Cygwin, AIX, Interix, Mac OS X and other Unix-like systems) ==
 
 The libarchive distribution includes a standard
 autoconf-generated "configure" script that should
@@ -15,7 +15,7 @@ Typical installation:
 * `make check`
 * `make install`
 
-== Configure options ==
+=== Configure options ===
 
 By default, the configure-based build will build
 the libarchive library and bsdtar and bsdcpio command-line tools.
@@ -31,13 +31,13 @@ to the `configure` program:
 
 ---------------------------------
 
-= Using ''cmake'' (for most everything else, including non-POSIX systems and building with graphical IDEs) =
+== Using ''cmake'' (for most everything else, including non-POSIX systems and building with graphical IDEs) ==
 
 The cmake-based build system can generate configuration files for
 a variety of IDEs, including Visual Studio on Windows and XCode on Mac OS.
 '''This requires libarchive 2.6.990a or later.'''
 
-== General usage ==
+=== General usage ===
 
 This build system uses the ''cmake'' tool to generate
 appropriate solution, project, or Makefiles for your
@@ -54,7 +54,7 @@ When you run the cmake tool, you need to provide three pieces of information:
 * A directory where output files will go.  This can be the same directory.
 * The "generator" appropriate for the development environment you're using.
 
-== Building on Windows ==
+=== Building on Windows ===
 
 CMake supports several popular Windows development environments.
 You'll need:
@@ -81,7 +81,7 @@ Certain libarchive features require you to link against additional libraries.  T
 ** Xar support: Install the libxml2 libraries.  XXX This is untested? XXX
 ** Mtree and Xar support for cryptographic hashes:  Install the OpenSSL libraries.  XXX This is untested? XXX
 
-=== Windows/Visual Studio ===
+==== Windows/Visual Studio ====
 
 A free version of Visual Studio C++ is available from Microsoft: http://www.microsoft.com/express/download/
 
@@ -96,7 +96,7 @@ Building is then a straightforward process:
 ** Select *Build*
 ** If there are any failures reported, please report it in our Issue Tracker
 
-=== Windows/MinGW ===
+==== Windows/MinGW ====
 
 MinGW is a free command-line development environment for Windows based
 on the popular GNU C compiler.
@@ -113,7 +113,7 @@ on the popular GNU C compiler.
 
 Note: The libarchive 2.7.0 release does not build properly in Windows/MinGW; this will be fixed in 2.8.
 
-== MacOS/Xcode ==
+=== MacOS/Xcode ===
 
 You'll first need some standard development tools if you don't already have them:
 * Xcode itself is distributed with most new Macs on DVD.  The newest version is available from http://developer.apple.com/ after you sign up for a free Apple Developer Connection membership.
@@ -133,7 +133,7 @@ To run the tests, you'll need to manually adjust a few settings (if you know how
 
 XXX Need to verify which additional libraries are pre-installed on Mac OS and which need to be obtained from MacPorts. XXX
 
-== Build Variables for the Cmake-based build system ==
+=== Build Variables for the Cmake-based build system ===
 
 Here is a list of the cmake variables you are most likely to want to change.
 The values listed here are the defaults:
@@ -154,19 +154,19 @@ If you find otherwise, please let me know:
 
 -----------------------------------------
 
-= Building libarchive from SVN =
+== Building libarchive from SVN ==
 
 Certain build files are created specifically as part
 of the distribution and are not stored in SVN.
 So if you want to build libarchive from an SVN checkout,
 you may have to do a little more work:
 
-== CMake builds ==
+=== CMake builds ===
 
 Nothing additional is needed to perform CMake builds from an SVN checkout.
 Just follow the regular instructions above.
 
-== configure-based builds ==
+=== configure-based builds ===
 
 The `configure` script is created by GNU autoconf.
 In order to create this, you'll need suitable versions of GNU autoconf, GNU automake, and associated tools.
