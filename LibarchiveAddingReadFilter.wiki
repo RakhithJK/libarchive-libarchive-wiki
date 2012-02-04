@@ -1,6 +1,6 @@
-#summary How to add a new read filter to libarchive.
+How to add a new read filter to libarchive.
 
-= Introduction =
+== Introduction ==
 
 Libarchive has a flexible read filter system that
 automatically detects various data encodings and
@@ -26,7 +26,7 @@ format detection.  Later versions improve the bidding,
 provide more portability and better performance, culminating
 in code very close to what is currently in libarchive.
 
-= Step 1: Use an external program =
+== Step 1: Use an external program ==
 
 If there's an external program that supports your
 format already and the format has a distinctive
@@ -39,7 +39,7 @@ signature and can be decompressed by calling the
 Here's a complete implementation of gzip decompression
 support:
 
-{{{
+```c
 /* File: archive_read_support_compression_gzip.c */
 #include "archive.h"
 
@@ -49,7 +49,7 @@ archive_read_support_compression_gzip(struct archive *a)
   return (archive_read_support_compression_program_signature
            (a, "gunzip", "\037\213", 2));
 }
-}}}
+```
 
 This implementation uses a standard module that feeds
 the data through an external program.
@@ -65,7 +65,7 @@ to the `archive.h` public header file.
 Also note that each new read filter goes into a file of its own
 within the source tree.
 
-= Step 2: Improve the bidding and format identification =
+== Step 2: Improve the bidding and format identification ==
 
 A two-byte initial signature is really only marginally acceptable.
 It would be better to verify more of the
@@ -90,7 +90,7 @@ Here's the first part of our revised gzip handler, which
 includes a couple of internal libarchive headers and defines
 the bid function:
 
-{{{
+```c
 #include "archive.h"
 #include "archive_read_private.h"
 
@@ -127,7 +127,7 @@ gzip_bidder_bid(struct archive_read_filter_bidder *self,
 
 	return (bits);
 }
-}}}
+```
 
 The above code is a little simpler than the current
 gzip bidder in the libarchive sources, but it's
@@ -156,7 +156,7 @@ For this example, we'll continue to rely on an external program
 by using a libarchive internal function to handle the
 initialization for us:
 
-{{{
+```c
 static int
 gzip_bidder_init(struct archive_read_filter *self)
 {
@@ -165,7 +165,7 @@ gzip_bidder_init(struct archive_read_filter *self)
 	self->name = "gzip";
 	return (r);
 }
-}}}
+```
 
 Note that this overrides the `code` and `name` fields
 so that users of libarchive will be able to tell what filter
@@ -176,7 +176,7 @@ Finally, you need to actually register your bidder
 with the core read machinery, which involves
 first obtaining a bidder object, then customizing it:
 
-{{{
+```c
 int
 archive_read_support_compression_gzip(struct archive *_a)
 {
@@ -189,10 +189,10 @@ archive_read_support_compression_gzip(struct archive *_a)
 	bidder->init = gzip_bidder_init;
 	return (ARCHIVE_OK);
 }
-}}}
+```
 
 
-= Step 3: Direct decoding =
+== Step 3: Direct decoding ==
 
 The code in "Step 2" above is actually sufficient to pass the libarchive
 test suite for gzip support, assuming you have the gunzip
@@ -200,8 +200,8 @@ executable on your system.
 But there are two good reasons why you might want to directly
 handle the filtering within libarchive rather than call
 out to an external program:
- * It's often faster.  Shuffling data to and from an external program adds significant overhead.  Especially for formats that can be decoded very efficiently (such as base64 or lzo), it's likely fastest to do it directly in the library.
- * It's often more portable.  If the filter implementation can be entirely within libarchive, then it will be available even on platforms that lack the external executable.
+* It's often faster.  Shuffling data to and from an external program adds significant overhead.  Especially for formats that can be decoded very efficiently (such as base64 or lzo), it's likely fastest to do it directly in the library.
+* It's often more portable.  If the filter implementation can be entirely within libarchive, then it will be available even on platforms that lack the external executable.
 
 For example, the current gzip reader in libarchive
 uses the popular zlib library to decompress gzip streams.
@@ -220,7 +220,7 @@ object (which is provided by the libarchive core)
 and "state" is the gzip decompressors custom state
 information:
 
-{{{
+```c
 static int
 gzip_bidder_init(struct archive_read_filter *self)
 {
@@ -252,7 +252,7 @@ gzip_bidder_init(struct archive_read_filter *self)
 
 	return (ARCHIVE_OK);
 }
-}}}
+```
 
 A filter's "read" function provides a block of data each time
 it is called.
@@ -275,7 +275,7 @@ all of the data that is immediately available which
 leads to the common idiom of asking for at least 1 byte
 and then processing as much as is available.
 
-{{{
+```c
 static ssize_t
 gzip_filter_read(struct archive_read_filter *self, const void **p)
 {
@@ -338,7 +338,7 @@ gzip_filter_read(struct archive_read_filter *self, const void **p)
 		*p = state->out_block;
 	return (decompressed);
 }
-}}}
+```
 
 The above is simplified somewhat from the actual code in
 libarchive.
@@ -354,7 +354,7 @@ allocating temporary buffers and copying data as necessary
 to meet minimum read requests.
 This tends to happen less with larger data blocks.)
 
-= Step 4: Test =
+== Step 4: Test ==
 
 The libarchive test suite exercises many parts of libarchive
 to verify that they work correctly.
@@ -364,27 +364,27 @@ changes.
 Changes to libarchive that include test cases are much more
 likely to get accepted.
 
-= Step 5: Robustly support many platforms =
+== Step 5: Robustly support many platforms ==
 
 The full gzip reader in the current libarchive code
 has extensive conditionals to provide as much support
 as possible on each particular platform:
- * If the platform has zlib, it will use code similar to that in "Step 3" above to do full gzip decompression directly.
- * If not, it will use code similar to that in "Step 2" above to try to run an external program.  In particular, this provides gunzip support in cases where gunzip might be installed later.  In any case, without zlib it's hard to do much better than this.
+* If the platform has zlib, it will use code similar to that in "Step 3" above to do full gzip decompression directly.
+* If not, it will use code similar to that in "Step 2" above to try to run an external program.  In particular, this provides gunzip support in cases where gunzip might be installed later.  In any case, without zlib it's hard to do much better than this.
 
-= Step 6: Improve the existing filters =
+== Step 6: Improve the existing filters ==
 
 Many of the existing filters could use careful analysis
 and improvements:
- * Careful benchmarking may point out speed improvements in some cases, though I don't know of any obvious low-hanging fruit at this point.
- * Few of the filters fully support "skip" operations.  These can provide big performance boosts when reading the table of contents of a large archive without actually extracting the bodies.
- * Few of the filters provide full fallback to external programs when their libraries are unavailable.
- * There are a few cases where filters could benefit from the new options handling, though mostly read filters don't need this.
+* Careful benchmarking may point out speed improvements in some cases, though I don't know of any obvious low-hanging fruit at this point.
+* Few of the filters fully support "skip" operations.  These can provide big performance boosts when reading the table of contents of a large archive without actually extracting the bodies.
+* Few of the filters provide full fallback to external programs when their libraries are unavailable.
+* There are a few cases where filters could benefit from the new options handling, though mostly read filters don't need this.
 
-= Step 7: Improve the core =
+== Step 7: Improve the core ==
 
 Once you understand all of the above, you may be able
 to find ways to improve the libarchive core.
- * The "read-ahead" and "consume" logic has been pretty thoroughly overhauled several times, but there may well be ways to improve it.  If you do work on this, please test carefully; some of the logic here is very subtle.
- * The read filter system does not currently provide full seek capabilities.  Zip and ISO9660 support, in particular, might benefit from being able to seek forward and backwards in files.
- * libarchive should support "set filter" operations in addition to the current "support filter."  A "set filter" would unconditionally initialize the specified filter without going through the bidding phase and be more lenient about format errors.  This would be useful in cases where the user knew the format and wanted to force a certain decoding.
+* The "read-ahead" and "consume" logic has been pretty thoroughly overhauled several times, but there may well be ways to improve it.  If you do work on this, please test carefully; some of the logic here is very subtle.
+* The read filter system does not currently provide full seek capabilities.  Zip and ISO9660 support, in particular, might benefit from being able to seek forward and backwards in files.
+* libarchive should support "set filter" operations in addition to the current "support filter."  A "set filter" would unconditionally initialize the specified filter without going through the bidding phase and be more lenient about format errors.  This would be useful in cases where the user knew the format and wanted to force a certain decoding.
