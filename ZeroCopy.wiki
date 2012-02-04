@@ -1,13 +1,13 @@
-#summary Overview of libarchive's zero-copy architecture.
+Overview of libarchive's zero-copy architecture.
 
-= Introduction =
+== Introduction ==
 
 Libarchive is designed to minimize the copying of data internally
 while still providing simple interfaces.
 This provides both a great deal of flexibility in how input
 data is presented while offering very high performance.
 
-= Block-oriented input =
+== Block-oriented input ==
 
 Libarchive reads from an archive by invoking a block input
 function.
@@ -24,7 +24,7 @@ situations where block sizes might vary (such as when reading
 from bursty network connections) or where the complete archive
 is already available in memory.
 
-= Lazy reblocking =
+== Lazy reblocking ==
 
 Libarchive will always fully consume the block you provide before
 asking for another block.
@@ -39,7 +39,7 @@ space and copy data from multiple blocks as necessary.
 Fortunately, this is very rarely necessary unless you are
 providing very small blocks.
 
-= Decompression and other input filters =
+== Decompression and other input filters ==
 
 If the data is compressed or encoded, libarchive will feed the
 data through a series of decoding filters.
@@ -49,7 +49,7 @@ For decompression filters, the output buffer used by the
 filter is often much larger than the input blocks, which
 helps to make the subsequent processing even more efficient.
 
-= File data =
+== File data ==
 
 The primary function for obtaining data from an entry body
 is `archive_read_data_block()` which provides
