@@ -27,5 +27,5 @@ Next, you will of course need to clone the newly created fork down to your syste
 
 Here are some other guides that may be useful in getting initiated development of libarchive in Github.
 
-* [http://help.github.com/linux-set-up-git Setting up git]
+* [http://help.github.com/set-up-git-redirect Setting up git]
 * [http://help.github.com/fork-a-repo Forking a repo]
