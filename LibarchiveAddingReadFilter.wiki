@@ -47,7 +47,7 @@ int
 archive_read_support_compression_gzip(struct archive *a)
 {
   return (archive_read_support_compression_program_signature
-           (a, "gunzip", "\037\213", 2));
+           (a, "gunzip", "\\037\\213", 2));
 }
 ```
 
