@@ -1,14 +1,39 @@
 # About the Tar format
 
 First Edition UNIX included a tape backup program called "tap".
-When Fourth Edition UNIX extended the file system interface, it was replaced by the "tp" program.
+That program was designed around the capabilities of the First Edition filesystem.
+In particular, it did not have a concept of "group" (First Edition only had "user" and "other" permission bits) and used a 16-bit time format.
+
+Fourth Edition UNIX extended the file system capabilities and so "tap" was replaced by a new "tp" program.
 Similarly, when Seventh Edition UNIX was released in January 1979, it featured a new set of file system features and a new tape backup program called "tar."
 
 Until 1985, the "tar format" was just the format supported by the "tar" program.
-Of course, there were several other implementations by this point.
-To ensure compatibility, the first POSIX standard included a specification for "UNIX Standard TAR" format (ustar) that extended the original tar format slightly.
+Of course, there were several other implementations by this point and compatibility was starting to be a concern.
+So the first POSIX standard included a specification for "UNIX Standard TAR" format (ustar) that extended the original tar format slightly.
 
-* [[ManPageTar5]]
-* [[TarExtendedAttributes]]
-* [[TarPosix1eACLs]]
-* [[TarNFS4ACLs]]
+The ustar format probably would have been the industry standard except for GNU tar.
+GNU tar was derived from "pdtar", and it did not implement the ustar format.
+(There are conflicting accounts about why GNU tar did not implement ustar.)
+GNU tar continued to extend its proprietary format over the years, adding
+a number of new features that were missing from ustar.
+Other tar implementations also extended ustar in various ways, but none of
+these were as influential as GNU tar.
+
+In 2001, POSIX dropped the "tar" program from the standard.
+POSIX had been trying for some time to reconcile the differences between tar and cpio
+and finally did so by dropping both and introducing a new "pax" program
+to fill this role.
+The "pax" program is specified to read and write both ustar and the POSIX cpio format.
+But the committee also introduced a new "pax interchange format" which is based on
+ustar and provides a generic way to extend it with new features.
+
+The pax interchange format is proving fairly successful; GNU tar and
+many other tar programs now support it.
+
+Detailed descriptions of Tar formats and details of libarchive's implementation
+can be found on the following pages:
+
+* [[The tar.5 man page|ManPageTar5]] provides technical details of several tar formats and extensions.
+* [[TarExtendedAttributes]] explains some of the approaches that have been used to store "extended attribute" information in tar archives.
+* [[TarPosix1eACLs]] explains how POSIX.1e ACLs have been stored.  (POSIX.1e was never ratified; several systems have implemented parts of the final draft, but the facilities described there are being replaced by newer standards.)
+* [[TarNFS4ACLs]] explains some techniques that have been used for storing NFS4/NTFS ACLs, the limitations of these methods, and proposes a method that may be implemented in libarchive.
