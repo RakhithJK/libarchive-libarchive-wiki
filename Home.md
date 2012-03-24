@@ -18,12 +18,16 @@ lzip, and several other popular compression algorithms.
 
 The libarchive library allows full flexibility over the
 source and destination of the data:
-You can read a gzip-compressed tar archive from a socket
-and extract the files to buffers in memory.
-Similarly, you can synthesize data in memory and use it
-to generate an ISO9660 image that you write out to a pipe.
-There are convenience wrappers, of course, for reading
-and writing archives to regular files on disk.
+There are convenience wrappers for reading
+and writing archives to regular files on disk or to memory,
+but you can register your own [[I/O functions|LibarchiveIO]]
+to read and write archives to tape drives, network sockets,
+or any other data source.
+
+## How to Start
+
+* [[Building Libarchive|BuildInstructions]]
+* [[Programming Examples|Examples]]
 
 ## Where to get more information
 
@@ -32,4 +36,15 @@ and writing archives to regular files on disk.
 * [[Extensive manpages|ManualPages]] are included with the distribution.
 
 ## How to contribute
+
+We [[welcome contributions|ContributingToLibarchiveInGithub]], of course.
+If you need ideas, take a peek at the [[WishList]] and
+the [[internals documentation|LibarchiveInternals]].
+
+If you aren't able to help with C coding, we still appreciate
+volunteers to help improve this Wiki documentation, answer
+questions on the
+[[mailing list|http://libarchive-discuss.googlegroups.com/]],
+and help test libarchive as it continues to evolve.
+
 
