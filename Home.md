@@ -9,18 +9,9 @@ full-featured implementations of tar and cpio that use libarchive.
 
 [[Many other programs|LibarchiveUsers]] use libarchive as well.
 
-The libarchive library can work with a variety of different
-archive formats, including:
-  * most popular tar variants, including the new "pax interchange format"
-  * most popular cpio variants
-  * ISO9660 images, including Rockridge and Joliet extensions
-  * Zip, including self-extracting archives
-  * Microsoft CAB format
-  * Apple's XAR format
-  * LHA
-  * 7-Zip
+The libarchive library can work with a [[variety of different archive formats|LibarchiveFormats]], including tar, cpio, pax, [[Zip|FormatZip]], and [[ISO9660 images|FormatISO9660]].
 
-When reading any of the above, libarchive uses a robust
+When reading archives, libarchive uses a robust
 automatic format detector that can automatically handle
 archives that have been compressed with gzip, bzip2, xz,
 lzip, and several other popular compression algorithms.
