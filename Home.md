@@ -3,13 +3,12 @@ Welcome to libarchive!
 ## What is libarchive?
 
 **Libarchive** is an open-source BSD-licensed C programming library
-that provides streaming access to a variety of archive file formats.
+that provides streaming access to a
+[[variety of different archive formats|LibarchiveFormats]], including [[tar|FormatTar]], [[cpio|FormatCpio]], [[pax|FormatPax]], [[Zip|FormatZip]], and [[ISO9660 images|FormatISO9660]].
 The distribution also includes [[bsdtar|ManPageBsdtar1]] and [[bsdcpio|ManPageBsdcpio1]],
 full-featured implementations of tar and cpio that use libarchive.
 
 [[Many other programs|LibarchiveUsers]] use libarchive as well.
-
-The libarchive library can work with a [[variety of different archive formats|LibarchiveFormats]], including [[tar|FormatTar]], [[cpio|FormatCpio]], [[pax|FormatPax]], [[Zip|FormatZip]], and [[ISO9660 images|FormatISO9660]].
 
 When reading archives, libarchive uses a robust
 [[automatic format detector|FormatDetection]] that can automatically handle
