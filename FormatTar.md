@@ -11,8 +11,9 @@ Until 1985, the "tar format" was just the format supported by the "tar" program.
 Of course, there were several other implementations by this point and compatibility was starting to be a concern.
 So the first POSIX standard included a specification for "UNIX Standard TAR" format (ustar) that extended the original tar format slightly.
 
-The ustar format probably would have been the industry standard except for GNU tar.
-GNU tar was derived from "pdtar", and it did not implement the ustar format.
+The ustar format was widely supported, but it would have been even more
+successful had it been supported by GNU tar, which was the most widely
+used implementation of tar for many years.
 (There are conflicting accounts about why GNU tar did not implement ustar.)
 GNU tar continued to extend its proprietary format over the years, adding
 a number of new features that were missing from ustar.
@@ -20,11 +21,11 @@ Other tar implementations also extended ustar in various ways, but none of
 these were as influential as GNU tar.
 
 In 2001, POSIX dropped the "tar" program from the standard.
-POSIX had been trying for some time to reconcile the differences between tar and cpio
-and finally did so by dropping both and introducing a new "pax" program
+POSIX had been trying for some time to reconcile the differences between the tar and cpio
+programs and finally did so by dropping both and introducing a new "pax" program
 to fill this role.
 The "pax" program is specified to read and write both ustar and the POSIX cpio format.
-But the committee also introduced a new "pax interchange format" which is based on
+The standard also introduced a new "pax interchange format" which is based on
 ustar and provides a generic way to extend it with new features.
 
 The pax interchange format is proving fairly successful; GNU tar and
