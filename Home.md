@@ -4,7 +4,7 @@ Welcome to libarchive!
 
 **Libarchive** is an open-source BSD-licensed C programming library
 that provides streaming access to a variety of archive file formats.
-The distribution also includes full source for **bsdtar** and **bsdcpio**,
+The distribution also includes [[bsdtar|ManPageBsdtar1]] and [[bsdcpio|ManPageBsdcpio1]],
 full-featured implementations of tar and cpio that use libarchive.
 
 [[Many other programs|LibarchiveUsers]] use libarchive as well.
@@ -25,10 +25,11 @@ to generate an ISO9660 image that you write out to a pipe.
 There are convenience wrappers, of course, for reading
 and writing archives to regular files on disk.
 
-
 ## Where to get more information
 
 * This Wiki (of course)
 * libarchive-discuss@googlegroups.com mailing list
-* The documentation included in the distribution
+* [[Extensive manpages|ManualPages]] are included with the distribution.
+
+## How to contribute
 
