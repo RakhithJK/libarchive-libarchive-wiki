@@ -46,7 +46,7 @@ To register your function with libarchive, you can use the `archive_read_open()`
 The ''callback data'' will be passed as the second argument to your read function.
 It is typically a structure allocated on the heap that you will release later on.
 
-You can see a slightly more complete example in [ManPageArchiveRead3].
+You can see a slightly more complete example in [[ManPageArchiveRead3]].
 
 Although the read callback is the only callback that is required, you will probably also want to provide a ''close'' callback.
 This will be invoked by libarchive when the archive is closed (typically as a result of someone calling `archive_read_close`).
