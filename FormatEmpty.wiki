@@ -18,4 +18,4 @@ Since the "empty" format handler is the only libarchive module that will recogni
 === Useful Trivia ===
 
 * You can tell whether a file is empty by examining the format of the archive after it has been opened.
-* The "empty" handler is the only handler that mixes well with the [FormatRaw raw handler].
+* The "empty" handler is the only handler that mixes well with the [[FormatRaw|raw handler]].
