@@ -12,7 +12,7 @@ full-featured implementations of tar and cpio that use libarchive.
 The libarchive library can work with a [[variety of different archive formats|LibarchiveFormats]], including [[tar|FormatTar]], [[cpio|FormatCpio]], [[pax|FormatPax]], [[Zip|FormatZip]], and [[ISO9660 images|FormatISO9660]].
 
 When reading archives, libarchive uses a robust
-automatic format detector that can automatically handle
+[[automatic format detector|FormatDetection]] that can automatically handle
 archives that have been compressed with gzip, bzip2, xz,
 lzip, and several other popular compression algorithms.
 
