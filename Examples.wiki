@@ -149,16 +149,31 @@ The skip callback must satisfy the following:
 * Only positive/forward skips will ever be requested.
 * If skipping is not provided or fails, libarchive will call the read() function and simply ignore any data that it does not need.
 
-Note:  The signature of the skip callback will change slightly in
+Note:  The signature of the skip callback has changed slightly in
 libarchive 3.0.
 Previous versions used the platform `off_t` data type to indicate offsets
 for skipping.
-Unfortunately, that is not entirely portable, so libarchive 3.0 will
-use `int64_t` data types instead.
+Unfortunately, that is not entirely portable, so libarchive 3.0
+uses `int64_t` data types instead.
 If you need to write code that can compile with both libarchive 3.0 and
 earlier versions, you may need to define different types of your callbacks
 depending on the `ARCHIVE_VERSION_NUMBER` macro.
 Ask on libarchive-discuss@groups.google.com if you have questions about this.
+
+=== A note about the seek callback ===
+
+Libarchive 3.0 can now support a _seek_ callback.
+The seek callback is used to read archive formats
+that are not amenable to streaming, such as 7-Zip and
+some Zip variants.
+
+Be careful:  If you provide a seek callback function, you
+are guaranteeing that it will work.
+In particular, the system `lseek()` or `fseek()` generally
+does not work with tape files, some raw disk devices, pipes,
+or network sockets.
+If you provide a seek callback that just invokes the system
+function on such a file, libarchive will likely get very confused.
 
 == A Universal Decompressor ==
 
