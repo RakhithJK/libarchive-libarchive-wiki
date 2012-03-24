@@ -7,7 +7,7 @@ that provides streaming access to a variety of archive file formats.
 The distribution also includes full source for **bsdtar** and **bsdcpio**,
 full-featured implementations of tar and cpio that use libarchive.
 
-[[LibarchiveUsers|Many other programs]] use libarchive as well.
+[[Many other programs|LibarchiveUsers]] use libarchive as well.
 
 The libarchive library can work with a variety of different
 archive formats, including:
