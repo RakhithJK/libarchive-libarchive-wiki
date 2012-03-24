@@ -44,7 +44,7 @@ the [[internals documentation|LibarchiveInternals]].
 If you aren't able to help with C coding, we still appreciate
 volunteers to help improve this Wiki documentation, answer
 questions on the
-[[mailing list|http://libarchive-discuss.googlegroups.com/]],
+[[mailing list|http://groups.google.com/group/libarchive-discuss]],
 and help test libarchive as it continues to evolve.
 
 
