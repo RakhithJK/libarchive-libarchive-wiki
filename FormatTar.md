@@ -36,5 +36,5 @@ can be found on the following pages:
 
 * [[The tar.5 man page|ManPageTar5]] provides technical details of several tar formats and extensions.
 * [[TarExtendedAttributes]] explains some of the approaches that have been used to store "extended attribute" information in tar archives.
-* [[TarPosix1eACLs]] explains how POSIX.1e ACLs have been stored.  (POSIX.1e was never ratified; several systems have implemented parts of the final draft, but the facilities described there are being replaced by newer standards.)
+* [[TarPosix1eACLs]] explains how POSIX.1e ACLs have been stored.  (POSIX.1e was an early attempt to standardize ACL and other filesystem extensions.  Several systems now support ACLs based on it, although it is incomplete and was never accepted as an official POSIX standard.)
 * [[TarNFS4ACLs]] explains some techniques that have been used for storing NFS4/NTFS ACLs, the limitations of these methods, and proposes a method that may be implemented in libarchive.
