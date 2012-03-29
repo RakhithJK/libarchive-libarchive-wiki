@@ -2,10 +2,10 @@ Ideas that would be nice to implement someday.
 
 If you would like to see any of these implemented, let us know by either posting a comment to this page or sending a note to the libarchive-discuss mailing list.
 If you'd like to take a stab at implementing any of these, definitely let us know.
-Also see [ReleaseNotes].
+Also see [[ReleaseNotes]].
 Please remember that libarchive is entirely developed by volunteers;
 new features get implemented whenever someone steps up to do the work.
-If you would like to try your hand at this, read [LibarchiveInternals] for
+If you would like to try your hand at this, read [[LibarchiveInternals]] for
 a guided tour of how libarchive works and ask on the
 libarchive-discuss@googlegroups.com mailing list
 if you have any questions.
@@ -21,7 +21,7 @@ The man pages are a little out-of-date now; some of the newer changes need to be
 
 == Better documentation conversions ==
 
-The existing conversion scripts don't do a bad job but could probably stand improvement.
+The existing conversion scripts don't do a bad job but could definitely be improved.
 
 == CMake-based install target ==
 
@@ -77,7 +77,7 @@ correctly against the same libarchive library without issues.
 == Pax front-end ==
 
 It should be feasible to build a POSIX-compliant pax on top of libarchive.
-Michihiro has been working on this for a while in an SVN branch;
+Michihiro has been working on this for a while;
 he would certainly appreciate assistance.
 
 == cpio as archive translation ==
@@ -194,6 +194,10 @@ created.)
 
 == Multivolume Reading ==
 
+Andres Mejia has recently completed some work in this
+area to support multivolume RAR archives.
+More work is needed to extend this to other formats.
+
 Proper multivolume reading requires that each layer appropriately
 detect end-of-input and invoke close()/open() on the next layer up.
 The first step is to add multivolume support to archive_read_open_filename();
@@ -227,12 +231,18 @@ to learn network programming.
 
 == Seeking input files ==
 
-This is partially supported now, but could be improved
-further:
-When the input supports full seeking, the Zip
-and 7-Zip readers can exploit that to read the archive directory
-from the end of the archive first, then seek to the individual
-files as needed.
+This is partially supported now, but could be improved further.
+In particular, the current seek handling tends to generate a lot of non-aligned writes,
+which are very bad for performance.
+The I/O routines could be adjusted to handle this more gracefully.
+
+The Zip and 7-Zip readers can take advantage of seeking already.
+There are likely several opportunities for performance improvements
+(such as sorting the file entries by offset within the archive so that there is less seeking).
+
+The other reader that could really benefit is the ISO9660 reader.
+It would be best if this could be done in a way that continues to support streaming effectively for almost all ISO images.
+Doing this well will require finding test images that require seeking and ensuring the tests cover both seeking and streaming environments (see the Zip tests for an example of how to handle the latter issue).
 
 == Seek in archives ==
 
@@ -240,9 +250,9 @@ A few people have asked for the ability to efficiently
 "re-read" particular archive entries.
 This is a tricky subject.
 For many formats, the performance gains from this would be very modest.
-For example, after the item above is implemented, re-reading
-a Zip archive from the beginning will be very fast since
-it would only involve re-parsing the central directory.
+For example, with a little performance work, the seeking Zip reader
+could support very fast re-reading from the beginning since
+it only involves re-parsing the central directory.
 The cases where there would be real gains (e.g., tar.gz)
 are going to be very difficult to handle.
 The most likely implementation would be some form of checkpointing
