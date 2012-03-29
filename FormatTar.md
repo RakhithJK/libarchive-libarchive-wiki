@@ -1,8 +1,8 @@
 # About the Tar format
 
 First Edition UNIX included a tape backup program called "tap".
-That program was designed around the capabilities of the First Edition filesystem.
-In particular, it did not have a concept of "group" (First Edition only had "user" and "other" permission bits) and used a 16-bit time format.
+Since it was designed around the capabilities of the First Edition filesystem,
+it did not have a concept of "group" (First Edition only had "user" and "other" permission bits) and used a 16-bit time format.
 Fourth Edition UNIX extended the file system capabilities and replaced "tap" with a new "tp" program for creating and reading tape backups.
 Similarly, when Seventh Edition UNIX was released in January 1979, it featured a new set of file system features and a new tape backup program called "tar" (for "Tape ARchiver").
 
