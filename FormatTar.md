@@ -6,7 +6,7 @@ it did not have a concept of "group" (First Edition only had "user" and "other" 
 Fourth Edition UNIX extended the file system capabilities and replaced "tap" with a new "tp" program for creating and reading tape backups.
 Similarly, when Seventh Edition UNIX was released in January 1979, it featured a new set of file system features and a new tape backup program called "tar" (for "Tape ARchiver").
 
-Until 1985, the "tar format" was just the format supported by the "tar" program.
+Until 1985, the "tar format" was just the format supported by the "tar program."
 Of course, there were several other implementations by this point and compatibility was starting to be a concern.
 So the first POSIX standard included a specification for "UNIX Standard TAR" format (ustar) that extended the original tar format slightly.
 In particular, it included user and group names (previously, tar archives had only included user and group numbers), supported pathnames up to 255 characters (instead of the 100 of the earlier version), and defined a signature value that could be used to identify compliant archives.
