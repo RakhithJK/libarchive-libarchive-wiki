@@ -50,7 +50,7 @@ registering an input function that reads blocks from a file.
 If you want to read data from some other data source,
 you can call the registration functions directly.
 (If you decide to roll your own, you might want to look at
-[http://libarchive.googlecode.com/svn/trunk/libarchive/archive_read_open_filename.c the source code for archive_read_open_filename]
+[[the source code for archive_read_open_filename|https://github.com/libarchive/libarchive/blob/master/libarchive/archive_read_open_filename.c]]
 for ideas.)
 
 Inside `archive_read_open1()`, libarchive asks the input
