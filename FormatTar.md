@@ -11,12 +11,8 @@ Of course, there were several other implementations by this point and compatibil
 So the first POSIX standard included a specification for "UNIX Standard TAR" format (ustar) that extended the original tar format slightly.
 In particular, it included user and group names (previously, tar archives had only included user and group numbers), supported pathnames up to 255 characters (instead of the 100 of the earlier version), and defined a signature value that could be used to identify compliant archives.
 
-The ustar format was widely supported, but it would have been even more
-successful had it been supported by GNU tar, which was the most widely
-used implementation of tar for many years.
-(There are conflicting accounts about why GNU tar did not implement ustar.)
-GNU tar continued to extend its proprietary format over the years, adding
-a number of new features that were missing from ustar.
+One of the more influential implementations was John Gilmore's pdtar program which appeared around the same time as the first POSIX standard.
+In particular, pdtar formed the basis of GNU tar, which extended the pdtar format (which was not the same as ustar) many times over the years, adding a number of new features that were missing from ustar.
 Other tar implementations also extended ustar in various ways, but none of
 these were as influential as GNU tar.
 
