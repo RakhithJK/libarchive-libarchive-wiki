@@ -4,7 +4,7 @@ How libarchive automatically determines the format of data.
 
 Libarchive uses an internal "bidding" process in which
 multiple modules inspect the incoming data.
-The technical [LibarchiveInternals] page describes
+The technical [[LibarchiveInternals]] page describes
 the process in detail; this page walks through a simple example.
 
 Keep in mind that the mechanism described here is
