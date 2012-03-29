@@ -1,9 +1,9 @@
 # About the Cpio format
 
-AT&T used Unix fairly extensively in the 1970s and developed a special in-house version that included a variety of new tools.
+AT&T used Unix extensively in the 1970s and developed several in-house versions with a variety of new tools.
 Among these tools were the "find" and "cpio" utilities designed by Dick Haight.
 These were designed to work together:
-the "find" utility could list filenames; the "cpio" utility read filenames and then copied those files to another directory or into a "cpio archive."
+the "find" utility could list filenames; the "cpio" utility could read filenames and then copy those files to another directory or into a "cpio archive."
 The "cpio" utility was first released outside of AT&T as part of the Programmer's Work Bench (PWB/UNIX 1.0) in 1977.
 
 The cpio program and file format were standardized in 1985 by POSIX.
