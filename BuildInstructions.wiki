@@ -154,11 +154,11 @@ If you find otherwise, please let me know:
 
 -----------------------------------------
 
-== Building libarchive from SVN ==
+== Building libarchive from the Github source code ==
 
 Certain build files are created specifically as part
-of the distribution and are not stored in SVN.
-So if you want to build libarchive from an SVN checkout,
+of the distribution and are not stored in the master source on Github.
+So if you want to clone the github repository and build directly from there,
 you may have to do a little more work:
 
 === CMake builds ===
