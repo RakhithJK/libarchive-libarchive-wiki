@@ -359,10 +359,9 @@ sign, a value string, and a new line.
 The decimal number indicates the length of the entire line, including the 
 initial length field and the trailing newline. 
 An example of such a field is: 
-```text 
-25 ctime=1084839148.1212 
-``` 
-
+```text
+25 ctime=1084839148.1212\n
+```
 Keys in all lowercase are standard keys. 
 Vendors can add their own keys by prefixing them with an all uppercase 
 vendor name and a period. 
