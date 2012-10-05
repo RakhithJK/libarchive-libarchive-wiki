@@ -54,7 +54,7 @@ Most obviously, the ACL is stored after the entry and not before.
 This constrains the possible implementations (libarchive, for
 example, wants to see all metadata before reading the body).
 The format used is also pretty non-portable.
-The [TarNFS4ACLs] has some additional details about this format.
+The [[TarNFS4ACLs]] page has some additional details about this format.
 
 == Footnote: About POSIX.1e ==
 
