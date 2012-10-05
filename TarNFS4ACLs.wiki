@@ -280,6 +280,7 @@ Fortunately, most of these are pretty minor:
 ** Pax reader
 *** Read LIBARCHIVE.acl.nfs4 attribute
 *** Read Solaris tar 'A' record (?)
+
 * Machine-dependent
 ** archive_read_entry_from_disk()
 *** FreeBSD 9
