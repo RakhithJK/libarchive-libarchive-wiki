@@ -34,7 +34,7 @@ ACL model.
 
 Of course, the existing work on supporting POSIX.1e-style
 ACLs is quite relevant.
-I've tried to document this at [TarPosix1eACLs].
+I've tried to document this at [[TarPosix1eACLs]].
 
 
 === Apple tar ===
