@@ -218,8 +218,8 @@ final implementation to be pretty close to this._
 === Proposed design ===
 
 I propose using the following format for storing NFSv4 ACLs in pax archives written by libarchive:
- * Store the ACL in a pax attribute named LIBARCHIVE.acl.nfs4
- * Textual format with entire ACL on one line.
+* Store the ACL in a pax attribute named LIBARCHIVE.acl.nfs4
+* Textual format with entire ACL on one line.
 
 Example:
 ```text
