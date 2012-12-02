@@ -233,7 +233,7 @@ the file bodies.
     int fd;
 
     a = archive_write_new();
-    archive_write_set_compression_gzip(a);
+    archive_write_add_filter_gzip(a);
     archive_write_set_format_pax_restricted(a); // Note 1
     archive_write_open_filename(a, outname, 10240);
     while (*filename) {
@@ -390,7 +390,7 @@ extract(const char *filename)
   ext = archive_write_disk_new();
   archive_write_disk_set_options(ext, flags);
   archive_write_disk_set_standard_lookup(ext);
-  if ((r = archive_read_open_file(a, filename, 10240)))
+  if ((r = archive_read_open_filename(a, filename, 10240)))
     exit(1);
   for (;;) {
     r = archive_read_next_header(a, &entry);
