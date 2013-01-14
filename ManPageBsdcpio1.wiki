@@ -151,11 +151,21 @@ With this option, the target of the link will be archived or copied instead.
 (p mode only) 
 Create links from the target directory to the original files, 
 instead of copying. 
+</dd><dt>--lrzip</dt><dd> 
+(o mode only) 
+Compress the resulting archive with 
+'''lrzip'''(1). 
+In input mode, this option is ignored. 
 </dd><dt>--lzma</dt><dd> 
 (o mode only) 
 Compress the file with lzma-compatible compression before writing it. 
 In input mode, this option is ignored; lzma compression is recognized 
 automatically on input. 
+</dd><dt>--lzop</dt><dd> 
+(o mode only) 
+Compress the resulting archive with 
+'''lzop'''(1). 
+In input mode, this option is ignored. 
 </dd><dt>-m, --preserve-modification-time</dt><dd> 
 (i and p modes) 
 Set file modification time on created files to match 

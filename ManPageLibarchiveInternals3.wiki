@@ -1,4 +1,4 @@
-LIBARCHIVE(3) manual page 
+LIBARCHIVE_INTERNALS(3) manual page 
 == NAME == 
 '''libarchive_internals''' 
 - description of libarchive internal interfaces 

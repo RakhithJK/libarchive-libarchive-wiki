@@ -1,4 +1,4 @@
-ARCHIVE_WRITE(3) manual page 
+ARCHIVE_WRITE_DATA(3) manual page 
 == NAME == 
 '''archive_write_data''' 
 - functions for creating archives 

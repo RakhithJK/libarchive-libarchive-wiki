@@ -1,5 +1,6 @@
 ARCHIVE_WRITE_FREE(3) manual page 
 == NAME == 
+'''archive_write_fail''', 
 '''archive_write_close''', 
 '''archive_write_finish''', 
 '''archive_write_free''' 
@@ -8,6 +9,10 @@ ARCHIVE_WRITE_FREE(3) manual page
 Streaming Archive Library (libarchive, -larchive) 
 == SYNOPSIS == 
 '''<nowiki>#include <archive.h></nowiki>''' 
+<br> 
+'''int''' 
+<br> 
+'''archive_write_fail'''(''struct archive *''); 
 <br> 
 '''int''' 
 <br> 
@@ -22,7 +27,17 @@ Streaming Archive Library (libarchive, -larchive)
 '''archive_write_free'''(''struct archive *''); 
 == DESCRIPTION == 
 <dl> 
-<dt>'''archive_write_close'''()</dt><dd> 
+<dt>'''archive_write_fail'''()</dt><dd> 
+Always returns 
+'''ARCHIVE_FATAL'''. 
+This marks the archive object as being unusable; 
+after calling this function, the only call that can succeed is 
+'''archive_write_free'''() 
+to release the resources. 
+This can be used to speed recovery when the archive creation 
+must be aborted. 
+Note that the created archive is likely to be malformed in this case;  
+</dd><dt>'''archive_write_close'''()</dt><dd> 
 Complete the archive and invoke the close callback. 
 </dd><dt>'''archive_write_finish'''()</dt><dd> 
 This is a deprecated synonym for 

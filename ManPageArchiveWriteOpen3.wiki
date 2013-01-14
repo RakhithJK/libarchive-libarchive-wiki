@@ -1,4 +1,4 @@
-ARCHIVE_WRITE(3) manual page 
+ARCHIVE_WRITE_OPEN(3) manual page 
 == NAME == 
 '''archive_write_open''', 
 '''archive_write_open_fd''', 
