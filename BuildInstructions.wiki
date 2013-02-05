@@ -171,5 +171,5 @@ Just follow the regular instructions above.
 
 === GNU Autotools builds ===
 
-The `configure` script and Makefile files are created by using the GNU autotools (autoconf, automake, etc.). The recommended way to get the GNU autotools programs is to install [http://sourceforge.net/projects/mingw/files/Installer/mingw-get-inst/ mingw-get-inst]. With MinGW installed using mingw-get-inst, the autoreconf program can be used to regenerate the build system.
-There is also a shell script called `build/autogen.sh` that will run the tools in the correct order to construct all the necessary files.
+The `configure` script and Makefile files are created by using the GNU autotools (autoconf, automake, etc.). On more modern systems, the autoreconf program can be used to regenerate the build system.
+For systems without autoreconf, a shell script called `build/autogen.sh` will run the tools in the correct order to construct all the necessary files.
