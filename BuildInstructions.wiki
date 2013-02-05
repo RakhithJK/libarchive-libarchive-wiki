@@ -67,7 +67,7 @@ You'll need:
 Building is a three-step process:
 * Get the source code.  You can either:
 ** Unpack a source distribution from [http://code.google.com/p/libarchive/downloads/list the Downloads page], or
-** Use SVN to checkout the source from the [http://code.google.com/p/libarchive/source/checkout Source Repository].
+** Use git to checkout the source from the [http://github.com/libarchive/libarchive Source Repository].
 * Use the CMake GUI to create the solution files:
 ** Set cmake's source code parameter to the directory where you unpacked the source code (the directory containing the "!CmakeLists.txt" file)
 ** Set the build output parameter to a directory where you will be building; this can be the same as the source directory.
@@ -166,7 +166,7 @@ you may have to do a little more work:
 
 === CMake builds ===
 
-Nothing additional is needed to perform CMake builds from an SVN checkout.
+Nothing additional is needed to perform CMake builds from a git checkout.
 Just follow the regular instructions above.
 
 === configure-based builds ===
