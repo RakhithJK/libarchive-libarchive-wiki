@@ -59,7 +59,7 @@ When you run the cmake tool, you need to provide three pieces of information:
 CMake supports several popular Windows development environments.
 You'll need:
 * CMake for Windows, version 2.6 or later:  http://www.cmake.org/cmake/resources/software.html
-* If you want to check out source from SVN, I highly recommend [http://tortoisesvn.tigris.org TortoiseSVN].  You can also, of course, use the SVN command-line tool.
+* If you want to check out source from git, I highly recommend [http://code.google.com/p/gitextensions/ Git Extensions]. It comes with the git command-line programs, a graphical user interface, and Windows integration.
 
 Building is a three-step process:
 * Get the source code.  You can either:
