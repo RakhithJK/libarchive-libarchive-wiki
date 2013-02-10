@@ -10,14 +10,34 @@ the work.
 Alpha and Beta releases are not listed here.
 They are not recommended for general use, though we usually leave them available in the Downloads section for historical reference.
 
-== Libarchive 3.1 ==
+== Libarchive 3.1.x ==
 
-''Anticipated: Spring 2012?''
+''Anticipated: ?''
 
 * Switch bsdtar to use archive_read_disk for directory traversals - Michihiro has mostly finished this
 * Pax front-end?  Michihiro has been working on this for a while.
 * Multivolume RAR support?  Andres has this prototyped in a branch.
 * NFS4 ACL support - Tim has been working on this off and on for some time.
+
+== Libarchive 3.1.2 ==
+
+''Released: Feb 9, 2013''
+
+== Libarchive 3.1.1 ==
+
+''Released: Jan 13, 2013''
+
+== Libarchive 3.1.0 ==
+
+''Released: Jan 13, 2013''
+
+* Added support for lrzip
+* Added support for lzop
+* Added support for grzip compression
+* Added filters for base64 and uuencode
+* Added support for writing tar v7 format
+* Added support for resource-forks in Zip archives
+* Added funtions to manually set filters and formats
 
 == Libarchive 3.0.3 ==
 
