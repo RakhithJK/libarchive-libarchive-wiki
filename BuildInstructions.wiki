@@ -78,7 +78,7 @@ Building is a three-step process:
 
 
 Certain libarchive features require you to link against additional libraries.  The [http://gnuwin32.sourceforge.net/ GnuWin32] project distributes precompiled versions of most of the necessary libraries on their [http://gnuwin32.sourceforge.net/packages.html Packages Page].  If these libraries are correctly installed, you should be able to simply repeat the CMake GUI configuration and generation steps.  The libraries should be detected and used automatically.
-** Gzip compression, zip compression, and zisofs support: Install the [http://gnuwin32.sourceforge.net/packages/gzip.htm GnuWin32 gzip package] into `C:\Program Files\gnuwin32`.  (Note: You may need to edit `C:\Program Files\gnuwin32\include\zconf.h` and change the `#if` on line 287 to 0 instead of 1 unless you have unistd.h) XXX Shouldn't this be the zlib package? XXX
+** Gzip compression, zip compression, and zisofs support: Install the [http://gnuwin32.sourceforge.net/packages/zlib.htm GnuWin32 zlib package] into `C:\Program Files\gnuwin32`.  (Note: You may need to edit `C:\Program Files\gnuwin32\include\zconf.h` and change the `#if` on line 287 to 0 instead of 1 unless you have unistd.h)
 ** Bzip2 compression: Install the [http://gnuwin32.sourceforge.net/packages/bzip2.htm GnuWin32 bzip2 development package] into `C:\Program Files\gnuwin32`.
 ** Lzma/Xz compression: There does not yet seem to be a pre-compiled version of the liblzma library.  alan.whiskers has some notes in the comments below you may find useful if you wish to build this yourself.
 ** Xar support: Install the libxml2 libraries.  XXX This is untested? XXX
