@@ -18,7 +18,7 @@ distribution in two steps:
 # untar the result to obtain the individual files
 
 Once you have the unpacked files, you can then follow
-the [BuildInstructions Build Instructions] to build
+the [[BuildInstructions]] to build
 bsdtar.
 
 == Gunzip ==
