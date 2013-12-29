@@ -17,7 +17,7 @@ $ make check
 $ make install
 ```
 
-See [BootStrappingTar] if you don't have a tar program on your system to unpack the libarchive distribution files.
+See BootStrappingTar if you don't have a tar program on your system to unpack the libarchive distribution files.
 
 === Configure options ===
 
