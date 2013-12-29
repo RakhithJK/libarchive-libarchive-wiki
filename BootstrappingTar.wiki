@@ -48,7 +48,7 @@ distribution after you decompress it.
 
 You can obtain the source for untar from:
 
-[https://raw.github.com/libarchive/libarchive/master/examples/untar.c](https://raw.github.com/libarchive/libarchive/master/examples/untar.c)
+[https://raw.github.com/libarchive/libarchive/master/examples/untar.c]
 
 The "untar" program is written using only Standard ISO C89
 (with one exception explained below).  As such,
