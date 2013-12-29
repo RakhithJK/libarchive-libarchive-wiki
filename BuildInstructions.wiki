@@ -171,9 +171,29 @@ you may have to do a little more work:
 === CMake builds ===
 
 Nothing additional is needed to perform CMake builds from a git checkout.
-Just follow the regular instructions above.
+Just follow the regular instructions:
+
+```
+$ git clone https://github.com/libarchive/libarchive.git
+$ cd libarchive
+$ cmake .
+$ make
+$ make test
+```
 
 === GNU Autotools builds ===
 
 The `configure` script and Makefile files are created by using the GNU autotools (autoconf, automake, etc.). On more modern systems, the autoreconf program can be used to regenerate the build system.
 For systems without autoreconf, a shell script called `build/autogen.sh` will run the tools in the correct order to construct all the necessary files.
+
+The complete process of getting the source and building it will typically look something like the following:
+
+```
+$ git clone https://github.com/libarchive/libarchive.git
+$ cd libarchive
+$ /bin/sh build/autogen.sh
+$ ./configure
+$ make
+$ make check
+$ make install
+```
