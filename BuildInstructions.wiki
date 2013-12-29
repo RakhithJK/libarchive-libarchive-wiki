@@ -124,7 +124,7 @@ You'll first need some standard development tools if you don't already have them
 * The !MacPorts package manager can install a variety of open-source software (http://www.macports.org/).  If you just want to use libarchive, you can skip all of the following by installing libarchive through !MacPorts: `sudo port install libarchive`
 * The cmake tool is available through !MacPorts: `sudo port install cmake`
 
-Assuming that the libarchive source code is available in the 'libarchive' directory, you build the Xcode project files using cmake:
+Assuming that the current directory is the root of the libarchive source tree, you can build the Xcode project files using cmake:
 ```
 $ ls README
 README
