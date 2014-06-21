@@ -195,16 +195,16 @@ object is destroyed.
 This convenience function installs a standard set of user 
 and group lookup functions. 
 These functions use 
-'''getpwnam'''(3) 
+[[getpwnam(3)|http://www.freebsd.org/cgi/man.cgi?query=getpwnam&sektion=3]] 
 and 
-'''getgrnam'''(3) 
+[[getgrnam(3)|http://www.freebsd.org/cgi/man.cgi?query=getgrnam&sektion=3]] 
 to convert names to ids, defaulting to the ids if the names cannot 
 be looked up. 
 These functions also implement a simple memory cache to reduce 
 the number of calls to 
-'''getpwnam'''(3) 
+[[getpwnam(3)|http://www.freebsd.org/cgi/man.cgi?query=getpwnam&sektion=3]] 
 and 
-'''getgrnam'''(3). 
+[[getgrnam(3)|http://www.freebsd.org/cgi/man.cgi?query=getgrnam&sektion=3]]. 
 </dd><dt>'''archive_write_header'''()</dt><dd> 
 Build and write a header using the data in the provided 
 '''struct archive_entry''' 
@@ -301,7 +301,7 @@ functions.
 == SEE ALSO == 
 [[ManPageArchiveRead3]], 
 [[ManPageArchiveWrite3]], 
-'''tar'''(1), 
+[[ManPageBsdtar1]], 
 [[ManPageLibarchive3]] 
 == HISTORY == 
 The 
@@ -331,7 +331,7 @@ files, but can cause unexpected results.
 In particular, directory permissions are not fully 
 restored until the archive is closed. 
 If you use 
-'''chdir'''(2) 
+[[chdir(2)|http://www.freebsd.org/cgi/man.cgi?query=chdir&sektion=2]] 
 to change the current directory between calls to 
 '''archive_read_extract'''() 
 or before calling 
@@ -377,9 +377,9 @@ in the entry.
 The 
 "standard" 
 user-id and group-id lookup functions are not the defaults because 
-'''getgrnam'''(3) 
+[[getgrnam(3)|http://www.freebsd.org/cgi/man.cgi?query=getgrnam&sektion=3]] 
 and 
-'''getpwnam'''(3) 
+[[getpwnam(3)|http://www.freebsd.org/cgi/man.cgi?query=getpwnam&sektion=3]] 
 are sometimes too large for particular applications. 
 The current design allows the application author to use a more 
 compact implementation when appropriate. 

@@ -181,7 +181,7 @@ and
 '''archive_error_string'''() 
 functions. 
 == SEE ALSO == 
-'''tar'''(1), 
+[[ManPageBsdtar1]], 
 [[ManPageLibarchive3]], 
 [[ManPageArchiveWriteSetOptions3]], 
 [[ManPageArchiveRead3]] 

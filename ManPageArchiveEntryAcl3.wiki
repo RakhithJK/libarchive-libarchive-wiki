@@ -144,7 +144,7 @@ The function returns either 0, if no non-extended ACLs are found.
 In this case, the access permissions should be obtained by 
 [[ManPageArchiveEntryMode3]] 
 or set using 
-'''chmod'''(2). 
+[[chmod(2)|http://www.freebsd.org/cgi/man.cgi?query=chmod&sektion=2]]. 
 Otherwise, the function returns the same value as 
 '''archive_entry_acl_count'''(). 
 

@@ -100,7 +100,7 @@ Currently supported keywords are as follows:
 <dt>'''cksum'''</dt><dd> 
 The checksum of the file using the default algorithm specified by 
 the 
-'''cksum'''(1) 
+[[cksum(1)|http://www.freebsd.org/cgi/man.cgi?query=cksum&sektion=1]] 
 utility. 
 </dd><dt>'''device'''</dt><dd> 
 The device number for 
@@ -146,14 +146,14 @@ and
 .B ultrix . 
 
 See 
-'''mknod'''(8) 
+[[mknod(8)|http://www.freebsd.org/cgi/man.cgi?query=mknod&sektion=8]] 
 for more details. 
 </dd><dt>'''contents'''</dt><dd> 
 The full pathname of a file that holds the contents of this file. 
 </dd><dt>'''flags'''</dt><dd> 
 The file flags as a symbolic name. 
 See 
-'''chflags'''(1) 
+[[chflags(1)|http://www.freebsd.org/cgi/man.cgi?query=chflags&sektion=1]] 
 for information on these names. 
 If no flags are to be set the string 
 "none" 
@@ -266,9 +266,9 @@ The file owner as a symbolic name.
 </dd></dl> 
 
 == SEE ALSO == 
-'''cksum'''(1), 
-'''find'''(1), 
-'''mtree'''(8) 
+[[cksum(1)|http://www.freebsd.org/cgi/man.cgi?query=cksum&sektion=1]], 
+[[find(1)|http://www.freebsd.org/cgi/man.cgi?query=find&sektion=1]], 
+[[mtree(8)|http://www.freebsd.org/cgi/man.cgi?query=mtree&sektion=8]] 
 == BUGS == 
 The 
 FreeBSD 
@@ -290,7 +290,7 @@ The
 digest capability was added in 
 FreeBSD 2.1, 
 in response to the widespread use of programs which can spoof 
-'''cksum'''(1). 
+[[cksum(1)|http://www.freebsd.org/cgi/man.cgi?query=cksum&sektion=1]]. 
 The 
 '''SHA-1''' 
 and 

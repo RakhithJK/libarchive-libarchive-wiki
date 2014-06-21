@@ -93,7 +93,7 @@ Keep in mind that not all clients are reading from disk:
 clients reading from networks may provide different-sized 
 blocks on every request and cannot skip at all; 
 advanced clients may use 
-'''mmap'''(2) 
+[[mmap(2)|http://www.freebsd.org/cgi/man.cgi?query=mmap&sektion=2]] 
 to read the entire file into memory at once and return the 
 entire file to libarchive as a single block; 
 other clients may begin asynchronous I/O operations for the 

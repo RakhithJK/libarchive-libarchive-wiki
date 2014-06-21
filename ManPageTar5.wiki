@@ -158,7 +158,7 @@ the 100 characters of old-style archives.
 <nowiki>IEEE Std 1003.1-1988 (``POSIX.1'')</nowiki> 
 defined a standard tar file format to be read and written 
 by compliant implementations of 
-'''tar'''(1). 
+[[ManPageBsdtar1]]. 
 This format is often called the 
 "ustar" 
 format, after the magic value used 
@@ -876,9 +876,9 @@ POSIX pax interchange format global extensions.
 POSIX pax interchange format per-file extensions. 
 </dd></dl> 
 == SEE ALSO == 
-'''ar'''(1), 
-'''pax'''(1), 
-'''tar'''(1) 
+[[ar(1)|http://www.freebsd.org/cgi/man.cgi?query=ar&sektion=1]], 
+[[pax(1)|http://www.freebsd.org/cgi/man.cgi?query=pax&sektion=1]], 
+[[ManPageBsdtar1]] 
 == STANDARDS == 
 The 
 '''tar''' 
@@ -886,9 +886,9 @@ utility is no longer a part of POSIX or the Single Unix Standard.
 It last appeared in 
 <nowiki>Version 2 of the Single UNIX Specification (``SUSv2'')</nowiki>. 
 It has been supplanted in subsequent standards by 
-'''pax'''(1). 
+[[pax(1)|http://www.freebsd.org/cgi/man.cgi?query=pax&sektion=1]]. 
 The ustar format is currently part of the specification for the 
-'''pax'''(1) 
+[[pax(1)|http://www.freebsd.org/cgi/man.cgi?query=pax&sektion=1]] 
 utility. 
 The pax interchange file format is new with 
 <nowiki>IEEE Std 1003.1-2001 (``POSIX.1'')</nowiki>. 

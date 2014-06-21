@@ -22,11 +22,11 @@ A complete description of the
 object can be found in the overview manual page for 
 [[ManPageLibarchive3]]. 
 == SEE ALSO == 
-'''tar'''(1), 
+[[ManPageBsdtar1]], 
 [[ManPageLibarchive3]], 
 [[ManPageArchiveReadData3]], 
 [[ManPageArchiveReadFilter3]], 
 [[ManPageArchiveReadFormat3]], 
 [[ManPageArchiveReadSetOptions3]], 
 [[ManPageArchiveUtil3]], 
-'''tar'''(5) 
+[[ManPageTar5]] 

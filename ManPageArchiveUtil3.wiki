@@ -95,7 +95,7 @@ Synonym for
 Copies error information from one archive to another. 
 </dd><dt>'''archive_errno'''()</dt><dd> 
 Returns a numeric error code (see 
-'''errno'''(2)) 
+[[errno(2)|http://www.freebsd.org/cgi/man.cgi?query=errno&sektion=2]]) 
 indicating the reason for the most recent error return. 
 Note that this can not be reliably used to detect whether an 
 error has occurred. 
@@ -107,7 +107,7 @@ The error message here is usually more specific than that
 obtained from passing the result of 
 '''archive_errno'''() 
 to 
-'''strerror'''(3). 
+[[strerror(3)|http://www.freebsd.org/cgi/man.cgi?query=strerror&sektion=3]]. 
 </dd><dt>'''archive_file_count'''()</dt><dd> 
 Returns a count of the number of files processed by this archive object. 
 The count is incremented by calls to 
@@ -205,7 +205,7 @@ not uniformly supported and should not be used.
 [[ManPageArchiveRead3]], 
 [[ManPageArchiveWrite3]], 
 [[ManPageLibarchive3]], 
-'''printf'''(3) 
+[[printf(3)|http://www.freebsd.org/cgi/man.cgi?query=printf&sektion=3]] 
 == HISTORY == 
 The 
 '''libarchive''' 

@@ -89,7 +89,7 @@ by the file data.
 You can use 
 '''archive_read_data'''() 
 (which works much like the 
-'''read'''(2) 
+[[read(2)|http://www.freebsd.org/cgi/man.cgi?query=read&sektion=2]] 
 system call) 
 to read this data from the archive, or 
 '''archive_read_data_block'''() 
@@ -124,10 +124,10 @@ to release all resources, including all memory allocated by the library.
 The following illustrates basic usage of the library. 
 In this example, 
 the callback functions are simply wrappers around the standard 
-'''open'''(2), 
-'''read'''(2), 
+[[open(2)|http://www.freebsd.org/cgi/man.cgi?query=open&sektion=2]], 
+[[read(2)|http://www.freebsd.org/cgi/man.cgi?query=read&sektion=2]], 
 and 
-'''close'''(2) 
+[[close(2)|http://www.freebsd.org/cgi/man.cgi?query=close&sektion=2]] 
 system calls. 
 ```text
 void
@@ -173,7 +173,7 @@ myclose(struct archive *a, void *client_data)
 }
 ```
 == SEE ALSO == 
-'''tar'''(1), 
+[[ManPageBsdtar1]], 
 [[ManPageLibarchive3]], 
 [[ManPageArchiveReadNew3]], 
 [[ManPageArchiveReadData3]], 
@@ -184,7 +184,7 @@ myclose(struct archive *a, void *client_data)
 [[ManPageArchiveReadOpen3]], 
 [[ManPageArchiveReadSetOptions3]], 
 [[ManPageArchiveUtil3]], 
-'''tar'''(5) 
+[[ManPageTar5]] 
 == HISTORY == 
 The 
 '''libarchive''' 
@@ -199,7 +199,7 @@ Tim Kientzle  &lt;kientzle@acm.org.&gt;
 Many traditional archiver programs treat 
 empty files as valid empty archives. 
 For example, many implementations of 
-'''tar'''(1) 
+[[ManPageBsdtar1]] 
 allow you to append entries to an empty file. 
 Of course, it is impossible to determine the format of an empty file 
 by inspecting the contents, so this library treats empty files as 

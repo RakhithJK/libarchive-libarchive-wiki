@@ -121,16 +121,16 @@ object is destroyed or when new lookup functions are registered.
 This convenience function installs a standard set of user 
 and group name lookup functions. 
 These functions use 
-'''getpwuid'''(3) 
+[[getpwuid(3)|http://www.freebsd.org/cgi/man.cgi?query=getpwuid&sektion=3]] 
 and 
-'''getgrgid'''(3) 
+[[getgrgid(3)|http://www.freebsd.org/cgi/man.cgi?query=getgrgid&sektion=3]] 
 to convert ids to names, defaulting to NULL if the names cannot 
 be looked up. 
 These functions also implement a simple memory cache to reduce 
 the number of calls to 
-'''getpwuid'''(3) 
+[[getpwuid(3)|http://www.freebsd.org/cgi/man.cgi?query=getpwuid&sektion=3]] 
 and 
-'''getgrgid'''(3). 
+[[getgrgid(3)|http://www.freebsd.org/cgi/man.cgi?query=getgrgid&sektion=3]]. 
 </dd><dt>'''archive_read_disk_entry_from_file'''()</dt><dd> 
 Populates a 
 '''struct archive_entry''' 
@@ -247,7 +247,7 @@ functions.
 [[ManPageArchiveUtil3]], 
 [[ManPageArchiveWrite3]], 
 [[ManPageArchiveWriteDisk3]], 
-'''tar'''(1), 
+[[ManPageBsdtar1]], 
 [[ManPageLibarchive3]] 
 == HISTORY == 
 The 
@@ -269,9 +269,9 @@ Tim Kientzle  &lt;kientzle@FreeBSD.org.&gt;
 The 
 "standard" 
 user name and group name lookup functions are not the defaults because 
-'''getgrgid'''(3) 
+[[getgrgid(3)|http://www.freebsd.org/cgi/man.cgi?query=getgrgid&sektion=3]] 
 and 
-'''getpwuid'''(3) 
+[[getpwuid(3)|http://www.freebsd.org/cgi/man.cgi?query=getpwuid&sektion=3]] 
 are sometimes too large for particular applications. 
 The current design allows the application author to use a more 
 compact implementation when appropriate. 

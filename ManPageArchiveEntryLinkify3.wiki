@@ -191,7 +191,7 @@ NULL.
 returns 
 NULL 
 on 
-'''malloc'''(3) 
+[[malloc(3)|http://www.freebsd.org/cgi/man.cgi?query=malloc&sektion=3]] 
 failures. 
 == SEE ALSO == 
 [[ManPageArchiveEntry3]] 

@@ -154,7 +154,7 @@ instead of copying.
 </dd><dt>--lrzip</dt><dd> 
 (o mode only) 
 Compress the resulting archive with 
-'''lrzip'''(1). 
+[[lrzip(1)|http://www.freebsd.org/cgi/man.cgi?query=lrzip&sektion=1]]. 
 In input mode, this option is ignored. 
 </dd><dt>--lzma</dt><dd> 
 (o mode only) 
@@ -164,7 +164,7 @@ automatically on input.
 </dd><dt>--lzop</dt><dd> 
 (o mode only) 
 Compress the resulting archive with 
-'''lzop'''(1). 
+[[lzop(1)|http://www.freebsd.org/cgi/man.cgi?query=lzop&sektion=1]]. 
 In input mode, this option is ignored. 
 </dd><dt>-m, --preserve-modification-time</dt><dd> 
 (i and p modes) 
@@ -270,12 +270,12 @@ The following environment variables affect the execution of
 <dt>'''LANG''' 
 The locale to use. 
 See 
-'''environ'''(7) 
+[[environ(7)|http://www.freebsd.org/cgi/man.cgi?query=environ&sektion=7]] 
 for more information. 
 </dt><dt>'''TZ''' 
 The timezone to use when displaying dates. 
 See 
-'''environ'''(7) 
+[[environ(7)|http://www.freebsd.org/cgi/man.cgi?query=environ&sektion=7]] 
 for more information. 
 </dt></dl> 
 == EXAMPLES == 
@@ -283,7 +283,7 @@ The
 '''cpio''' 
 command is traditionally used to copy file hierarchies in conjunction 
 with the 
-'''find'''(1) 
+[[find(1)|http://www.freebsd.org/cgi/man.cgi?query=find&sektion=1]] 
 command. 
 The first example here simply copies all files from 
 ''src'' 
@@ -294,7 +294,7 @@ find src | cpio -pmud dest
 ``` 
 
 By carefully selecting options to the 
-'''find'''(1) 
+[[find(1)|http://www.freebsd.org/cgi/man.cgi?query=find&sektion=1]] 
 command and combining it with other standard utilities, 
 it is possible to exercise very fine control over which files are copied. 
 This next example copies files from 
@@ -345,15 +345,15 @@ with the standard.
 For best compatibility, scripts should limit themselves to the 
 standard syntax. 
 == SEE ALSO == 
-'''bzip2'''(1), 
-'''tar'''(1), 
-'''gzip'''(1), 
-'''mt'''(1), 
-'''pax'''(1), 
+[[bzip2(1)|http://www.freebsd.org/cgi/man.cgi?query=bzip2&sektion=1]], 
+[[ManPageBsdtar1]], 
+[[gzip(1)|http://www.freebsd.org/cgi/man.cgi?query=gzip&sektion=1]], 
+[[mt(1)|http://www.freebsd.org/cgi/man.cgi?query=mt&sektion=1]], 
+[[pax(1)|http://www.freebsd.org/cgi/man.cgi?query=pax&sektion=1]], 
 [[ManPageLibarchive3]], 
-'''cpio'''(5), 
+[[ManPageCpio5]], 
 [[ManPageLibarchive-formats5]], 
-'''tar'''(5) 
+[[ManPageTar5]] 
 == STANDARDS == 
 There is no current POSIX standard for the cpio command; it appeared 
 in 

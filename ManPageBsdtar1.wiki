@@ -94,7 +94,7 @@ The pathnames or patterns on the command line indicate
 which items in the archive should be processed. 
 Patterns are shell-style globbing patterns as 
 documented in 
-'''tcsh'''(1). 
+[[tcsh(1)|http://www.freebsd.org/cgi/man.cgi?query=tcsh&sektion=1]]. 
 == OPTIONS == 
 Unless specifically stated otherwise, options are applicable in 
 all operating modes. 
@@ -158,7 +158,7 @@ if it is unknown suffix or no suffix, creates a new archive with
 restricted pax format and bzip2 compression. 
 </dd><dt>-B, --read-full-blocks</dt><dd> 
 Ignored for compatibility with other 
-'''tar'''(1) 
+[[ManPageBsdtar1]] 
 implementations. 
 </dd><dt>-b ''blocksize'', --block-size ''blocksize''</dt><dd> 
 Specify the block size, in 512-byte records, for tape drive I/O. 
@@ -179,7 +179,7 @@ options and before extracting any files.
 </dd><dt>--disable-copyfile</dt><dd> 
 Mac OS X specific. 
 Disable the use of 
-'''copyfile'''(3). 
+[[copyfile(3)|http://www.freebsd.org/cgi/man.cgi?query=copyfile&sektion=3]]. 
 </dd><dt>--exclude ''pattern''</dt><dd> 
 Do not process files or directories that match the 
 specified pattern. 
@@ -275,7 +275,7 @@ Sq foo.
 </dd><dt>-J, --xz</dt><dd> 
 (c mode only) 
 Compress the resulting archive with 
-'''xz'''(1). 
+[[xz(1)|http://www.freebsd.org/cgi/man.cgi?query=xz&sektion=1]]. 
 In extract or list modes, this option is ignored. 
 Note that, unlike other 
 '''tar''' 
@@ -284,7 +284,7 @@ automatically when reading archives.
 </dd><dt>-j, --bzip, --bzip2, --bunzip2</dt><dd> 
 (c mode only) 
 Compress the resulting archive with 
-'''bzip2'''(1). 
+[[bzip2(1)|http://www.freebsd.org/cgi/man.cgi?query=bzip2&sektion=1]]. 
 In extract or list modes, this option is ignored. 
 Note that, unlike other 
 '''tar''' 
@@ -310,7 +310,7 @@ Issue a warning message unless all links to each file are archived.
 </dd><dt>--lrzip</dt><dd> 
 (c mode only) 
 Compress the resulting archive with 
-'''lrzip'''(1). 
+[[lrzip(1)|http://www.freebsd.org/cgi/man.cgi?query=lrzip&sektion=1]]. 
 In extract or list modes, this option is ignored. 
 </dd><dt>--lzma</dt><dd> 
 (c mode only) Compress the resulting archive with the original LZMA algorithm. 
@@ -324,7 +324,7 @@ automatically when reading archives.
 </dd><dt>--lzop</dt><dd> 
 (c mode only) 
 Compress the resulting archive with 
-'''lzop'''(1). 
+[[lzop(1)|http://www.freebsd.org/cgi/man.cgi?query=lzop&sektion=1]]. 
 In extract or list modes, this option is ignored. 
 </dd><dt>-m, --modification-time</dt><dd> 
 (x mode only) 
@@ -369,7 +369,7 @@ not by newlines.
 This is often used to read filenames output by the 
 -print0 
 option to 
-'''find'''(1). 
+[[find(1)|http://www.freebsd.org/cgi/man.cgi?query=find&sektion=1]]. 
 </dd><dt>--no-same-owner</dt><dd> 
 (x mode only) 
 Do not extract owner and group IDs. 
@@ -643,7 +643,7 @@ Note that
 also disables the special handling of lines containing 
 "-C". 
 Note:  If you are generating lists of files using 
-'''find'''(1), 
+[[find(1)|http://www.freebsd.org/cgi/man.cgi?query=find&sektion=1]], 
 you probably want to use 
 -n 
 as well. 
@@ -693,7 +693,7 @@ the archive.
 In list mode, 
 '''tar''' 
 will produce output similar to that of 
-'''ls'''(1). 
+[[ls(1)|http://www.freebsd.org/cgi/man.cgi?query=ls&sektion=1]]. 
 Additional 
 -v 
 options will provide additional detail. 
@@ -713,7 +713,7 @@ for more information about the handling of exclusions.
 </dd><dt>-y</dt><dd> 
 (c mode only) 
 Compress the resulting archive with 
-'''bzip2'''(1). 
+[[bzip2(1)|http://www.freebsd.org/cgi/man.cgi?query=bzip2&sektion=1]]. 
 In extract or list modes, this option is ignored. 
 Note that, unlike other 
 '''tar''' 
@@ -722,7 +722,7 @@ automatically when reading archives.
 </dd><dt>-Z, --compress, --uncompress</dt><dd> 
 (c mode only) 
 Compress the resulting archive with 
-'''compress'''(1). 
+[[compress(1)|http://www.freebsd.org/cgi/man.cgi?query=compress&sektion=1]]. 
 In extract or list modes, this option is ignored. 
 Note that, unlike other 
 '''tar''' 
@@ -731,7 +731,7 @@ automatically when reading archives.
 </dd><dt>-z, --gunzip, --gzip</dt><dd> 
 (c mode only) 
 Compress the resulting archive with 
-'''gzip'''(1). 
+[[gzip(1)|http://www.freebsd.org/cgi/man.cgi?query=gzip&sektion=1]]. 
 In extract or list modes, this option is ignored. 
 Note that, unlike other 
 '''tar''' 
@@ -755,7 +755,7 @@ option overrides this.
 </dt><dt>'''LANG''' 
 The locale to use. 
 See 
-'''environ'''(7) 
+[[environ(7)|http://www.freebsd.org/cgi/man.cgi?query=environ&sektion=7]] 
 for more information. 
 </dt><dt>'''TAPE''' 
 The default device. 
@@ -768,7 +768,7 @@ option above for more details.
 </dt><dt>'''TZ''' 
 The timezone to use when displaying dates. 
 See 
-'''environ'''(7) 
+[[environ(7)|http://www.freebsd.org/cgi/man.cgi?query=environ&sektion=7]] 
 for more information. 
 </dt></dl> 
 == EXIT STATUS == 
@@ -838,7 +838,7 @@ directory and add
 to the output archive. 
 
 An input file in 
-'''mtree'''(5) 
+[[ManPageMtree5]] 
 format can be used to create an output archive with arbitrary ownership, 
 permissions, or names that differ from existing data on disk: 
 
@@ -1027,17 +1027,17 @@ an archive while preserving any absolute pathnames,
 ''..'' 
 components, or symlinks to other directories. 
 == SEE ALSO == 
-'''bzip2'''(1), 
-'''compress'''(1), 
-'''cpio'''(1), 
-'''gzip'''(1), 
-'''mt'''(1), 
-'''pax'''(1), 
-'''shar'''(1), 
-'''xz'''(1), 
+[[bzip2(1)|http://www.freebsd.org/cgi/man.cgi?query=bzip2&sektion=1]], 
+[[compress(1)|http://www.freebsd.org/cgi/man.cgi?query=compress&sektion=1]], 
+[[ManPageBsdcpio1]], 
+[[gzip(1)|http://www.freebsd.org/cgi/man.cgi?query=gzip&sektion=1]], 
+[[mt(1)|http://www.freebsd.org/cgi/man.cgi?query=mt&sektion=1]], 
+[[pax(1)|http://www.freebsd.org/cgi/man.cgi?query=pax&sektion=1]], 
+[[shar(1)|http://www.freebsd.org/cgi/man.cgi?query=shar&sektion=1]], 
+[[xz(1)|http://www.freebsd.org/cgi/man.cgi?query=xz&sektion=1]], 
 [[ManPageLibarchive3]], 
 [[ManPageLibarchive-formats5]], 
-'''tar'''(5) 
+[[ManPageTar5]] 
 == STANDARDS == 
 There is no current POSIX standard for the tar command; it appeared 
 in 
@@ -1101,9 +1101,9 @@ a tape drive.
 If the output is being written to a regular file, the last block 
 will not be padded. 
 Many compressors, including 
-'''gzip'''(1) 
+[[gzip(1)|http://www.freebsd.org/cgi/man.cgi?query=gzip&sektion=1]] 
 and 
-'''bzip2'''(1), 
+[[bzip2(1)|http://www.freebsd.org/cgi/man.cgi?query=bzip2&sektion=1]], 
 complain about the null padding when decompressing an archive created by 
 '''tar''', 
 although they still extract it correctly. 

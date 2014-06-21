@@ -50,7 +50,7 @@ and
 '''archive_error_string'''() 
 functions. 
 == SEE ALSO == 
-'''tar'''(1), 
+[[ManPageBsdtar1]], 
 [[ManPageLibarchive3]], 
 [[ManPageArchiveRead3]], 
 [[ManPageArchiveReadData3]], 
@@ -60,4 +60,4 @@ functions.
 [[ManPageArchiveReadOpen3]], 
 [[ManPageArchiveReadSetOptions3]], 
 [[ManPageArchiveUtil3]], 
-'''tar'''(5) 
+[[ManPageTar5]] 

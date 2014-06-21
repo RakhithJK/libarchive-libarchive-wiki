@@ -224,18 +224,18 @@ The libarchive library can write two different kinds of shar archives:
 <dt>'''shar'''</dt><dd> 
 The traditional shar format uses a limited set of POSIX 
 commands, including 
-'''echo'''(1), 
-'''mkdir'''(1), 
+[[echo(1)|http://www.freebsd.org/cgi/man.cgi?query=echo&sektion=1]], 
+[[mkdir(1)|http://www.freebsd.org/cgi/man.cgi?query=mkdir&sektion=1]], 
 and 
-'''sed'''(1). 
+[[sed(1)|http://www.freebsd.org/cgi/man.cgi?query=sed&sektion=1]]. 
 It is suitable for portably archiving small collections of plain text files. 
 However, it is not generally well-suited for large archives 
 (many implementations of 
-'''sh'''(1) 
+[[sh(1)|http://www.freebsd.org/cgi/man.cgi?query=sh&sektion=1]] 
 have limits on the size of a script) nor should it be used with non-text files. 
 </dd><dt>'''shardump'''</dt><dd> 
 This format is similar to shar but encodes files using 
-'''uuencode'''(1) 
+[[uuencode(1)|http://www.freebsd.org/cgi/man.cgi?query=uuencode&sektion=1]] 
 so that the result will be a plain text file regardless of the file contents. 
 It also includes additional shell commands that attempt to reproduce as 
 many file attributes as possible, including owner, mode, and flags. 
@@ -319,11 +319,11 @@ can only be accurately detected by first reading the
 Central Directory. 
 === Archive (library) file format=== 
 The Unix archive format (commonly created by the 
-'''ar'''(1) 
+[[ar(1)|http://www.freebsd.org/cgi/man.cgi?query=ar&sektion=1]] 
 archiver) is a general-purpose format which is 
 used almost exclusively for object files to be 
 read by the link editor 
-'''ld'''(1). 
+[[ld(1)|http://www.freebsd.org/cgi/man.cgi?query=ld&sektion=1]]. 
 The ar format has never been standardised. 
 There are two common variants: 
 the GNU format derived from SVR4, 
@@ -344,14 +344,14 @@ This can cause problems for programs such as
 GNU ld that do not support the BSD-style long filenames. 
 === mtree=== 
 Libarchive can read and write files in 
-'''mtree'''(5) 
+[[ManPageMtree5]] 
 format. 
 This format is not a true archive format, but rather a textual description 
 of a file hierarchy in which each line specifies the name of a file and 
 provides specific metadata about that file. 
 Libarchive can read all of the keywords supported by both 
 the NetBSD and FreeBSD versions of 
-'''mtree'''(8), 
+[[mtree(8)|http://www.freebsd.org/cgi/man.cgi?query=mtree&sektion=8]], 
 although many of the keywords cannot currently be stored in an 
 '''archive_entry''' 
 object. 
@@ -391,13 +391,13 @@ which have been either created uncompressed, or compressed using
 any of the compression methods supported by the RARv3 format. 
 Libarchive can also read self-extracting RAR archives. 
 == SEE ALSO == 
-'''ar'''(1), 
-'''cpio'''(1), 
-'''mkisofs'''(1), 
-'''shar'''(1), 
-'''tar'''(1), 
-'''zip'''(1), 
-'''zlib'''(3), 
-'''cpio'''(5), 
-'''mtree'''(5), 
-'''tar'''(5) 
+[[ar(1)|http://www.freebsd.org/cgi/man.cgi?query=ar&sektion=1]], 
+[[ManPageBsdcpio1]], 
+[[mkisofs(1)|http://www.freebsd.org/cgi/man.cgi?query=mkisofs&sektion=1]], 
+[[shar(1)|http://www.freebsd.org/cgi/man.cgi?query=shar&sektion=1]], 
+[[ManPageBsdtar1]], 
+[[zip(1)|http://www.freebsd.org/cgi/man.cgi?query=zip&sektion=1]], 
+[[zlib(3)|http://www.freebsd.org/cgi/man.cgi?query=zlib&sektion=3]], 
+[[ManPageCpio5]], 
+[[ManPageMtree5]], 
+[[ManPageTar5]] 

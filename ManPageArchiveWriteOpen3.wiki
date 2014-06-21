@@ -132,7 +132,7 @@ The write callback is invoked whenever the library
 needs to write raw bytes to the archive. 
 For correct blocking, each call to the write callback function 
 should translate into a single 
-'''write'''(2) 
+[[write(2)|http://www.freebsd.org/cgi/man.cgi?query=write&sektion=2]] 
 system call. 
 This is especially critical when writing archives to tape drives. 
 On success, the write callback should return the 
@@ -185,13 +185,13 @@ and
 '''archive_error_string'''() 
 functions. 
 == SEE ALSO == 
-'''tar'''(1), 
+[[ManPageBsdtar1]], 
 [[ManPageLibarchive3]], 
 [[ManPageArchiveWrite3]], 
 [[ManPageArchiveWriteFilter3]], 
 [[ManPageArchiveWriteFormat3]], 
 [[ManPageArchiveWriteNew3]], 
 [[ManPageArchiveWriteSetOptions3]], 
-'''cpio'''(5), 
-'''mtree'''(5), 
-'''tar'''(5) 
+[[ManPageCpio5]], 
+[[ManPageMtree5]], 
+[[ManPageTar5]] 

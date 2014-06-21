@@ -149,18 +149,18 @@ and
 '''archive_error_string'''() 
 functions. 
 == SEE ALSO == 
-'''tar'''(1), 
+[[ManPageBsdtar1]], 
 [[ManPageLibarchive3]], 
 [[ManPageArchiveReadData3]], 
 [[ManPageArchiveReadFilter3]], 
 [[ManPageArchiveReadSetOptions3]], 
 [[ManPageArchiveUtil3]], 
-'''tar'''(5) 
+[[ManPageTar5]] 
 == BUGS == 
 Many traditional archiver programs treat 
 empty files as valid empty archives. 
 For example, many implementations of 
-'''tar'''(1) 
+[[ManPageBsdtar1]] 
 allow you to append entries to an empty file. 
 Of course, it is impossible to determine the format of an empty file 
 by inspecting the contents, so this library treats empty files as 

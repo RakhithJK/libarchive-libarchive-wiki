@@ -22,10 +22,10 @@ A complete description of the
 object can be found in the overview manual page for 
 [[ManPageLibarchive3]]. 
 == SEE ALSO == 
-'''tar'''(1), 
+[[ManPageBsdtar1]], 
 [[ManPageLibarchive3]], 
 [[ManPageArchiveWrite3]], 
 [[ManPageArchiveWriteSetOptions3]], 
-'''cpio'''(5), 
-'''mtree'''(5), 
-'''tar'''(5) 
+[[ManPageCpio5]], 
+[[ManPageMtree5]], 
+[[ManPageTar5]] 

@@ -160,7 +160,7 @@ The function
 '''archive_entry_stat'''() 
 converts the various fields stored in the archive entry to the format 
 used by 
-'''stat'''(2). 
+[[stat(2)|http://www.freebsd.org/cgi/man.cgi?query=stat&sektion=2]]. 
 The return value remains valid until either 
 '''archive_entry_clear'''() 
 or 
@@ -217,7 +217,7 @@ Named pipe (fifo)
 </dd></dl> 
 Not all file types are supported by all platforms. 
 The constants used by 
-'''stat'''(2) 
+[[stat(2)|http://www.freebsd.org/cgi/man.cgi?query=stat&sektion=2]] 
 may have different numeric values from the 
 corresponding constants above. 
 
@@ -305,4 +305,4 @@ the split form.
 [[ManPageArchiveEntryPerms3]], 
 [[ManPageArchiveEntryTime3]], 
 [[ManPageLibarchive3]], 
-'''stat'''(2) 
+[[stat(2)|http://www.freebsd.org/cgi/man.cgi?query=stat&sektion=2]] 
