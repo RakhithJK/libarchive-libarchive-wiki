@@ -22,6 +22,9 @@ and writing archives to regular files on disk or to memory,
 but you can register your own [[I/O functions|LibarchiveIO]]
 to read and write archives to tape drives, network sockets,
 or any other data source.
+Libarchive's internal I/O model is a [[zero copy|ZeroCopy]]
+design that minimizes copying of data for optimal performance
+with very large archives.
 
 ## How to Start
 
