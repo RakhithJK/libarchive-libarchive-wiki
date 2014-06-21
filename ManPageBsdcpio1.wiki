@@ -8,19 +8,19 @@ CPIO(1) manual page
 <nowiki>{</nowiki>-i<nowiki>}</nowiki> 
 <nowiki>[</nowiki>''options''<nowiki>]</nowiki> 
 <nowiki>[</nowiki>''pattern'' ...<nowiki>]</nowiki> 
-<nowiki>[</nowiki>''<lt;'' archive<nowiki>]</nowiki> 
+<nowiki>[</nowiki>''&lt;'' archive<nowiki>]</nowiki> 
 <br> 
 '''cpio''' 
 <nowiki>{</nowiki>-o<nowiki>}</nowiki> 
 <nowiki>[</nowiki>''options''<nowiki>]</nowiki> 
-''<lt;'' name-list 
+''&lt;'' name-list 
 <nowiki>[</nowiki>''>'' archive<nowiki>]</nowiki> 
 <br> 
 '''cpio''' 
 <nowiki>{</nowiki>-p<nowiki>}</nowiki> 
 <nowiki>[</nowiki>''options''<nowiki>]</nowiki> 
 ''dest-dir'' 
-''<lt;'' name-list 
+''&lt;'' name-list 
 == DESCRIPTION == 
 '''cpio''' 
 copies files between archives and directories. 
