@@ -742,22 +742,22 @@ automatically when reading archives.
 The following environment variables affect the execution of 
 '''tar''': 
 <dl> 
-<dt>'''TAR_READER_OPTIONS''' 
+<dt>'''TAR_READER_OPTIONS'''</dt><dd> 
 The default options for format readers and compression readers. 
 The 
 --options 
 option overrides this. 
-</dt><dt>'''TAR_WRITER_OPTIONS''' 
+</dd><dt>'''TAR_WRITER_OPTIONS'''</dt><dd> 
 The default options for format writers and compression writers. 
 The 
 --options 
 option overrides this. 
-</dt><dt>'''LANG''' 
+</dd><dt>'''LANG'''</dt><dd> 
 The locale to use. 
 See 
 [[environ(7)|http://www.freebsd.org/cgi/man.cgi?query=environ&sektion=7]] 
 for more information. 
-</dt><dt>'''TAPE''' 
+</dd><dt>'''TAPE'''</dt><dd> 
 The default device. 
 The 
 -f 
@@ -765,12 +765,12 @@ option overrides this.
 Please see the description of the 
 -f 
 option above for more details. 
-</dt><dt>'''TZ''' 
+</dd><dt>'''TZ'''</dt><dd> 
 The timezone to use when displaying dates. 
 See 
 [[environ(7)|http://www.freebsd.org/cgi/man.cgi?query=environ&sektion=7]] 
 for more information. 
-</dt></dl> 
+</dd></dl> 
 == EXIT STATUS == 
 The '''tar''' utility exits 0 on success, and &gt;0 if an error occurs. 
 == EXAMPLES == 

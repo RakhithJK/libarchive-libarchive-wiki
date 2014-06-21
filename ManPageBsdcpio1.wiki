@@ -5,19 +5,19 @@ CPIO(1) manual page
 == SYNOPSIS == 
 <br> 
 '''cpio''' 
-<nowiki>{</nowiki>-i<nowiki>}</nowiki> 
+-i 
 <nowiki>[</nowiki>''options''<nowiki>]</nowiki> 
 <nowiki>[</nowiki>''pattern'' ...<nowiki>]</nowiki> 
 <nowiki>[</nowiki>''&lt;'' archive<nowiki>]</nowiki> 
 <br> 
 '''cpio''' 
-<nowiki>{</nowiki>-o<nowiki>}</nowiki> 
+-o 
 <nowiki>[</nowiki>''options''<nowiki>]</nowiki> 
 ''&lt;'' name-list 
 <nowiki>[</nowiki>''>'' archive<nowiki>]</nowiki> 
 <br> 
 '''cpio''' 
-<nowiki>{</nowiki>-p<nowiki>}</nowiki> 
+-p 
 <nowiki>[</nowiki>''options''<nowiki>]</nowiki> 
 ''dest-dir'' 
 ''&lt;'' name-list 
@@ -267,19 +267,17 @@ The '''cpio''' utility exits 0 on success, and &gt;0 if an error occurs.
 The following environment variables affect the execution of 
 '''cpio''': 
 <dl> 
-<dt>'''LANG'''</dt>
-<dd>The locale to use. 
+<dt>'''LANG'''</dt><dd> 
+The locale to use. 
 See 
 [[environ(7)|http://www.freebsd.org/cgi/man.cgi?query=environ&sektion=7]] 
 for more information. 
-</dd>
-<dt>'''TZ'''</dt>
-<dd>The timezone to use when displaying dates. 
+</dd><dt>'''TZ'''</dt><dd> 
+The timezone to use when displaying dates. 
 See 
 [[environ(7)|http://www.freebsd.org/cgi/man.cgi?query=environ&sektion=7]] 
 for more information. 
-</dd>
-</dl> 
+</dd></dl> 
 == EXAMPLES == 
 The 
 '''cpio''' 
