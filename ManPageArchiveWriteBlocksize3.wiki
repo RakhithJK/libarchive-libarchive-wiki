@@ -71,9 +71,9 @@ and
 '''archive_write_get_bytes_in_last_block'''() 
 return currently configured block size 
 Po 
-```text 
+```text
 -1 
-``` 
+```
 indicates the default block size 
 Pc, 
 or 

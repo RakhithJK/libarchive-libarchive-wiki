@@ -125,9 +125,9 @@ The read callback is invoked whenever the library
 requires raw bytes from the archive. 
 The read callback should read data into a buffer, 
 set the 
-```text 
+```text
 const void **buffer 
-``` 
+```
 argument to point to the available data, and 
 return a count of the number of bytes available. 
 The library will invoke the read callback again 

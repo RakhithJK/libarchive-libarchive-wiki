@@ -288,9 +288,9 @@ object.
 '''archive_write_data'''() 
 returns a count of the number of bytes actually written, 
 or 
-```text 
+```text
 -1 
-``` 
+```
 on error. 
 == ERRORS == 
 Detailed error codes and textual descriptions are available from the 

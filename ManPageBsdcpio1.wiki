@@ -289,9 +289,9 @@ The first example here simply copies all files from
 ''src'' 
 to 
 ''dest'': 
-```text 
+```text
 find src | cpio -pmud dest 
-``` 
+```
 
 By carefully selecting options to the 
 [[find(1)|http://www.freebsd.org/cgi/man.cgi?query=find&sektion=1]] 
@@ -302,9 +302,9 @@ This next example copies files from
 to 
 ''dest'' 
 that are more than 2 days old and whose names match a particular pattern: 
-```text 
+```text
 find src -mtime ''+2'' | grep foo[bar] | cpio -pdmu dest 
-``` 
+```
 
 This example copies files from 
 ''src'' 
@@ -312,9 +312,9 @@ to
 ''dest'' 
 that are more than 2 days old and which contain the word 
 "foobar": 
-```text 
+```text
 find src -mtime ''+2'' | xargs grep -l foobar | cpio -pdmu dest 
-``` 
+```
 == COMPATIBILITY == 
 The mode options i, o, and p and the options 
 a, B, c, d, f, l, m, r, t, u, and v comply with SUSv2. 
