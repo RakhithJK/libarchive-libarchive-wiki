@@ -303,7 +303,7 @@ to
 ''dest'' 
 that are more than 2 days old and whose names match a particular pattern: 
 ```text
-find src -mtime ''+2'' | grep foo[bar] | cpio -pdmu dest 
+find src -mtime +2 | grep foo[bar] | cpio -pdmu dest 
 ```
 
 This example copies files from 
@@ -313,7 +313,7 @@ to
 that are more than 2 days old and which contain the word 
 "foobar": 
 ```text
-find src -mtime ''+2'' | xargs grep -l foobar | cpio -pdmu dest 
+find src -mtime +2 | xargs grep -l foobar | cpio -pdmu dest 
 ```
 == COMPATIBILITY == 
 The mode options i, o, and p and the options 
