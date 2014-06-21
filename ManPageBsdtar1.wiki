@@ -195,7 +195,7 @@ Supported formats include
 and 
 "ustar". 
 Other formats may also be supported; see 
-[[ManPageLibarchive-formats5]] 
+[[ManPageLibarchiveFormats5]] 
 for more information about currently-supported formats. 
 In r and u modes, when extending an existing archive, the format specified 
 here must be compatible with the format of the existing archive on disk. 
@@ -1036,7 +1036,7 @@ components, or symlinks to other directories.
 [[shar(1)|http://www.freebsd.org/cgi/man.cgi?query=shar&sektion=1]], 
 [[xz(1)|http://www.freebsd.org/cgi/man.cgi?query=xz&sektion=1]], 
 [[ManPageLibarchive3]], 
-[[ManPageLibarchive-formats5]], 
+[[ManPageLibarchiveFormats5]], 
 [[ManPageTar5]] 
 == STANDARDS == 
 There is no current POSIX standard for the tar command; it appeared 
