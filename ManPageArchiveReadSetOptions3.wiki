@@ -183,5 +183,5 @@ functions.
 == SEE ALSO == 
 '''tar'''(1), 
 '''libarchive'''(3), 
-'''archive_write_set_options'''(3), 
-'''archive_read'''(3) 
+[[ManPageArchiveWriteSetOptions3]], 
+[[ManPageArchiveRead3]] 

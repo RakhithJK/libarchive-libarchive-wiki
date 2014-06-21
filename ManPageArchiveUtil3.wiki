@@ -111,9 +111,9 @@ to
 </dd><dt>'''archive_file_count'''()</dt><dd> 
 Returns a count of the number of files processed by this archive object. 
 The count is incremented by calls to 
-'''archive_write_header'''(3) 
+[[ManPageArchiveWriteHeader3]] 
 or 
-'''archive_read_next_header'''(3). 
+[[ManPageArchiveReadNextHeader3]]. 
 </dd><dt>'''archive_filter_code'''()</dt><dd> 
 Returns a numeric code identifying the indicated filter. 
 See 
@@ -202,8 +202,8 @@ Field-width specifiers and other printf features are
 not uniformly supported and should not be used. 
 </dd></dl> 
 == SEE ALSO == 
-'''archive_read'''(3), 
-'''archive_write'''(3), 
+[[ManPageArchiveRead3]], 
+[[ManPageArchiveWrite3]], 
 '''libarchive'''(3), 
 '''printf'''(3) 
 == HISTORY == 

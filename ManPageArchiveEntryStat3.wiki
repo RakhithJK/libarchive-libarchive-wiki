@@ -258,7 +258,7 @@ The functions
 and 
 '''archive_entry_ino64'''() 
 are used by 
-'''archive_entry_linkify'''(3) 
+[[ManPageArchiveEntryLinkify3]] 
 to find hardlinks. 
 The pair of device and inode is suppossed to identify hardlinked files. 
 
@@ -301,8 +301,8 @@ platforms.
 Some archive formats use the combined form, while other formats use 
 the split form. 
 == SEE ALSO == 
-'''archive'''(3), 
-'''archive_entry_acl'''(3), 
-'''archive_entry_perms'''(3), 
-'''archive_entry_time'''(3), 
+[[ManPageArchive3]], 
+[[ManPageArchiveEntryAcl3]], 
+[[ManPageArchiveEntryPerms3]], 
+[[ManPageArchiveEntryTime3]], 
 '''stat'''(2) 

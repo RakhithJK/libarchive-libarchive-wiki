@@ -292,12 +292,12 @@ ARCHIVE_DEFAULT_BYTES_PER_BLOCK
 </dd></dl> 
 == SEE ALSO == 
 '''libarchive'''(3), 
-'''archive_read'''(3), 
-'''archive_read_filter'''(3), 
-'''archive_read_format'''(3), 
-'''archive_read_set_options'''(3), 
-'''archive_write'''(3), 
-'''archive_write_filter'''(3), 
-'''archive_write_format'''(3), 
-'''archive_write_set_options'''(3), 
-'''archive_util'''(3) 
+[[ManPageArchiveRead3]], 
+[[ManPageArchiveReadFilter3]], 
+[[ManPageArchiveReadFormat3]], 
+[[ManPageArchiveReadSetOptions3]], 
+[[ManPageArchiveWrite3]], 
+[[ManPageArchiveWriteFilter3]], 
+[[ManPageArchiveWriteFormat3]], 
+[[ManPageArchiveWriteSetOptions3]], 
+[[ManPageArchiveUtil3]] 

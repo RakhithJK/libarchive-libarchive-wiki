@@ -24,34 +24,34 @@ Streaming Archive Library (libarchive, -larchive)
 <dl> 
 <dt>'''archive_read_extract'''(), '''archive_read_extract_set_skip_file'''()</dt><dd> 
 A convenience function that wraps the corresponding 
-'''archive_write_disk'''(3) 
+[[ManPageArchiveWriteDisk3]] 
 interfaces. 
 The first call to 
 '''archive_read_extract'''() 
 creates a restore object using 
-'''archive_write_disk_new'''(3) 
+[[ManPageArchiveWriteDiskNew3]] 
 and 
-'''archive_write_disk_set_standard_lookup'''(3), 
+[[ManPageArchiveWriteDiskSetStandardLookup3]], 
 then transparently invokes 
-'''archive_write_disk_set_options'''(3), 
-'''archive_write_header'''(3), 
-'''archive_write_data'''(3), 
+[[ManPageArchiveWriteDiskSetOptions3]], 
+[[ManPageArchiveWriteHeader3]], 
+[[ManPageArchiveWriteData3]], 
 and 
-'''archive_write_finish_entry'''(3) 
+[[ManPageArchiveWriteFinishEntry3]] 
 to create the entry on disk and copy data into it. 
 The 
 ''flags'' 
 argument is passed unmodified to 
-'''archive_write_disk_set_options'''(3). 
+[[ManPageArchiveWriteDiskSetOptions3]]. 
 </dd><dt>'''archive_read_extract2'''()</dt><dd> 
 This is another version of 
 '''archive_read_extract'''() 
 that allows you to provide your own restore object. 
 In particular, this allows you to override the standard lookup functions 
 using 
-'''archive_write_disk_set_group_lookup'''(3), 
+[[ManPageArchiveWriteDiskSetGroupLookup3]], 
 and 
-'''archive_write_disk_set_user_lookup'''(3). 
+[[ManPageArchiveWriteDiskSetUserLookup3]]. 
 Note that 
 '''archive_read_extract2'''() 
 does not accept a 
@@ -92,11 +92,11 @@ functions.
 == SEE ALSO == 
 '''tar'''(1), 
 '''libarchive'''(3), 
-'''archive_read'''(3), 
-'''archive_read_data'''(3), 
-'''archive_read_filter'''(3), 
-'''archive_read_format'''(3), 
-'''archive_read_open'''(3), 
-'''archive_read_set_options'''(3), 
-'''archive_util'''(3), 
+[[ManPageArchiveRead3]], 
+[[ManPageArchiveReadData3]], 
+[[ManPageArchiveReadFilter3]], 
+[[ManPageArchiveReadFormat3]], 
+[[ManPageArchiveReadOpen3]], 
+[[ManPageArchiveReadSetOptions3]], 
+[[ManPageArchiveUtil3]], 
 '''tar'''(5) 

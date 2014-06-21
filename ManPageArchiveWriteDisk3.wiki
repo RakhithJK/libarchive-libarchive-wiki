@@ -210,7 +210,7 @@ Build and write a header using the data in the provided
 '''struct archive_entry''' 
 structure. 
 See 
-'''archive_entry'''(3) 
+[[ManPageArchiveEntry3]] 
 for information on creating and populating 
 '''struct archive_entry''' 
 objects. 
@@ -266,7 +266,7 @@ object and the overall design of the library can be found in the
 '''libarchive'''(3) 
 overview. 
 Many of these functions are also documented under 
-'''archive_write'''(3). 
+[[ManPageArchiveWrite3]]. 
 == RETURN VALUES == 
 Most functions return 
 '''ARCHIVE_OK''' 
@@ -299,8 +299,8 @@ and
 '''archive_error_string'''() 
 functions. 
 == SEE ALSO == 
-'''archive_read'''(3), 
-'''archive_write'''(3), 
+[[ManPageArchiveRead3]], 
+[[ManPageArchiveWrite3]], 
 '''tar'''(1), 
 '''libarchive'''(3) 
 == HISTORY == 

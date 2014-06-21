@@ -422,8 +422,8 @@ functions.
 == SEE ALSO == 
 '''tar'''(1), 
 '''libarchive'''(3), 
-'''archive_read_set_options'''(3), 
-'''archive_write'''(3) 
+[[ManPageArchiveReadSetOptions3]], 
+[[ManPageArchiveWrite3]] 
 == HISTORY == 
 The 
 '''libarchive''' 

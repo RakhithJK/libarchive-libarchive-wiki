@@ -181,10 +181,10 @@ functions.
 == SEE ALSO == 
 '''tar'''(1), 
 '''libarchive'''(3), 
-'''archive_read'''(3), 
-'''archive_read_data'''(3), 
-'''archive_read_filter'''(3), 
-'''archive_read_format'''(3), 
-'''archive_read_set_options'''(3), 
-'''archive_util'''(3), 
+[[ManPageArchiveRead3]], 
+[[ManPageArchiveReadData3]], 
+[[ManPageArchiveReadFilter3]], 
+[[ManPageArchiveReadFormat3]], 
+[[ManPageArchiveReadSetOptions3]], 
+[[ManPageArchiveUtil3]], 
 '''tar'''(5) 

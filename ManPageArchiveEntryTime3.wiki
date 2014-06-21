@@ -124,8 +124,8 @@ The current state can be queried using
 '''XXX_is_set'''(). 
 Unset time fields have a second and nanosecond field of 0. 
 == SEE ALSO == 
-'''archive'''(3), 
-'''archive_entry'''(3) 
+[[ManPageArchive3]], 
+[[ManPageArchiveEntry3]] 
 == HISTORY == 
 The 
 '''libarchive''' 

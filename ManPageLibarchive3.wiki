@@ -123,13 +123,13 @@ See
 '''libarchive_write'''(3). 
 == WRITING ENTRIES TO DISK == 
 The 
-'''archive_write_disk'''(3) 
+[[ManPageArchiveWriteDisk3]] 
 API allows you to write 
-'''archive_entry'''(3) 
+[[ManPageArchiveEntry3]] 
 objects to disk using the same API used by 
-'''archive_write'''(3). 
+[[ManPageArchiveWrite3]]. 
 The 
-'''archive_write_disk'''(3) 
+[[ManPageArchiveWriteDisk3]] 
 API is used internally by 
 '''archive_read_extract'''('';'') 
 using it directly can provide greater control over how entries 
@@ -139,21 +139,21 @@ archive-to-archive copy and archive-to-disk extraction
 operations. 
 == READING ENTRIES FROM DISK == 
 The 
-'''archive_read_disk'''(3) 
+[[ManPageArchiveReadDisk3]] 
 supports for populating 
-'''archive_entry'''(3) 
+[[ManPageArchiveEntry3]] 
 objects from information in the filesystem. 
 This includes the information accessible from the 
 '''stat'''(2) 
 system call as well as ACLs, extended attributes, 
 and other metadata. 
 The 
-'''archive_read_disk'''(3) 
+[[ManPageArchiveReadDisk3]] 
 API also supports iterating over directory trees, 
 which allows directories of files to be read using 
 an API compatible with 
 the 
-'''archive_read'''(3) 
+[[ManPageArchiveRead3]] 
 API. 
 == DESCRIPTION == 
 Detailed descriptions of each function are provided by the 
@@ -168,7 +168,7 @@ The
 structure contains a complete description of a single archive 
 entry. 
 It uses an opaque interface that is fully documented in 
-'''archive_entry'''(3). 
+[[ManPageArchiveEntry3]]. 
 
 Users familiar with historic formats should be aware that the newer 
 variants have eliminated most restrictions on the length of textual fields. 
@@ -216,14 +216,14 @@ and
 functions can be used to obtain more information. 
 == ENVIRONMENT == 
 There are character set conversions within the 
-'''archive_entry'''(3) 
+[[ManPageArchiveEntry3]] 
 functions that are impacted by the currently-selected locale. 
 == SEE ALSO == 
 '''tar'''(1), 
-'''archive_entry'''(3), 
-'''archive_read'''(3), 
-'''archive_util'''(3), 
-'''archive_write'''(3), 
+[[ManPageArchiveEntry3]], 
+[[ManPageArchiveRead3]], 
+[[ManPageArchiveUtil3]], 
+[[ManPageArchiveWrite3]], 
 '''tar'''(5) 
 == HISTORY == 
 The 

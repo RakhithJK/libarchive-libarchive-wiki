@@ -142,7 +142,7 @@ or
 '''archive_entry_acl_next_w'''(). 
 The function returns either 0, if no non-extended ACLs are found. 
 In this case, the access permissions should be obtained by 
-'''archive_entry_mode'''(3) 
+[[ManPageArchiveEntryMode3]] 
 or set using 
 '''chmod'''(2). 
 Otherwise, the function returns the same value as 
@@ -195,8 +195,8 @@ The returned long string is valid until the next call to
 or 
 '''archive_entry_acl_text_w'''(). 
 == SEE ALSO == 
-'''archive'''(3), 
-'''archive_entry'''(3) 
+[[ManPageArchive3]], 
+[[ManPageArchiveEntry3]] 
 == BUGS == 
 ARCHIVE_ENTRY_ACL_STYLE_EXTRA_ID 
 and 

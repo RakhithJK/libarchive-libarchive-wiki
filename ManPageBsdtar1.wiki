@@ -890,9 +890,9 @@ For more details, see the explanation of the
 and 
 '''archive_write_set_options'''() 
 API calls that are described in 
-'''archive_read'''(3) 
+[[ManPageArchiveRead3]] 
 and 
-'''archive_write'''(3). 
+[[ManPageArchiveWrite3]]. 
 == COMPATIBILITY == 
 The bundled-arguments format is supported for compatibility 
 with historic implementations. 

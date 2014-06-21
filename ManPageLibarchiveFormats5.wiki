@@ -356,7 +356,7 @@ although many of the keywords cannot currently be stored in an
 '''archive_entry''' 
 object. 
 When writing, libarchive supports use of the 
-'''archive_write_set_options'''(3) 
+[[ManPageArchiveWriteSetOptions3]] 
 interface to specify which keywords should be included in the 
 output. 
 If libarchive was compiled with access to suitable 

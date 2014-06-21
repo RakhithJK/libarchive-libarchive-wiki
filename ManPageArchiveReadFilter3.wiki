@@ -98,7 +98,7 @@ and
 functions. 
 == SEE ALSO == 
 '''libarchive'''(3), 
-'''archive_read'''(3), 
-'''archive_read_data'''(3), 
-'''archive_read_format'''(3), 
-'''archive_read_format'''(3) 
+[[ManPageArchiveRead3]], 
+[[ManPageArchiveReadData3]], 
+[[ManPageArchiveReadFormat3]], 
+[[ManPageArchiveReadFormat3]] 

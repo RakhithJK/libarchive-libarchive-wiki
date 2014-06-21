@@ -15,7 +15,7 @@ headers and associated data, then close the archive and release all
 resources. 
 === Create archive object=== 
 See 
-'''archive_read_new'''(3). 
+[[ManPageArchiveReadNew3]]. 
 
 To read an archive, you must first obtain an initialized 
 '''struct archive''' 
@@ -23,9 +23,9 @@ object from
 '''archive_read_new'''(). 
 === Enable filters and formats=== 
 See 
-'''archive_read_filter'''(3) 
+[[ManPageArchiveReadFilter3]] 
 and 
-'''archive_read_format'''(3). 
+[[ManPageArchiveReadFormat3]]. 
 
 You can then modify this object for the desired operations with the 
 various 
@@ -49,10 +49,10 @@ to enable auto-detect for all formats and compression types
 currently supported by the library. 
 === Set options=== 
 See 
-'''archive_read_set_options'''(3). 
+[[ManPageArchiveReadSetOptions3]]. 
 === Open archive=== 
 See 
-'''archive_read_open'''(3). 
+[[ManPageArchiveReadOpen3]]. 
 
 Once you have prepared the 
 '''struct archive''' 
@@ -72,10 +72,10 @@ callback functions are free to read whatever block size is
 most appropriate for the medium. 
 === Consume archive=== 
 See 
-'''archive_read_header'''(3), 
-'''archive_read_data'''(3) 
+[[ManPageArchiveReadHeader3]], 
+[[ManPageArchiveReadData3]] 
 and 
-'''archive_read_extract'''(3). 
+[[ManPageArchiveReadExtract3]]. 
 
 Each archive entry consists of a header followed by a certain 
 amount of data. 
@@ -112,7 +112,7 @@ In particular, many applications will want to override the
 pathname, file permissions, or ownership. 
 === Release resources=== 
 See 
-'''archive_read_free'''(3). 
+[[ManPageArchiveReadFree3]]. 
 
 Once you have finished reading data from the archive, you 
 should call 
@@ -175,15 +175,15 @@ myclose(struct archive *a, void *client_data)
 == SEE ALSO == 
 '''tar'''(1), 
 '''libarchive'''(3), 
-'''archive_read_new'''(3), 
-'''archive_read_data'''(3), 
-'''archive_read_extract'''(3), 
-'''archive_read_filter'''(3), 
-'''archive_read_format'''(3), 
-'''archive_read_header'''(3), 
-'''archive_read_open'''(3), 
-'''archive_read_set_options'''(3), 
-'''archive_util'''(3), 
+[[ManPageArchiveReadNew3]], 
+[[ManPageArchiveReadData3]], 
+[[ManPageArchiveReadExtract3]], 
+[[ManPageArchiveReadFilter3]], 
+[[ManPageArchiveReadFormat3]], 
+[[ManPageArchiveReadHeader3]], 
+[[ManPageArchiveReadOpen3]], 
+[[ManPageArchiveReadSetOptions3]], 
+[[ManPageArchiveUtil3]], 
 '''tar'''(5) 
 == HISTORY == 
 The 
