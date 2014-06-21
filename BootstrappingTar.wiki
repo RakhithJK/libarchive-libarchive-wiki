@@ -70,3 +70,8 @@ small implementation of a tar unpacker for use in very
 space-constrained applications.
 The source is in the public domain, please feel free
 to use it as you see fit.
+
+(Note:  There is another `untar.c` file in the libarchive distribution
+that does use libarchive.
+That example is more full-featured but obviously requires
+that libarchive itself be compiled and available.)
