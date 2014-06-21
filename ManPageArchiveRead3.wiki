@@ -174,7 +174,7 @@ myclose(struct archive *a, void *client_data)
 ```
 == SEE ALSO == 
 '''tar'''(1), 
-'''libarchive'''(3), 
+[[ManPageLibarchive3]], 
 [[ManPageArchiveReadNew3]], 
 [[ManPageArchiveReadData3]], 
 [[ManPageArchiveReadExtract3]], 

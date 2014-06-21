@@ -301,8 +301,8 @@ platforms.
 Some archive formats use the combined form, while other formats use 
 the split form. 
 == SEE ALSO == 
-[[ManPageArchive3]], 
 [[ManPageArchiveEntryAcl3]], 
 [[ManPageArchiveEntryPerms3]], 
 [[ManPageArchiveEntryTime3]], 
+[[ManPageLibarchive3]], 
 '''stat'''(2) 

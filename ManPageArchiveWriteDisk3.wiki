@@ -263,7 +263,7 @@ if it was not invoked manually, then releases all resources.
 More information about the 
 ''struct'' archive 
 object and the overall design of the library can be found in the 
-'''libarchive'''(3) 
+[[ManPageLibarchive3]] 
 overview. 
 Many of these functions are also documented under 
 [[ManPageArchiveWrite3]]. 
@@ -302,7 +302,7 @@ functions.
 [[ManPageArchiveRead3]], 
 [[ManPageArchiveWrite3]], 
 '''tar'''(1), 
-'''libarchive'''(3) 
+[[ManPageLibarchive3]] 
 == HISTORY == 
 The 
 '''libarchive''' 

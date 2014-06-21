@@ -117,10 +117,10 @@ More detailed information can be found in the individual manual
 pages for each API or utility function. 
 == READING AN ARCHIVE == 
 See 
-'''libarchive_read'''(3). 
+[[ManPageLibarchiveRead3]]. 
 == WRITING AN ARCHIVE == 
 See 
-'''libarchive_write'''(3). 
+[[ManPageLibarchiveWrite3]]. 
 == WRITING ENTRIES TO DISK == 
 The 
 [[ManPageArchiveWriteDisk3]] 

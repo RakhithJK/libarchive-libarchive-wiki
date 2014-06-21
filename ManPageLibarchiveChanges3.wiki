@@ -291,7 +291,7 @@ ARCHIVE_DEFAULT_BYTES_PER_BLOCK
 ``` 
 </dd></dl> 
 == SEE ALSO == 
-'''libarchive'''(3), 
+[[ManPageLibarchive3]], 
 [[ManPageArchiveRead3]], 
 [[ManPageArchiveReadFilter3]], 
 [[ManPageArchiveReadFormat3]], 

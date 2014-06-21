@@ -86,7 +86,7 @@ and
 functions. 
 == SEE ALSO == 
 '''tar'''(1), 
-'''libarchive'''(3), 
+[[ManPageLibarchive3]], 
 [[ManPageArchiveWriteSetOptions3]], 
 '''cpio'''(5), 
 '''mtree'''(5), 

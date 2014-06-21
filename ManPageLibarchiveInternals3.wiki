@@ -319,11 +319,11 @@ Fortunately, such archives are very rare, and libarchive can read
 most ZIP archives, though it cannot always extract as much information 
 as a dedicated ZIP program. 
 == SEE ALSO == 
-[[ManPageArchive3]], 
 [[ManPageArchiveEntry3]], 
 [[ManPageArchiveRead3]], 
 [[ManPageArchiveWrite3]], 
 [[ManPageArchiveWriteDisk3]] 
+[[ManPageLibarchive3]], 
 == HISTORY == 
 The 
 '''libarchive''' 

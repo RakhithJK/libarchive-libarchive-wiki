@@ -179,7 +179,7 @@ if it was not invoked manually, then releases all resources.
 More information about the 
 ''struct'' archive 
 object and the overall design of the library can be found in the 
-'''libarchive'''(3) 
+[[ManPageLibarchive3]] 
 overview. 
 == EXAMPLE == 
 The following illustrates basic usage of the library by 
@@ -248,7 +248,7 @@ functions.
 [[ManPageArchiveWrite3]], 
 [[ManPageArchiveWriteDisk3]], 
 '''tar'''(1), 
-'''libarchive'''(3) 
+[[ManPageLibarchive3]] 
 == HISTORY == 
 The 
 '''libarchive''' 

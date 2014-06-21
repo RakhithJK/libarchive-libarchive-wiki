@@ -98,7 +98,7 @@ closed.
 More information about the 
 ''struct'' archive 
 object and the overall design of the library can be found in the 
-'''libarchive'''(3) 
+[[ManPageLibarchive3]] 
 overview. 
 == CLIENT CALLBACKS == 
 To use this library, you will need to define and register 
@@ -186,7 +186,7 @@ and
 functions. 
 == SEE ALSO == 
 '''tar'''(1), 
-'''libarchive'''(3), 
+[[ManPageLibarchive3]], 
 [[ManPageArchiveWrite3]], 
 [[ManPageArchiveWriteFilter3]], 
 [[ManPageArchiveWriteFormat3]], 

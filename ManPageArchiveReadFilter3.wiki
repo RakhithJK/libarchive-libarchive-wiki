@@ -97,7 +97,7 @@ and
 '''archive_error_string'''() 
 functions. 
 == SEE ALSO == 
-'''libarchive'''(3), 
+[[ManPageLibarchive3]], 
 [[ManPageArchiveRead3]], 
 [[ManPageArchiveReadData3]], 
 [[ManPageArchiveReadFormat3]], 

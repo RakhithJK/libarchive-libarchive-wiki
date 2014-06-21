@@ -31,7 +31,7 @@ Clients should treat any value less than zero as an error
 and consider any non-negative value as success. 
 == SEE ALSO == 
 '''tar'''(1), 
-'''libarchive'''(3), 
+[[ManPageLibarchive3]], 
 [[ManPageArchiveWriteFinishEntry3]], 
 [[ManPageArchiveWriteSetOptions3]], 
 '''cpio'''(5), 

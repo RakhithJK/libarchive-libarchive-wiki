@@ -195,7 +195,7 @@ Supported formats include
 and 
 "ustar". 
 Other formats may also be supported; see 
-'''libarchive-formats'''(5) 
+[[ManPageLibarchive-formats5]] 
 for more information about currently-supported formats. 
 In r and u modes, when extending an existing archive, the format specified 
 here must be compatible with the format of the existing archive on disk. 
@@ -1035,8 +1035,8 @@ components, or symlinks to other directories.
 '''pax'''(1), 
 '''shar'''(1), 
 '''xz'''(1), 
-'''libarchive'''(3), 
-'''libarchive-formats'''(5), 
+[[ManPageLibarchive3]], 
+[[ManPageLibarchive-formats5]], 
 '''tar'''(5) 
 == STANDARDS == 
 There is no current POSIX standard for the tar command; it appeared 
@@ -1068,7 +1068,7 @@ beginning with
 FreeBSD 1.0. 
 
 This is a complete re-implementation based on the 
-'''libarchive'''(3) 
+[[ManPageLibarchive3]] 
 library. 
 It was first released with 
 FreeBSD 5.4 

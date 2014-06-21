@@ -171,5 +171,5 @@ It doesn't have a corresponding get accessor function.
 is an alias for  
 '''archive_entry_copy_XXX'''(). 
 == SEE ALSO == 
-[[ManPageArchive3]], 
 [[ManPageArchiveEntry3]] 
+[[ManPageLibarchive3]], 

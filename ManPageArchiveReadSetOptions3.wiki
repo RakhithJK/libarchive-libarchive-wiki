@@ -182,6 +182,6 @@ and
 functions. 
 == SEE ALSO == 
 '''tar'''(1), 
-'''libarchive'''(3), 
+[[ManPageLibarchive3]], 
 [[ManPageArchiveWriteSetOptions3]], 
 [[ManPageArchiveRead3]] 

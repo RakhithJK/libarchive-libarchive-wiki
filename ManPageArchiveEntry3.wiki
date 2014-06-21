@@ -36,7 +36,7 @@ it includes everything from
 '''struct stat''' 
 plus associated pathname, textual group and user names, etc. 
 These objects are used by 
-'''libarchive'''(3) 
+[[ManPageLibarchive3]] 
 to represent the metadata associated with a particular 
 entry in an archive. 
 === Create and Destroy=== 
@@ -107,11 +107,11 @@ narrow string for the same data, the previously-set wide string will
 be discarded in favor of the new data. 
 
 == SEE ALSO == 
-[[ManPageArchive3]], 
 [[ManPageArchiveEntryAcl3]], 
 [[ManPageArchiveEntryPaths3]], 
 [[ManPageArchiveEntryPerms3]], 
 [[ManPageArchiveEntryTime3]] 
+[[ManPageLibarchive3]], 
 == HISTORY == 
 The 
 '''libarchive''' 

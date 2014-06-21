@@ -89,7 +89,7 @@ and
 functions. 
 == SEE ALSO == 
 '''tar'''(1), 
-'''libarchive'''(3), 
+[[ManPageLibarchive3]], 
 [[ManPageArchiveRead3]], 
 [[ManPageArchiveReadExtract3]], 
 [[ManPageArchiveReadFilter3]], 

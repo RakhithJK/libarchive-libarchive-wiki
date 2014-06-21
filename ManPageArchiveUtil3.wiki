@@ -79,7 +79,7 @@ Streaming Archive Library (libarchive, -larchive)
 These functions provide access to various information about the 
 '''struct archive''' 
 object used in the 
-'''libarchive'''(3) 
+[[ManPageLibarchive3]] 
 library. 
 <dl> 
 <dt>'''archive_clear_error'''()</dt><dd> 
@@ -204,7 +204,7 @@ not uniformly supported and should not be used.
 == SEE ALSO == 
 [[ManPageArchiveRead3]], 
 [[ManPageArchiveWrite3]], 
-'''libarchive'''(3), 
+[[ManPageLibarchive3]], 
 '''printf'''(3) 
 == HISTORY == 
 The 

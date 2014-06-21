@@ -77,7 +77,7 @@ and
 functions. 
 == SEE ALSO == 
 '''tar'''(1), 
-'''libarchive'''(3), 
+[[ManPageLibarchive3]], 
 [[ManPageArchiveWrite3]], 
 [[ManPageArchiveWriteFormat3]], 
 [[ManPageArchiveWriteSetOptions3]], 
