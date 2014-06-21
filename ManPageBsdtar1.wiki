@@ -843,19 +843,11 @@ format can be used to create an output archive with arbitrary ownership,
 permissions, or names that differ from existing data on disk: 
 
 ```text
-$ cat input.mtree 
-```
-```text
-#mtree 
-```
-```text
-usr/bin uid=0 gid=0 mode=0755 type=dir 
-```
-```text
-usr/bin/ls uid=0 gid=0 mode=0755 type=file content=myls 
-```
-```text
-$ tar -cvf output.tar @input.mtree 
+$ cat input.mtree
+#mtree
+usr/bin uid=0 gid=0 mode=0755 type=dir
+usr/bin/ls uid=0 gid=0 mode=0755 type=file content=myls
+$ tar -cvf output.tar @input.mtree
 ```
 
 The 

@@ -360,7 +360,7 @@ The decimal number indicates the length of the entire line, including the
 initial length field and the trailing newline. 
 An example of such a field is: 
 ```text
-25 ctime=1084839148.1212\en 
+25 ctime=1084839148.1212\n 
 ```
 Keys in all lowercase are standard keys. 
 Vendors can add their own keys by prefixing them with an all uppercase 
@@ -616,9 +616,9 @@ list of files to be renamed or symlinked after extraction; this was
 originally used to support long names. 
 The contents of this record 
 are a text description of the operations to be done, in the form 
-"Rename %s to %s\en" 
+"Rename %s to %s\n" 
 or 
-"Symlink %s to %s\en ;" 
+"Symlink %s to %s\n ;" 
 in either case, both 
 filenames are escaped using K&R C syntax. 
 Due to security concerns, "N" records are now generally ignored 
