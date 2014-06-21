@@ -10,19 +10,19 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive.h></nowiki>''' 
 <br> 
-'''ssize_t''' 
+''ssize_t'' 
 <br> 
 '''archive_read_data'''(''struct archive *'', ''void *buff'', ''size_t len''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_data_block'''(''struct archive *'', ''const void **buff'', ''size_t *len'', ''off_t *offset''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_data_skip'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_data_into_fd'''(''struct archive *'', ''int fd''); 
 == DESCRIPTION == 

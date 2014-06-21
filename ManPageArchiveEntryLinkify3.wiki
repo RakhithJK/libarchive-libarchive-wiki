@@ -11,19 +11,19 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive_entry.h></nowiki>''' 
 <br> 
-'''struct archive_entry_linkresolver *''' 
+''struct archive_entry_linkresolver *'' 
 <br> 
 '''archive_entry_linkresolver_new'''(''void''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_linkresolver_set_strategy'''(''struct archive_entry_linkresolver *resolver'', ''int format''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_linkresolver_free'''(''struct archive_entry_linkresolver *resolver''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_linkify'''(''struct archive_entry_linkresolver *resolver'', ''struct archive_entry **entry'', ''struct archive_entry **sparse''); 
 == DESCRIPTION == 

@@ -11,23 +11,23 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive.h></nowiki>''' 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_open'''(''struct archive *'', ''void *client_data'', ''archive_open_callback *'', ''archive_write_callback *'', ''archive_close_callback *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_open_fd'''(''struct archive *'', ''int fd''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_open_FILE'''(''struct archive *'', ''FILE *file''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_open_filename'''(''struct archive *'', ''const char *filename''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_open_memory'''(''struct archive *'', ''void *buffer'', ''size_t bufferSize'', ''size_t *outUsed''); 
 == DESCRIPTION == 
@@ -49,7 +49,7 @@ block-oriented devices.
 A convenience form of 
 '''archive_write_open'''() 
 that accepts a 
-'''FILE *''' 
+''FILE *'' 
 pointer. 
 Note that 
 '''archive_write_open_FILE'''() 
@@ -87,7 +87,7 @@ A convenience form of
 that accepts a pointer to a block of memory that will receive 
 the archive. 
 The final 
-'''size_t *''' 
+''size_t *'' 
 argument points to a variable that will be updated 
 after each write to reflect how much of the buffer 
 is currently in use. 
@@ -108,7 +108,7 @@ These functions are registered by calling
 '''archive_write_open'''(): 
 <ul> 
 <li> 
-'''typedef int''' 
+''typedef int'' 
 '''archive_open_callback'''(''struct archive *'', ''void *client_data'') 
 </li></ul> 
 
@@ -124,7 +124,7 @@ to register an error code and message and return
 '''ARCHIVE_FATAL'''. 
 <ul> 
 <li> 
-'''typedef ssize_t''' 
+''typedef ssize_t'' 
 '''archive_write_callback'''(''struct archive *'', ''void *client_data'', ''const void *buffer'', ''size_t length'') 
 </li></ul> 
 
@@ -142,7 +142,7 @@ On error, the callback should invoke
 to register an error code and message and return -1. 
 <ul> 
 <li> 
-'''typedef int''' 
+''typedef int'' 
 '''archive_close_callback'''(''struct archive *'', ''void *client_data'') 
 </li></ul> 
 

@@ -21,63 +21,63 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive.h></nowiki>''' 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_7zip'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_all'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_ar'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_by_code'''(''struct archive *'', ''int''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_cab'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_cpio'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_empty'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_iso9660'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_lha'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_mtree'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_rar'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_raw'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_tar'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_xar'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_format_zip'''(''struct archive *''); 
 == DESCRIPTION == 

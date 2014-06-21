@@ -12,27 +12,27 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive.h></nowiki>''' 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_open'''(''struct archive *'', ''void *client_data'', ''archive_open_callback *'', ''archive_read_callback *'', ''archive_close_callback *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_open2'''(''struct archive *'', ''void *client_data'', ''archive_open_callback *'', ''archive_read_callback *'', ''archive_skip_callback *'', ''archive_close_callback *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_open_FILE'''(''struct archive *'', ''FILE *file''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_open_fd'''(''struct archive *'', ''int fd'', ''size_t block_size''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_open_filename'''(''struct archive *'', ''const char *filename'', ''size_t block_size''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_open_memory'''(''struct archive *'', ''void *buff'', ''size_t size''); 
 == DESCRIPTION == 
@@ -59,7 +59,7 @@ raw bytes from the archive.
 Like 
 '''archive_read_open'''(), 
 except that it accepts a 
-'''FILE *''' 
+''FILE *'' 
 pointer. 
 This function should not be used with tape drives or other devices 
 that require strict I/O blocking. 
@@ -97,16 +97,16 @@ objects can be found in the overview manual page for
 The callback functions must match the following prototypes: 
 <ul> 
 <li> 
-'''typedef ssize_t''' 
+''typedef ssize_t'' 
 '''archive_read_callback'''(''struct archive *'', ''void *client_data'', ''const void **buffer'') 
 </li><li> 
-'''typedef off_t''' 
+''typedef off_t'' 
 '''archive_skip_callback'''(''struct archive *'', ''void *client_data'', ''off_t request'') 
 </li><li> 
-'''typedef int''' 
+''typedef int'' 
 '''archive_open_callback'''(''struct archive *'', ''void *client_data'') 
 </li><li> 
-'''typedef int''' 
+''typedef int'' 
 '''archive_close_callback'''(''struct archive *'', ''void *client_data'') 
 </li></ul> 
 

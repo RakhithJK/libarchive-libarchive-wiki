@@ -3,6 +3,7 @@ ARCHIVE_WRITE_FORMAT(3) manual page
 '''archive_write_set_format_cpio''', 
 '''archive_write_set_format_pax''', 
 '''archive_write_set_format_pax_restricted''', 
+'''archive_write_set_format_raw''', 
 '''archive_write_set_format_shar''', 
 '''archive_write_set_format_shar_dump''', 
 '''archive_write_set_format_ustar''' 
@@ -12,27 +13,31 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive.h></nowiki>''' 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_format_cpio'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_format_pax'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_format_pax_restricted'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
+<br> 
+'''archive_write_set_format_raw'''(''struct archive *''); 
+<br> 
+''int'' 
 <br> 
 '''archive_write_set_format_shar'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_format_shar_dump'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_format_ustar'''(''struct archive *''); 
 == DESCRIPTION == 

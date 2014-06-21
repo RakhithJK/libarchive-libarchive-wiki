@@ -8,11 +8,11 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive.h></nowiki>''' 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_next_header'''(''struct archive *'', ''struct archive_entry **''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_next_header2'''(''struct archive *'', ''struct archive_entry *''); 
 == DESCRIPTION == 

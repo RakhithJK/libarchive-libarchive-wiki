@@ -26,83 +26,83 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive_entry.h></nowiki>''' 
 <br> 
-'''time_t''' 
+''time_t'' 
 <br> 
 '''archive_entry_atime'''(''struct archive_entry *a''); 
 <br> 
-'''long''' 
+''long'' 
 <br> 
 '''archive_entry_atime_nsec'''(''struct archive_entry *a''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_entry_atime_is_set'''(''struct archive_entry *a''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_set_atime'''(''struct archive_entry *a'', ''time_t sec'', ''long nanosec''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_unset_atime'''(''struct archive_entry *a''); 
 <br> 
-'''time_t''' 
+''time_t'' 
 <br> 
 '''archive_entry_birthtime'''(''struct archive_entry *a''); 
 <br> 
-'''long''' 
+''long'' 
 <br> 
 '''archive_entry_birthtime_nsec'''(''struct archive_entry *a''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_entry_birthtime_is_set'''(''struct archive_entry *a''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_set_birthtime'''(''struct archive_entry *a'', ''time_t sec'', ''long nanosec''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_unset_birthtime'''(''struct archive_entry *a''); 
 <br> 
-'''time_t''' 
+''time_t'' 
 <br> 
 '''archive_entry_ctime'''(''struct archive_entry *a''); 
 <br> 
-'''long''' 
+''long'' 
 <br> 
 '''archive_entry_ctime_nsec'''(''struct archive_entry *a''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_entry_ctime_is_set'''(''struct archive_entry *a''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_set_ctime'''(''struct archive_entry *a'', ''time_t sec'', ''long nanosec''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_unset_ctime'''(''struct archive_entry *a''); 
 <br> 
-'''time_t''' 
+''time_t'' 
 <br> 
 '''archive_entry_mtime'''(''struct archive_entry *a''); 
 <br> 
-'''long''' 
+''long'' 
 <br> 
 '''archive_entry_mtime_nsec'''(''struct archive_entry *a''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_entry_mtime_is_set'''(''struct archive_entry *a''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_set_mtime'''(''struct archive_entry *a'', ''time_t sec'', ''long nanosec''); 
 <br> 
-'''void''' 
+''void'' 
 <br> 
 '''archive_entry_unset_mtime'''(''struct archive_entry *a''); 
 == DESCRIPTION == 

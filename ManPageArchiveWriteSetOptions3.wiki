@@ -9,19 +9,19 @@ ARCHIVE_WRITE_OPTIONS(3) manual page
 Streaming Archive Library (libarchive, -larchive) 
 == SYNOPSIS == 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_filter_option'''(''struct archive *'', ''const char *module'', ''const char *option'', ''const char *value''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_format_option'''(''struct archive *'', ''const char *module'', ''const char *option'', ''const char *value''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_option'''(''struct archive *'', ''const char *module'', ''const char *option'', ''const char *value''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_options'''(''struct archive *'', ''const char *options''); 
 == DESCRIPTION == 
@@ -355,6 +355,48 @@ Specifies a filename that should not be compressed when using
 '''zisofs=direct'''. 
 This option can be provided multiple times to suppress compression 
 on many files. 
+</dd></dl> 
+</dd><dt>Format zip</dt><dd> 
+<dl> 
+<dt>'''compression'''</dt><dd> 
+The value is either 
+"store" 
+or 
+"deflate" 
+to indicate how the following entries should be compressed. 
+Note that this setting is ignored for directories, symbolic links, 
+and other special entries. 
+</dd><dt>'''experimental'''</dt><dd> 
+This boolean option enables or disables experimental Zip features 
+that may not be compatible with other Zip implementations. 
+</dd><dt>'''fakecrc32'''</dt><dd> 
+This boolean option disables CRC calculations. 
+All CRC fields are set to zero. 
+It should not be used except for testing purposes. 
+</dd><dt>'''hdrcharset'''</dt><dd> 
+This sets the character set used for filenames. 
+</dd><dt>'''zip64'''</dt><dd> 
+Zip64 extensions provide additional file size information 
+for entries larger than 4 GiB. 
+They also provide extended file offset and archive size information 
+when archives exceed 4 GiB. 
+By default, the Zip writer selectively enables these extensions only as needed. 
+In particular, if the file size is unknown, the Zip writer will 
+include Zip64 extensions to guard against the possibility that the 
+file might be larger than 4 GiB. 
+
+Setting this boolean option will force the writer to use Zip64 extensions 
+even for small files that would not otherwise require them. 
+This is primarily useful for testing. 
+
+Disabling this option with 
+'''!zip64''' 
+will force the Zip writer to avoid Zip64 extensions: 
+It will reject files with size greater than 4 GiB, 
+it will reject any new entries once the total archive size reaches 4 GiB, 
+and it will not use Zip64 extensions for files with unknown size. 
+In particular, this can improve compatibility when generating archives 
+where the entry sizes are not known in advance. 
 </dd></dl> 
 </dd></dl> 
 == EXAMPLES == 

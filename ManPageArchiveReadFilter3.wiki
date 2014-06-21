@@ -15,39 +15,39 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive.h></nowiki>''' 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_filter_all'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_filter_bzip2'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_filter_compress'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_filter_gzip'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_filter_lzma'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_filter_none'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_filter_xz'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_filter_program'''(''struct archive *'', ''const char *cmd''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_read_support_filter_program_signature'''(''struct archive *'', ''const char *cmd'', ''const void *signature'', ''size_t signature_length''); 
 == DESCRIPTION == 

@@ -10,19 +10,19 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive.h></nowiki>''' 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_get_bytes_per_block'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_bytes_per_block'''(''struct archive *'', ''int bytes_per_block''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_get_bytes_in_last_block'''(''struct archive *''); 
 <br> 
-'''int''' 
+''int'' 
 <br> 
 '''archive_write_set_bytes_in_last_block'''(''struct archive *'', ''int''); 
 == DESCRIPTION == 
