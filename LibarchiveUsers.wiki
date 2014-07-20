@@ -20,7 +20,7 @@ A few projects and people who use libarchive.
 * Archiving tools and File Browsers
 ** The [http://www.tarsnap.com/ tarsnap] service uses libarchive in its client software.
 ** [http://www.springyarchiver.com Springy] for Mac OS X uses libarchive to process TAR, PAX and CPIO archives.
-** [http://projects.gnome.org/nautilus/ Nautilus] file browser uses libarchive
+** [http://projects.gnome.org/nautilus/ Nautilus] file browser file-roller plugin uses libarchive
 ** The [http://www.cybernoia.de/software/archivemount/ archivemount] filesystem (part of [http://fuse.sourceforge.net/ FUSE]) uses libarchive
 ** [http://kde.org/ KDE]'s [http://utils.kde.org/projects/ark/ ark] file browser uses libarchive for tar, deb, and ISO files.
 ** [http://reproducible.io/ CARE] — short for "Comprehensive Archiver for Reproducible Execution" — uses libarchive.
