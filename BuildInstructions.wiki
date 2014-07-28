@@ -144,6 +144,14 @@ To run the tests, you'll need to manually adjust a few settings (if you know how
 
 XXX Need to verify which additional libraries are pre-installed on Mac OS and which need to be obtained from MacPorts. XXX
 
+=== MacOS/Homebrew ===
+
+[Homebrew](http://brew.sh/), a package manager for OSX, includes a [libarchive formula](https://github.com/Homebrew/homebrew/blob/master/Library/Formula/libarchive.rb).
+
+    brew install libarchive
+
+Pay attention to the Caveats section when installing it, as the formula is keg-only.
+
 === Build Variables for the Cmake-based build system ===
 
 Here is a list of the cmake variables you are most likely to want to change.
