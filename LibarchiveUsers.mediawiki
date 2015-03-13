@@ -24,6 +24,7 @@ A few projects and people who use libarchive.
 ** The [http://www.cybernoia.de/software/archivemount/ archivemount] filesystem (part of [http://fuse.sourceforge.net/ FUSE]) uses libarchive
 ** [http://kde.org/ KDE]'s [http://utils.kde.org/projects/ark/ ark] file browser uses libarchive for tar, deb, and ISO files.
 ** [http://reproducible.io/ CARE] — short for "Comprehensive Archiver for Reproducible Execution" — uses libarchive.
+** [ https://chrome.google.com/webstore/detail/zip-unpacker/oedeeodfidgoollimchfdnbmhcpnklnd ZIP Unpacker Component Extension] uses libarchive in Chrome OS
 
 * Ports of libarchive, bsdtar, etc.
 ** [http://gnuwin32.sourceforge.net/ GnuWin32] and [http://cygwin.org/ Cygwin] for Windows.
