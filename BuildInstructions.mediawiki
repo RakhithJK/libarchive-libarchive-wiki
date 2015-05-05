@@ -118,8 +118,6 @@ on the popular GNU C compiler.
 ** Type `mingw32-make test`
 ** If there are any failures, please file a report in the Issue Tracker.  Note that the `Testing\Temporary\LastTest.log` file will have additional information, including the full path to the test temporary directory where there should be full details about the failed tests.
 
-Note: The libarchive 2.7.0 release does not build properly in Windows/MinGW; this will be fixed in 2.8.
-
 === MacOS/Xcode ===
 
 You'll first need some standard development tools if you don't already have them:
