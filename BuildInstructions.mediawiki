@@ -97,7 +97,8 @@ Building is then a straightforward process:
 * Run the CMake GUI as above, choosing the "Visual Studio" generator.
 * Use Visual Studio to build the system:
 ** Open the generated `libarchive.sln` in Visual Studio
-** Click *Rebuild Solution* to compile everything.
+** Right-click `ALL_BUILD`
+** Select *Build*
 * Test from within Visual Studio:
 ** Right-click `RUN_TESTS`
 ** Select *Build*
