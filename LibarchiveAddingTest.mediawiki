@@ -75,9 +75,7 @@ In this case, the trailer indicates that one test failed.  As you can see, there
 
 The above commands compile and run all the tests.  To only compile the tests (without running any), you can do:
 
-```text
-make libarchive_test
-```
+```make libarchive_test```
 
 (substituting the `libarchive_test` for `bsdtar_test` or `bsdcpio_test` if desired)
 
