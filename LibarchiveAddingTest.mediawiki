@@ -18,16 +18,15 @@ program that exercises the functionality of that component.
 These test programs are compiled in the same way that the rest
 of the libarchive suite is compiled.
 * if you compiled with autotools,
-
   ```text
-  make check
-  ```
+make check
+```
 
 * if you compiled with cmake,
 
-   ```text
-   make test
-   ```
+  ```text
+make test
+```
 
 
 To run the test programs, you need to give them two pieces of information:
