@@ -75,13 +75,17 @@ In this case, the trailer indicates that one test failed.  As you can see, there
 
 The above commands compile and run all the tests.  To only compile the tests (without running any), you can do:
 
-```make libarchive_test```
+```c
+make libarchive_test
+```
 
 (substituting the `libarchive_test` for `bsdtar_test` or `bsdcpio_test` if desired)
 
 To run one libarchive test, do:
 
-```./libarchive_test -vvv -r libarchive/test/ test_warn_missing_hardlink_target```
+```c
+./libarchive_test -vvv -r libarchive/test/ test_warn_missing_hardlink_target
+```
 
 (substituting the name of the test as appropriate)
 
