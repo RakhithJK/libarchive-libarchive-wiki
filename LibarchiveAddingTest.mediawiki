@@ -17,6 +17,18 @@ Each major component--libarchive, bsdtar, and bsdcpio--has a test
 program that exercises the functionality of that component.
 These test programs are compiled in the same way that the rest
 of the libarchive suite is compiled.
+* if you compiled with autotools,
+
+  ```
+  make check
+  ```
+
+* if you compiled with cmake,
+
+  ```
+  make test
+  ```
+
 
 To run the test programs, you need to give them two pieces of information:
 * The full path to the directory holding the "reference files"
@@ -58,6 +70,25 @@ The header lines here record:
 * Basic version information about the target.
 
 In this case, the trailer indicates that one test failed.  As you can see, there was a single assertion in the code that failed 264 times.  The first time it failed, it was because an `lstat()` call returned -1 instead of the zero that was expected.
+
+== Building and Running a Single Test Program ==
+
+The above commands compile and run all the tests.  To only compile the tests (without running any), you can do
+
+```
+make libarchive_test
+```
+
+(substituting the `libarchive_test` for `bsdtar_test` or `bsdcpio_test` if desired)
+
+To run one libarchive test, do:
+
+```
+./libarchive_test -vvv -r libarchive/test/ test_warn_missing_hardlink_target
+```
+
+(substituting the name of the test as appropriate)
+
 
 == Basic test terminology ==
 
