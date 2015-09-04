@@ -73,7 +73,7 @@ In this case, the trailer indicates that one test failed.  As you can see, there
 
 == Building and Running a Single Test Program ==
 
-The above commands compile and run all the tests.  To only compile the tests (without running any), you can do
+The above commands compile and run all the tests.  To only compile the tests (without running any), you can do:
 
 ```text
 make libarchive_test
