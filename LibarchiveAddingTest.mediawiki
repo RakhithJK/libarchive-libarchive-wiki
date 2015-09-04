@@ -19,11 +19,15 @@ These test programs are compiled in the same way that the rest
 of the libarchive suite is compiled.
 * if you compiled with autotools,
 
-  ```make check```
+  ```text
+  make check
+  ```
 
 * if you compiled with cmake,
 
-  ```make test```
+   ```text
+   make test
+   ```
 
 
 To run the test programs, you need to give them two pieces of information:
@@ -71,7 +75,9 @@ In this case, the trailer indicates that one test failed.  As you can see, there
 
 The above commands compile and run all the tests.  To only compile the tests (without running any), you can do
 
-```make libarchive_test```
+```text
+make libarchive_test
+```
 
 (substituting the `libarchive_test` for `bsdtar_test` or `bsdcpio_test` if desired)
 
