@@ -8,7 +8,7 @@ In addition, they are available here for online browsing:
 
 * [[ManPageBsdtar1|bsdtar.1]] - The bsdtar command-line program
 * [[ManPageBsdcpio1|bsdcpio.1]] - The bsdcpio command-line program
-* [[ManPageLibarchive3|libarchive.3]] - An overview of libarchive (Also see the [[Examples]], FormatDetection, and ZeroCopy articles.)
+* [[ManPageLibarchive3|libarchive.3]] - An overview of libarchive (Also see the [[Examples]], [[FormatDetection]], and [[ZeroCopy]] articles.)
 * [[ManPageLibarchiveFormats5|libarchive_formats.5]] - An overview of the formats supported by libarchive
 * [[ManPageLibarchiveChanges3|libarchive_changes.3]] - Differences from past releases
 * [[ManPageArchiveEntry3|archive_entry.3]] - The archive_entry API used to represent entries in archives
