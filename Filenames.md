@@ -72,13 +72,19 @@ When **writing** archives, the data in the entry object will be used as follows:
 
 * When writing Unicode filenames in archives, a UTF-8 filename can be used directly.  In some cases, filenames will need to be translated from UTF-8 to UTF-16 or UCS-4.  In other cases, the Unicode filename may need to be normalized, depending on the archive format requirements.  Any such normalization is done by the format handler at the point where the archive is being written.
 
-* If the only filename available is a raw filename and the archive supports raw and Unicode filenames, the format should write only the raw part of the entry.  If this is not possible, the format will attempt to convert the raw filename to Unicode using the following logic:
+* If the only filename available is a raw filename and the archive supports raw and Unicode filenames, the format should write only the raw part of the entry.
+
+* If the only filename available is a raw filename and the archive requires a Unicode filename, the format logic will attempt to convert the raw filename to Unicode using the logic below.  Note that this occurs at the point where the archive entry is being written.  (TODO: Should the format write the resulting UTF-8 back to the entry for reference?)
 
  * If the bytes of the filename are consistent with UTF-8, the filename will be treated as UTF-8.
 
  * Otherwise, the format will use iconv() to attempt to convert the filename from the current user's default character encoding to UTF-8.  If this succeeds, the converted filename will be used.  Note:  On systems where iconv is unavailable, this step will be skipped.
 
- * As a fallback, the filename will be converted to UTF-8 assuming it is in ISO-8859-15.
+ * As a fallback, we will assume the filename is in ISO-8859-1 and converted to UTF-8 accordingly.  (Note this does not require iconv() or any similar software package.  Converting ISO-8859-1 to UTF-8 is trivial:  byte values less than 128 are preserved as-is, byte values 128-255 are converted to two-byte UTF-8 equivalents.)
+
+## Special cases
+
+* ISO9660 uses US-ASCII which is a strict subset of UTF-8.  On reading, we can just store the US-ASCII filename as the UTF-8 name in the entry object.  On writing, ...
 
 
 # Proposed Interim Solution
