@@ -6,13 +6,13 @@ Naming files is a tricky business.  There are two fundamentally different approa
 
 * POSIX identifies files with a specific sequences of *bytes* terminated with a zero byte.  Typically, these bytes correspond to some sequence of characters, but that correspondence is not fixed; two users may name the same file using entirely different character sequences as long as they generate the same sequence of bytes.  Indeed, POSIX does not require the sequence of bytes identifying a file to have *any* meaningful interpretation in any character encoding at all.
 
-* Newer systems, beginning with Windows NT (but now including Mac OS X and others) identify files as a specific sequence of *characters.*  These systems as a rule store the filenames on disk as some variant of Unicode, though they will translate various user characters sets to and from Unicode as necessary.
+* Newer systems, beginning with Windows NT (but now including Mac OS X and others) identify files with a specific sequence of *characters.*  These systems as a rule store the filenames on disk as some variant of Unicode, though they will translate various user characters sets to and from Unicode as necessary.
 
 This variation is reflected in archive formats as well:  old tar, cpio, and zip archives store filenames as a sequence of bytes; newer pax, zip, and ISO archives store filenames as a Unicode character sequence.  (Just to make things even more interesting: old cpio and zip archives technically allow zero bytes within filenames.)
 
 This is a challenge for libarchive because it needs to support both styles of archive with software built around both sets of conventions:
 
-* Software built around Unicode techniques expects to use Unicode filenames when reading and writing archives.  This is a problem when reading archives that store just byte sequences.  Generally, these archives do not specify any particular character encoding, so there is no basis for translating to or from another character set.  The only information libarchive may have available is the "user character encoding", but there is no guarantee that this has any meaningful relation to the particular byte sequences used to identify a particular file in a particular archive.
+* Software built around Unicode techniques expects to use Unicode filenames when reading and writing archives.  This is a problem when reading archives that store just byte sequences.  Generally, these archives do not specify any particular character encoding, so there is no robust basis for translating to or from another character set.  The only information libarchive may have available is the "user character encoding", but there is no guarantee that this has any meaningful relation to the particular byte sequences used to identify a particular file in a particular archive.
 
 * Software built around POSIX conventions deals easily with old tar and cpio archives; such archives use sequences of bytes to identify files and software using POSIX conventions can simply transfer those sequences of bytes to library functions such as open() and fopen().   But libarchive also needs to allow such software to access archives that use character semantics for filenames.
 
@@ -70,9 +70,15 @@ When **writing** archives, the data in the entry object will be used as follows:
 
 * When writing POSIX-convention filenames in archives, a raw filename from the entry will be copied as-is if it is present, otherwise a UTF-8 filename will be stored as a zero-terminated sequence of bytes.
 
-* When writing Unicode filenames in archives, a UTF-8 filename can be used directly.  In some cases, filenames will need to be translated from UTF-8 to UTF-16 or UCS-4.  In other cases, the Unicode filename may need to be normalized, depending on the archive format requirements.
+* When writing Unicode filenames in archives, a UTF-8 filename can be used directly.  In some cases, filenames will need to be translated from UTF-8 to UTF-16 or UCS-4.  In other cases, the Unicode filename may need to be normalized, depending on the archive format requirements.  Any such normalization is done by the format handler at the point where the archive is being written.
 
-* If the only filename available is a raw filename and the archive supports raw and Unicode filenames, the format should write only the raw part of the entry.  If this is not possible, ...
+* If the only filename available is a raw filename and the archive supports raw and Unicode filenames, the format should write only the raw part of the entry.  If this is not possible, the format will attempt to convert the raw filename to Unicode using the following logic:
+
+** If the bytes of the filename are consistent with UTF-8, the filename will be treated as UTF-8.
+
+** Otherwise, the format will use iconv() to attempt to convert the filename from the current user's default character encoding to UTF-8.  If this succeeds, the converted filename will be used.  Note:  On systems where iconv is unavailable, this step will be skipped.
+
+** As a fallback, the filename will be converted to UTF-8 assuming it is in ISO-8859-15.
 
 
 # Proposed Interim Solution
@@ -80,4 +86,3 @@ When **writing** archives, the data in the entry object will be used as follows:
 The long-term solution may not be immediately implementable.  Libarchive avoids backward-incompatible API or ABI changes within a major version, so we may need to make limited changes in libarchive 3 to retain backwards compatibility with more extensive changes being deferred to libarchive 4.
 
 TODO
-
