@@ -74,11 +74,11 @@ When **writing** archives, the data in the entry object will be used as follows:
 
 * If the only filename available is a raw filename and the archive supports raw and Unicode filenames, the format should write only the raw part of the entry.  If this is not possible, the format will attempt to convert the raw filename to Unicode using the following logic:
 
-** If the bytes of the filename are consistent with UTF-8, the filename will be treated as UTF-8.
+ * If the bytes of the filename are consistent with UTF-8, the filename will be treated as UTF-8.
 
-** Otherwise, the format will use iconv() to attempt to convert the filename from the current user's default character encoding to UTF-8.  If this succeeds, the converted filename will be used.  Note:  On systems where iconv is unavailable, this step will be skipped.
+ * Otherwise, the format will use iconv() to attempt to convert the filename from the current user's default character encoding to UTF-8.  If this succeeds, the converted filename will be used.  Note:  On systems where iconv is unavailable, this step will be skipped.
 
-** As a fallback, the filename will be converted to UTF-8 assuming it is in ISO-8859-15.
+ * As a fallback, the filename will be converted to UTF-8 assuming it is in ISO-8859-15.
 
 
 # Proposed Interim Solution
