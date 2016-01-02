@@ -4,7 +4,7 @@ Libarchive's filename handling has evolved somewhat organically and at present t
 
 Naming files is a tricky business.  There are two fundamentally different approaches in common use and unfortunately, libarchive needs to be able to translate between them:
 
-* POSIX identifies files with a specific sequences of *bytes* terminated with a zero byte.  Typically, these bytes correspond to some sequence of characters, but that correspondence is not fixed; two users may name the same file using entirely different character sequences as long as they generate the same sequence of bytes.  Indeed, POSIX does not require the sequence of bytes identifying a file to have *any* meaningful interpretation in any character encoding at all.
+* POSIX identifies each file with a specific sequences of *bytes* terminated with a zero byte.  Typically, these bytes correspond to some sequence of characters, but that correspondence is not fixed; two users may name the same file using entirely different character sequences as long as they generate the same sequence of bytes.  Indeed, POSIX does not require the sequence of bytes identifying a file to have *any* meaningful interpretation in any character encoding at all.
 
 * Newer systems, beginning with Windows NT (but now including Mac OS X and others) identify files with a specific sequence of *characters.*  These systems as a rule store the filenames on disk as some variant of Unicode, though they will translate various user character sets to and from Unicode as necessary.
 
