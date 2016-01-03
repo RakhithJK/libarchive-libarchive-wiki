@@ -98,6 +98,7 @@ When **writing** archives, the data in the entry object will be used as follows:
 
 * ISO9660 uses US-ASCII which is a strict subset of UTF-8.  On reading, we can just store the US-ASCII filename as the UTF-8 name in the entry object.  On writing, ...
 
+* Based on the logic above, bsdtar on many POSIX systems would never create an archive containing a UTF-8 filename.  (Unless it went to some effort to identify whether the user had a UTF-8 locale setting.)  This may surprise some people.  (On Windows, bsdtar should perhaps populate UTF-8 filenames; this requires thought in the directory-traversal code.)
 
 # Proposed Interim Solution
 
