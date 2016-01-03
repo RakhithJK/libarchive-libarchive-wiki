@@ -34,10 +34,6 @@ To simplify the following discussion, I'll assume that software and archives usi
 
 6. POSIX-convention software *reading* UTF-8 archives.  In this case, we generally do have some notion of the current user's preferred character set and will usually be able to convert UTF-8 filenames to that character set.  (Of course, translating UTF-8 to an arbitrary character set will often fail.)  It is tempting to pass the UTF-8 filenames from the archive directly to the POSIX-convention software, but that would cause problems for software that expects the filenames to be in the current user's preferred character encoding.  Of course, libarchive may not be able to convert at all:  In the discussion for [Issue #587](https://github.com/libarchive/libarchive/issues/587), @wm4 challenged whether libarchive can ever safely assume that `setlocale()` has been called.  Without that, libarchive cannot know the user's preferred character set at all.  Certainly libarchive should never call `setlocale()`.
 
-The following are peculiar special cases that don't quite fit the above:
-
-* Currently, bsdtar uses the legacy ustar format by default, adding pax extensions when required to support long filenames.  But the ustar filename field uses POSIX conventions and the pax filename field uses UTF-8.  One possible solution might be to generate GNU long filename extensions (which use POSIX conventions) in cases where we have a raw filename but not a UTF-8 filename.
-
 # Proposed Long-term Solution
 
 Practically speaking, all extant archive formats support either UTF-8 filenames, POSIX-convention byte sequence filenames, or both.  The handful of exceptions are discussed later.
