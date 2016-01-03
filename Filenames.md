@@ -72,6 +72,8 @@ TODO:  Generally, archive specifications require that the UTF-8 filename be used
 
 TODO:  This puts a big burden on client software.  In particular, UTF-8 client software may be faced with raw POSIX-convention filenames that it can do nothing with.
 
+TODO:  Even worse:  Common behavior on POSIX systems demands that UTF-8 filenames be translated (via iconv or similar) to the user's local preferred character set.  The proposal above leaves no clean way to do that translation (other than pushing this common requirement onto the client).
+
 ## Writing archives
 
 When **writing** archives, the data in the entry object will be used as follows:
