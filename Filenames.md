@@ -34,77 +34,70 @@ To simplify the following discussion, I'll assume that software and archives usi
 
 6. POSIX-convention software *reading* UTF-8 archives.  In this case, we generally do have some notion of the current user's preferred character set and will usually be able to convert UTF-8 filenames to that character set.  (Of course, translating UTF-8 to an arbitrary character set will often fail.)  It is tempting to pass the UTF-8 filenames from the archive directly to the POSIX-convention software, but that would cause problems for software that expects the filenames to be in the current user's preferred character encoding.  Of course, libarchive may not be able to convert at all:  In the discussion for [Issue #587](https://github.com/libarchive/libarchive/issues/587), @wm4 challenged whether libarchive can ever safely assume that `setlocale()` has been called.  Without that, libarchive cannot know the user's preferred character set at all.  Certainly libarchive should never call `setlocale()`.
 
-# Proposed Long-term Solution
+# Other Related issues
 
-Practically speaking, all extant archive formats support either UTF-8 filenames, POSIX-convention byte sequence filenames, or both.  The handful of exceptions are discussed later.
+LHA stores a Windows code page with each filename.  This provides character semantics but does not force everything into Unicode.
+
+Originally, Pax format could store short filenames using POSIX semantics (in the old ustar header) but long filenames had to be stored in UTF-8.  Since POSIX.2008, however, Pax format can store long filenames as "BINARY" as well.
+
+# Solutions considered
+
+I considered having a "utf8" and a "raw" pathname on each entry object.  In particular, that would allow storing both filenames for Zip and Pax archives that sometimes can have one of each.  However, this doesn't support LHA and there's not really a compelling reason to keep both available.
+
+# Proposed Long-term Solution
 
 Libarchive's API distinguishes two different areas of filename handling:  filenames are stored on entry objects, and the format handlers copy data between entry object fields and archive entries.  The following discussion treats these separately:
 
 ## Entry objects
 
-Libarchive's entry object should provide methods that pass through the available filename information essentially unchanged:
+If we store pathnames together with the character set, we can cover all of the cases above:
+  * Set the character set to "UTF8" to mark a UTF-8 filename
+  * Set the character set to NULL to mark a raw (POSIX-semantic) filename
+  * Store some other character set for LHA
 
-* `archive_entry_pathname_utf8` will return the UTF-8 filename if available or NULL if no such filename was provided by the archive.  Similarly, `archive_entry_set_pathname_utf8` sets a UTF-8 filename on the entry object.
-
-* `archive_entry_pathname_raw` returns the POSIX-convention byte sequence filename if one was available.  Note that this may happen to be in UTF-8 but there is no guarantee.  Similarly, `archive_entry_set_pathname_raw` sets a raw filename on the entry object.
-
-Note that the two separate filename methods above are completely independent; any particular entry object may have either, both, or neither of these values set.  Also note that no character-set conversion is done by these methods.
-
-Most software, of course, does not want to deal with the ambiguity above, so libarchive will provide convenience methods with well-defined behavior:
-
-* `archive_entry_pathname_unicode` will return a wchar_t Unicode version of the UTF-8 filename.  If there is no UTF-8 filename available, it will return NULL.  If wchar_t is 16 bits, libarchive will convert the UTF-8 filename to UTF-16.  If wchar_t is 32 bits or larger, libarchive will convert the UTF-8 filename to UCS-4.
-
-* `archive_entry_pathname` will return the raw filename if it exists.  If it does not exist, it will return the UTF-8 filename.
-
-In particular, note that entry objects will never implicitly convert between dissimilar character sets.  (Conversion between UTF-8, UTF-16, and UCS-4 is lossless and can be completely implemented without relying on iconv() or similar functionality.)
+This allows us to defer character set conversions as late as possible in the common cases, which reduces the possibility of surprises.
 
 ## Reading archives
 
-When **reading** archives, these filenames will be set from the data in the archive as follows:
+When **reading** archives, the filename from the archive will be stored in the entry in the archive format.  If the character set is known, it will be stored as well.  If it is not known, the character set will be NULL.  This requires no character-set conversion within libarchive.
 
-* If the archive entry contains a UTF-8 filename, the UTF-8 filename will be set.
+Exception:  Other Unicode formats should be converted to UTF-8, to make it simpler for client software to support multiple archive formats.  This is lossless and should be safe in all cases.
 
-* If the archive entry contains a POSIX-convention filename, the raw filename will be set.
+TODO:  In particular, UTF-8 client software may be faced with raw POSIX-convention filenames that it can do nothing with.
 
-Note that it is possible for both filenames to be set to different values:  Pax, Zip, ISO9660, and other formats can and will store multiple filenames on the same entry.  Also note that no character set conversion is done at the point where the archive is being read.  (Exception:  formats that store other Unicode encodings will be converted to UTF-8.)
-
-TODO:  Generally, archive specifications require that the UTF-8 filename be used in preference to the raw filename when both are set.  That suggests that we *not* record the raw filename when reading the archive if both are present.
-
-TODO:  This puts a big burden on client software.  In particular, UTF-8 client software may be faced with raw POSIX-convention filenames that it can do nothing with.
-
-TODO:  Even worse:  Common behavior on POSIX systems demands that UTF-8 filenames be translated (via iconv or similar) to the user's local preferred character set.  The proposal above leaves no clean way to do that translation (other than pushing this common requirement onto the client).
+TODO:  Even worse:  Common behavior on POSIX systems demands that UTF-8 filenames be translated (via iconv or similar) to the user's local preferred character set.  This proposal pushes that common requirement onto the client, which is awkward.
 
 ## Writing archives
 
-When **writing** archives, the data in the entry object will be used as follows:
+When **writing** archives, the filename in the entry object will be used directly if possible:
 
-* If both raw and UTF-8 filenames are present, the raw filename will be ignored.  In particular, naively copying an entry from an archive that stores both filenames to another archive of the same format may change the raw filename to a copy of the UTF-8 filename.  This may be surprising, but is consistent with various specifications that generally insist that the UTF-8 filename be used in preference to the raw filename when both are present.
+In particular, if the filename is UTF-8 and the archive supports UTF-8 filenames, it will be stored as-is.
 
-* When writing POSIX-convention filenames in archives, a raw filename from the entry will be copied as-is if it is present, otherwise a UTF-8 filename will be stored as a zero-terminated sequence of bytes.
+If the filename character set is unknown, then it will be stored raw.
 
-* When writing Unicode filenames in archives, a UTF-8 filename can be used directly.  In some cases, filenames will need to be translated from UTF-8 to UTF-16 or UCS-4.  In other cases, the Unicode filename may need to be normalized, depending on the archive format requirements.  Any such normalization is done by the format handler at the point where the archive is being written.
+If the filename character set is known and we have iconv, then we can try to convert it to UTF-8 if the archive supports that.  If we don't have iconv, we would have to store it raw.
 
-* If the only filename available is a raw filename and the archive supports raw and Unicode filenames, the format should write only the raw part of the entry.
+## Special cases
 
-* If the only filename available is a raw filename and the archive requires a Unicode filename, the format logic will attempt to convert the raw filename to Unicode using the logic below.  Note that this occurs at the point where the archive entry is being written.  (TODO: Should the format write the resulting UTF-8 back to the entry for reference?)
+Joliet requires a Unicode filename; it has no option for raw filenames.  This leaves a few options:
 
- * If the bytes of the filename are consistent with UTF-8, the filename will be treated as UTF-8.
+ * If the character set is UTF-8, then we can use it directly.
+
+ * If the character set is known, we can use iconv() to convert to Unicode
+
+ * If the character set is not known but the bytes of the filename are consistent with UTF-8, the filename can be treated as UTF-8
 
  * Otherwise, the format will use iconv() to attempt to convert the filename from the current user's default character encoding to UTF-8.  If this succeeds, the converted filename will be used.  Note:  This step will necessarily fail if iconv() is unavailable or setlocale() has not been called.
 
  * As a fallback, we will assume the filename is in ISO-8859-1 and converted to UTF-8 accordingly.  (Note this does not require iconv() or any similar software package.  Converting ISO-8859-1 to UTF-8 is trivial:  byte values less than 128 are preserved as-is, byte values 128-255 are converted to two-byte UTF-8 equivalents.)
 
-## Special cases
+ISO9660 only supports US-ASCII.
 
-* ISO9660 uses US-ASCII which is a strict subset of UTF-8.  On reading, we can just store the US-ASCII filename as the UTF-8 name in the entry object.  On writing, ...
-
-* Based on the logic above, bsdtar on many POSIX systems would never create an archive containing a UTF-8 filename.  (Unless it went to some effort to identify whether the user had a UTF-8 locale setting.)  This may surprise some people.  (On Windows, bsdtar should perhaps populate UTF-8 filenames; this requires thought in the directory-traversal code.)
+Note that bsdtar on many POSIX systems will never create an archive containing a UTF-8 filename.  (Unless it went to some effort to identify whether the user had a UTF-8 locale setting.)  This may surprise some people.  (On Windows, the directory-traversal logic should probably provide UTF-8 filenames.)
 
 # Proposed Interim Solution
 
 Libarchive avoids backward-incompatible API or ABI changes within a major version, so we will need to take some additional steps in libarchive 3 to preserve compatibility with the full changes above being implemented in libarchive 4.
-
-* The "_raw" and "_utf8" methods on the entry object are new and can be implemented immediately as specified.
 
 * The current "_w" methods will disappear in libarchive 4.  TODO: How should they behave now?
 
