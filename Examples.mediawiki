@@ -183,7 +183,7 @@ including files with multiple encodings such as `gz.uu` files:
 
 ```c
   int r;
-  size_t size;
+  ssize_t size;
 
   struct archive *a = archive_read_new();
   archive_read_support_compression_all(a);
