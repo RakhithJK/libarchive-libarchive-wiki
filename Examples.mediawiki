@@ -177,7 +177,7 @@ function on such a file, libarchive will likely get very confused.
 
 == A Universal Decompressor ==
 
-Starting with libarchive 2.8, there is a [FormatRaw "raw" format handler] that treats arbitrary binary input as a single-element archive.
+Starting with libarchive 2.8, there is a [[FormatRaw|"raw" format handler]] that treats arbitrary binary input as a single-element archive.
 This is basically a cheat to allow you to get the output of a libarchive filter chain,
 including files with multiple encodings such as `gz.uu` files:
 
