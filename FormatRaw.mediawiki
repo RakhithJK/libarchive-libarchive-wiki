@@ -5,13 +5,17 @@ Libarchive's "raw" reader.
 Libarchive's automatic decompression and decoding support is sometimes useful by itself.
 
 For this reason, libarchive provides a special dearchiving module called "raw" which returns a single fake entry; the data for that entry is the decoded data stream.
-This provides a way to use libarchive's automatic decompression and decoding 
+This provides a way to use libarchive's automatic decompression and decoding filters by treating the data stream as an archive with a single entry.
 
 (Note:  There has been some discussion of splitting libarchive into two separate libraries.  "Libfilter" would expose just the decompression and decoding support, and "libarchive" would then become a user of "libfilter."  Initial work has been done but the project is currently looking for people to help complete it.)
 
 == Example Code ==
 
 XXX TODO Example here XXX
+
+=== Caveat: File metadata is stubbed out ===
+
+The single entry will have the name "data" and all other fields will be unset.  You'll need to account for these missing fields by hand.
 
 === Caveat: Don't mix _raw_ with other handlers ===
 
