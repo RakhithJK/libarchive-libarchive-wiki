@@ -4,8 +4,11 @@ ARCHIVE_READ_FILTER(3) manual page
 '''archive_read_support_filter_bzip2''', 
 '''archive_read_support_filter_compress''', 
 '''archive_read_support_filter_gzip''', 
+'''archive_read_support_filter_lz4''', 
 '''archive_read_support_filter_lzma''', 
 '''archive_read_support_filter_none''', 
+'''archive_read_support_filter_rpm''', 
+'''archive_read_support_filter_uu''', 
 '''archive_read_support_filter_xz''', 
 '''archive_read_support_filter_program''', 
 '''archive_read_support_filter_program_signature''' 
@@ -29,7 +32,19 @@ Streaming Archive Library (libarchive, -larchive)
 <br> 
 ''int'' 
 <br> 
+'''archive_read_support_filter_grzip'''(''struct archive *''); 
+<br> 
+''int'' 
+<br> 
 '''archive_read_support_filter_gzip'''(''struct archive *''); 
+<br> 
+''int'' 
+<br> 
+'''archive_read_support_filter_lrzip'''(''struct archive *''); 
+<br> 
+''int'' 
+<br> 
+'''archive_read_support_filter_lz4'''(''struct archive *''); 
 <br> 
 ''int'' 
 <br> 
@@ -37,7 +52,19 @@ Streaming Archive Library (libarchive, -larchive)
 <br> 
 ''int'' 
 <br> 
+'''archive_read_support_filter_lzop'''(''struct archive *''); 
+<br> 
+''int'' 
+<br> 
 '''archive_read_support_filter_none'''(''struct archive *''); 
+<br> 
+''int'' 
+<br> 
+'''archive_read_support_filter_rpm'''(''struct archive *''); 
+<br> 
+''int'' 
+<br> 
+'''archive_read_support_filter_uu'''(''struct archive *''); 
 <br> 
 ''int'' 
 <br> 
@@ -55,9 +82,15 @@ Streaming Archive Library (libarchive, -larchive)
 <dt> 
 '''archive_read_support_filter_bzip2'''(), 
 '''archive_read_support_filter_compress'''(), 
+'''archive_read_support_filter_grzip'''(), 
 '''archive_read_support_filter_gzip'''(), 
+'''archive_read_support_filter_lrzip'''(), 
+'''archive_read_support_filter_lz4'''(), 
 '''archive_read_support_filter_lzma'''(), 
+'''archive_read_support_filter_lzop'''(), 
 '''archive_read_support_filter_none'''(), 
+'''archive_read_support_filter_rpm'''(), 
+'''archive_read_support_filter_uu'''(), 
 '''archive_read_support_filter_xz'''() 
 </dt> <dd> 
 Enables auto-detection code and decompression support for the 

@@ -260,7 +260,7 @@ and
 are used by 
 [[ManPageArchiveEntryLinkify3]] 
 to find hardlinks. 
-The pair of device and inode is suppossed to identify hardlinked files. 
+The pair of device and inode is supposed to identify hardlinked files. 
 
 The device major and minor number can be obtained independently using 
 '''archive_entry_devmajor'''() 

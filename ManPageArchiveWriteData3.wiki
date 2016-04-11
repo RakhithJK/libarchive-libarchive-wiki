@@ -7,7 +7,7 @@ Streaming Archive Library (libarchive, -larchive)
 == SYNOPSIS == 
 '''<nowiki>#include <archive.h></nowiki>''' 
 <br> 
-''ssize_t'' 
+''la_ssize_t'' 
 <br> 
 '''archive_write_data'''(''struct archive *'', ''const void *'', ''size_t''); 
 == DESCRIPTION == 

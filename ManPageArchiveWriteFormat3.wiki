@@ -6,7 +6,9 @@ ARCHIVE_WRITE_FORMAT(3) manual page
 '''archive_write_set_format_raw''', 
 '''archive_write_set_format_shar''', 
 '''archive_write_set_format_shar_dump''', 
-'''archive_write_set_format_ustar''' 
+'''archive_write_set_format_ustar''', 
+'''archive_write_set_format_filter_by_ext''', 
+'''archive_write_set_format_filter_by_ext_def''' 
 - functions for creating archives 
 == LIBRARY == 
 Streaming Archive Library (libarchive, -larchive) 
@@ -40,6 +42,14 @@ Streaming Archive Library (libarchive, -larchive)
 ''int'' 
 <br> 
 '''archive_write_set_format_ustar'''(''struct archive *''); 
+<br> 
+''int'' 
+<br> 
+'''archive_write_set_format_filter_by_ext'''(''struct archive *'', ''const char *''); 
+<br> 
+''int'' 
+<br> 
+'''archive_write_set_format_filter_by_ext_def'''(''struct archive *'', ''const char *'', ''const char *''); 
 == DESCRIPTION == 
 These functions set the format that will be used for the archive. 
 
@@ -65,6 +75,14 @@ filenames, linknames, uids, sizes, etc.
 is the library default; this is the same as pax format, but suppresses 
 the pax extended header for most normal files. 
 In most cases, this will result in ordinary ustar archives. 
+<dl> 
+<dt> 
+'''archive_write_set_format_filter_by_ext'''(), 
+'''archive_write_set_format_filter_by_ext_def'''() 
+</dt> <dd> 
+Format and filter for archive can be set automatically, based on output file name extension. 
+The functions are platform dependent. 
+Supported extensions: .7z, .zip, .jar, .cpio, .iso, .a, .ar, .tar, .tgz, .tar.gz, .tar.bz2, .tar.xz 
 == RETURN VALUES == 
 These functions return 
 '''ARCHIVE_OK''' 

@@ -124,7 +124,7 @@ to register an error code and message and return
 '''ARCHIVE_FATAL'''. 
 <ul> 
 <li> 
-''typedef ssize_t'' 
+''typedef la_ssize_t'' 
 '''archive_write_callback'''(''struct archive *'', ''void *client_data'', ''const void *buffer'', ''size_t length'') 
 </li></ul> 
 

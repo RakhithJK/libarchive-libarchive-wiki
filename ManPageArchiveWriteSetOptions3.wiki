@@ -214,7 +214,7 @@ If the
 ''value'' 
 is 
 '''hd''', 
-then the the boot image is assumed to be a bootable hard disk image. 
+then the boot image is assumed to be a bootable hard disk image. 
 If the 
 ''value'' 
 is 

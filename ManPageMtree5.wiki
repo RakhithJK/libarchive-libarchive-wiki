@@ -24,15 +24,7 @@ corresponding character.
 
 Each line is interpreted independently as one of the following types: 
 <dl> 
-<dt>Signature</dt><dd> 
-The first line of any mtree file must begin with 
-"#mtree". 
-If a file contains any full path entries, the first line should 
-begin with 
-"#mtree v2.0", 
-otherwise, the first line should begin with 
-"#mtree v1.0". 
-</dd><dt>Blank</dt><dd> 
+<dt>Blank</dt><dd> 
 Blank lines are ignored. 
 </dd><dt>Comment</dt><dd> 
 Lines beginning with 
@@ -270,16 +262,6 @@ The file owner as a symbolic name.
 [[find(1)|http://www.freebsd.org/cgi/man.cgi?query=find&sektion=1]], 
 [[mtree(8)|http://www.freebsd.org/cgi/man.cgi?query=mtree&sektion=8]] 
 == BUGS == 
-The 
-FreeBSD 
-implementation of mtree does not currently support 
-the 
-'''mtree''' 
-2.0 
-format. 
-The requirement for a 
-"#mtree" 
-signature line is new and not yet widely implemented. 
 == HISTORY == 
 The 
 '''mtree''' 
