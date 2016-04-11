@@ -1,9 +1,12 @@
 ARCHIVE_WRITE_FILTER(3) manual page 
 == NAME == 
 '''archive_write_add_filter_b64encode''', 
+'''archive_write_add_filter_by_name''', 
 '''archive_write_add_filter_bzip2''', 
 '''archive_write_add_filter_compress''', 
+'''archive_write_add_filter_grzip''', 
 '''archive_write_add_filter_gzip''', 
+'''archive_write_add_filter_lrzip''', 
 '''archive_write_add_filter_lz4''', 
 '''archive_write_add_filter_lzip''', 
 '''archive_write_add_filter_lzma''', 
@@ -31,7 +34,15 @@ Streaming Archive Library (libarchive, -larchive)
 <br> 
 ''int'' 
 <br> 
+'''archive_write_add_filter_grzip'''(''struct archive *''); 
+<br> 
+''int'' 
+<br> 
 '''archive_write_add_filter_gzip'''(''struct archive *''); 
+<br> 
+''int'' 
+<br> 
+'''archive_write_add_filter_lrzip'''(''struct archive *''); 
 <br> 
 ''int'' 
 <br> 
@@ -67,19 +78,25 @@ Streaming Archive Library (libarchive, -larchive)
 == DESCRIPTION == 
 <dl> 
 <dt> 
-'''archive_write_add_filter_b64encode'''(), 
 '''archive_write_add_filter_bzip2'''(), 
 '''archive_write_add_filter_compress'''(), 
+'''archive_write_add_filter_grzip'''(), 
 '''archive_write_add_filter_gzip'''(), 
+'''archive_write_add_filter_lrzip'''(), 
 '''archive_write_add_filter_lz4'''(), 
 '''archive_write_add_filter_lzip'''(), 
 '''archive_write_add_filter_lzma'''(), 
 '''archive_write_add_filter_lzop'''(), 
-'''archive_write_add_filter_uuencode'''(), 
 '''archive_write_add_filter_xz'''(), 
 </dt> <dd> 
 The resulting archive will be compressed as specified. 
 Note that the compressed output is always properly blocked. 
+</dd><dt> 
+'''archive_write_add_filter_b64encode'''(), 
+'''archive_write_add_filter_uuencode'''(), 
+</dt> <dd> 
+The output will be encoded as specified. 
+The encoded output is always properly blocked. 
 </dd><dt>'''archive_write_add_filter_none'''()</dt><dd> 
 This is never necessary. 
 It is provided only for backwards compatibility. 
