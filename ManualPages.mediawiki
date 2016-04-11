@@ -19,6 +19,7 @@ In addition, they are available here for online browsing:
 ** [[ManPageArchiveEntryStat3|archive_entry_stat.3]] - Details of using `struct stat` with archive entries
 ** [[ManPageArchiveEntryTime3|archive_entry_time.3]] - Details of the time values that can appear in archive entries
 * [[ManPageArchiveRead3|archive_read.3]] - The archive_read API used for reading from streaming archives
+** [[ManPageArchiveReadAddPassphrase3|archive_read_add_passphrase.3]] - Manage passphrases for reading encrypting archives
 ** [[ManPageArchiveReadData3|archive_read_data.3]] - Read archive entry payload
 ** [[ManPageArchiveReadExtract3|archive_read_extract.3]] - Recreate archive entries on disk
 ** [[ManPageArchiveReadFilter3|archive_read_filter.3]] - Configure a readable archive object with decompression filters
@@ -41,6 +42,7 @@ In addition, they are available here for online browsing:
 ** [[ManPageArchiveWriteNew3|archive_write_new.3]] - Allocate a writable archive object
 ** [[ManPageArchiveWriteOpen3|archive_write_open.3]] - Attach a writable archive object to a data sink
 ** [[ManPageArchiveWriteSetOptions3|archive_write_set_options.3]] - Configure filter or format driver behavior
+** [[ManPageArchiveWriteSetPassphrase3|archive_write_set_passphrase.3]] - Set passphrase for writing encrypted archives
 * [[ManPageArchiveWriteDisk3|archive_write_disk.3]] - The archive_write_disk API used to create files (and other objects) on disk
 * [[ManPageTar5|tar.5]] - The tar file format ("... best man page I have read in years." -- Russ Cox)
 * [[ManPageMtree5|mtree.5]] - The mtree file format
