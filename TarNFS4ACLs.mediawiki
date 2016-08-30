@@ -185,14 +185,12 @@ In Edward's example, there are 7 entries, represented as follows (the line break
 
 This is pretty readable, and includes the UID, but is significantly bulkier than it needs to be (the '-' characters could easily have been omitted) and doesn't have any obvious provision for user or group GUIDs.
 
-=== star? ===
+=== star ===
 
-The star website and manpages have a couple of
-oblique references to NFSv4 ACL support, but I've
-not seen any documentation or announcement of such
-functionality.
-(I do know Joerg Schilling was involved with OpenSolaris
-work; the Solaris tar design above might be his?)
+Star supports storing NFSv4 ACLs in the exustar file format since version 1.5.3. Writing and extracting NFSv4 ACLs is currently supported only on Solaris and derivates (e.g. Illumos-based systems). The support is realized with the extended pax header keyword SCHILY.acl.ace.
+
+* [https://sourceforge.net/projects/s-tar/ Star homepage at sourceforge.net]
+* [https://www.mankier.com/5/star#Schily_Pax_Extension_Keywords Schily Pax Extension Keywords]
 
 === Others? ===
 
