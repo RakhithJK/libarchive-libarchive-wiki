@@ -7,11 +7,45 @@ Both reader and writer fit seamlessly into the libarchive model, presenting ISO9
 
 == Reading ISO9660 images ==
 
+Libarchive can read the most common ISO9660 images, including transparently handling Joliet, Rockridge, and Zisofs extensions.
+
 XXX TODO XXX
 
 == Writing ISO9660 images ==
 
-XXX TODO XXX
+Writing an ISO9660 image works the same as any other format.  You use `archive_write_set_format_iso9660()` to enable ISO9660 output and can also specify compression or encoding filters to be applied to the image as it is created.  You can then write entries to the ISO9660 writer using the outlines presented in the libarchive documentation.
+
+The ISO9660 writer has a wealth of options to enable various common extensions, to set specialized ISO9660 header values, and to construct "El Torito" bootable images.
+
+Note:  Correctly optimized ISO9660 images put the full directory information at the beginning of the image, with file data following.  To support this, the ISO9660 writer opens a temporary file to hold the file data while constructing the directory tree in memory.  When you `finish` the archive, the writer will stream out the resulting image.
+
+=== Supported Options ===
+
+The ISO9660 writer supports a large number of options.  Most of these control rarely-used ISO9660 features that are only required in special applications.  The most commonly used options are:  `joliet` to enable Joliet extensions, `rockridge` to enable Rockridge extensions, and the boot and zisofs options.
+
+* `abstract-file` (String)  Specifies the file that will be tagged as the ISO9660 "abstract file"
+* `application-id` (string) This value will be included in the ISO9660 Application Identifier field
+* `allow-vernum` (boolean)
+* `biblio-file` (string)
+* `boot` (string) Filename of El Torito boot file
+* `boot-catalog` (string) Filename of El Torito boot catalog file
+* `boot-info-table` (boolean)
+* `boot-load-seg` (hexadecimal value) El Torito boot loader segment
+* `boot-load-size` (number) El Torito boot loader size
+* `boot-type` (string) One of the values `no-emulation`, `fd`, or `hard-disk` indicating the type of boot emulation that should be used
+* `compression-level` (number)  Controls the compression parameter used when compressing files for zisofs
+* `copyright-file` (string)
+* `iso-level` (number) A value from 1 to 4 indicating the ISO9660 conformance level that should be indicated
+* `joliet` This can be a boolean to enable or disable Joliet extensions, or the special value `long` to enable Joliet extensions wth support for long filenames
+* `limit-depth` (boolean)
+* `limit-dirs` (boolean)
+* `pad` (boolean)
+* `publisher` (string)
+* `rockridge` This can be a boolean to enable or disable Rockridge extensions or one of the special values `strict` to enable a strict implementation of Rockridge or `useful` to enable a relaxed implementation.  (When treated as a boolean, `useful` is the default.)
+* `Rockridge`: A synonym for `rockridge`
+* `volume-id` (string)
+* `zisofs` (boolean) Enable Zisofs per-file compression.  (Only available if libarchive is compiled with zlib support.)
+
 
 == References ==
 
