@@ -473,3 +473,7 @@ In certain extreme cases, libarchive will call abort() to terminate the program.
 This should generally only happen when libarchive's internal consistency checks detect serious bugs in libarchive itself.
 Prior to libarchive 3.0, these consistency checks also caused libarchive to call abort() when the API was misused -- such as by calling archive_write_header before opening an archive or continuing to write data to an archive handle after it has previously returned ARCHIVE_FATAL.
 Starting with libarchive 3.0, this type of misuse instead causes ARCHIVE_FATAL to be returned.
+
+== Complete Examples ==
+
+Complete example programs can be found in the `examples` directory within the distribution.
