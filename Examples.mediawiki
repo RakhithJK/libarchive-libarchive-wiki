@@ -211,6 +211,9 @@ including files with multiple encodings such as `gz.uu` files:
 ```
 
 Note that the "raw" format is not enabled by `archive_read_support_format_all()`.
+Also please note that the raw format handler does not recognize or accept empty files.
+If you specifically want to be able to read empty files, you'll need to
+also invoke `archive_read_support_format_empty()`.
 
 == A Basic Write Example ==
 
