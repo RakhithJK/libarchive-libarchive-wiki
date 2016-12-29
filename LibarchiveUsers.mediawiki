@@ -40,7 +40,9 @@ A few projects and people who use libarchive.
 * Other Software
 ** [http://www.hydrogen-music.org/ Hydrogen] advanced drum machine uses libarchive
 ** [https://github.com/danigm/libgepub libgepub] GObject based library for handling and rendering epub documents uses libarchive
-** [https://wiki.gnome.org/Projects/libgxps libgxps] Object based library for handling and rendering XPS documents uses libarchive
+** [https://wiki.gnome.org/Projects/libgxps libgxps] GObject based library for handling and rendering XPS documents uses libarchive
+** [http://0ldsk00l.ca/nestopia/ Nestopia UE] Nintendo Entertainment System/Famicom emulator uses libarchive
+** [http://clayo.org/osmo/ Osmo] personal organizer for GTK+ version 0.2.12 and higher uses libarchive 
 ** [https://github.com/miekg/rdup/ rdup] utility to create a file list suitable for making backups uses libarchive
 ** [https://github.com/haiwen/seafile/ Seafile] open source cloud storage system uses libarchive
 ** [https://zealdocs.org/ Zeal] offline documentation browser uses libarchive
