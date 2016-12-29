@@ -25,6 +25,8 @@ A few projects and people who use libarchive.
 ** [http://kde.org/ KDE]'s [http://utils.kde.org/projects/ark/ ark] file browser uses libarchive for tar, deb, and ISO files.
 ** [http://reproducible.io/ CARE] — short for "Comprehensive Archiver for Reproducible Execution" — uses libarchive.
 ** [ https://plus.google.com/+FrancoisBeaufort/posts/7JU15yqC4HR ZIP Unpacker Component Extension] uses libarchive in Chrome OS
+** [https://wiki.gnome.org/Projects/gvfs GVfs] GNOME Virtual file system uses libarchive as one of its [https://wiki.gnome.org/Projects/gvfs/backends backends] to access archive files
+** [https://www.samba.org/ Samba] version 4.2 and higher uses libarchive in [https://www.samba.org/samba/docs/man/manpages/smbclient.1.html smbclient(1)]
 
 * Ports of libarchive, bsdtar, etc.
 ** [http://gnuwin32.sourceforge.net/ GnuWin32] and [http://cygwin.org/ Cygwin] for Windows.
@@ -34,5 +36,13 @@ A few projects and people who use libarchive.
 
 * Security Software
 ** [https://github.com/BayshoreNetworks/yextend yextend] uses libarchive
+
+* Other Software
+** [http://www.hydrogen-music.org/ Hydrogen] advanced drum machine uses libarchive
+** [https://github.com/danigm/libgepub libgepub] GObject based library for handling and rendering epub documents uses libarchive
+** [https://wiki.gnome.org/Projects/libgxps libgxps] Object based library for handling and rendering XPS documents uses libarchive
+** [https://github.com/miekg/rdup/ rdup] utility to create a file list suitable for making backups uses libarchive
+** [https://github.com/haiwen/seafile/ Seafile] open source cloud storage system uses libarchive
+** [https://zealdocs.org/ Zeal] offline documentation browser uses libarchive
 
 If you know of other projects that should be in this list, please let us know.
