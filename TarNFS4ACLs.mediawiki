@@ -187,7 +187,19 @@ This is pretty readable, and includes the UID, but is significantly bulkier than
 
 === star ===
 
-Star supports storing NFSv4 ACLs in the exustar file format since version 1.5.3. Writing and extracting NFSv4 ACLs is currently supported only on Solaris and derivates (e.g. Illumos-based systems). The support is realized with the extended pax header keyword SCHILY.acl.ace.
+Star supports storing NFSv4 ACLs in the exustar file format since version 1.5.3. Writing and extracting NFSv4 ACLs is currently supported only on Solaris and derivates (e.g. Illumos-based systems) and FreBSD. The support is realized with the extended pax header keyword SCHILY.acl.ace. The contents of the header correspond to the output of the [https://illumos.org/man/3sec/acltotext acl_totext(3sec)] function on Solaris or [https://www.freebsd.org/cgi/man.cgi?query=acl_to_text&manpath=FreeBSD+11.0-RELEASE&format=html acl_to_text()] on FreeBSD.
+
+```text
+SCHILY.acl.ace=user:lisa:rwx-----------:-------:allow:502,
+           group:toolies:rwx-----------:-------:allow:102,
+                  owner@:--x-----------:-------:deny,
+                  owner@:rw-p---A-W-Co-:-------:allow,
+                  group@:-wxp----------:-------:deny,
+                  group@:r-------------:-------:allow,
+               everyone@:-wxp---A-W-Co-:-------:deny,
+               everyone@:r-----a-R-c--s:-------:allow
+```
+The actual header does not contain spaces or line feeds.
 
 * [https://sourceforge.net/projects/s-tar/ Star homepage at sourceforge.net]
 * [https://www.mankier.com/5/star#Schily_Pax_Extension_Keywords Schily Pax Extension Keywords]
