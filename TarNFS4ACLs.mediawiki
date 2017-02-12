@@ -212,7 +212,11 @@ let me know.
 
 == Libarchive's implementation ==
 
-_As of June 2010, I've started work on this approach and expect the
+As of February 2017, libarchive uses the SCHILY.acl.ace header to store NFSv4-style ACLs.
+
+== Tim Kienzle's considerations ==
+
+As of June 2010, I've started work on this approach and expect the
 final implementation to be pretty close to this._
 
 === Core requirements ===
