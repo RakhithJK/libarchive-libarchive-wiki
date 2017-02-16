@@ -30,6 +30,18 @@ As a result, many people seem to be adapting the old
 POSIX.1e C language bindings for use with the newer
 ACL model.
 
+== Libarchive's implementation ==
+
+As of February 2017, libarchive uses the SCHILY.acl.ace header to store NFSv4-style ACLs. ACLs are stored in a more compact form than the original [https://www.freebsd.org/cgi/man.cgi?query=acl_to_text&sektion=3 acl_to_text(3)] / [https://illumos.org/man/3sec/acltotext acl_totext(3sec)] output that is still understandable by both [https://www.freebsd.org/cgi/man.cgi?query=acl_to_text&sektion=3 acl_from_text(3)] on FreeBSD and [https://illumos.org/man/3sec/acltotext acl_fromtext(3sec)] on Illumos / Solaris and is therefore compatible with star(1).
+
+```text
+SCHILY.acl.ace=user:lisa:rwx::allow:502,group:toolies:rwx::allow:102,owner@:x::deny,owner@:rwpAWCo::allow,group@:wxp::deny,group@:r::allow,everyone@:wxpAWCo::deny,everyone@:raRcs::allow
+```
+One of the advantages of this format is that it can be passed in unmodified form as an argument to [https://www.freebsd.org/cgi/man.cgi?query=setfacl&sektion=1 setfacl(1)].
+```bash
+setfacl -m user:lisa:rwx::allow:502,group:toolies:rwx::allow:102 testfile
+```
+
 == Prior Art ==
 
 Of course, the existing work on supporting POSIX.1e-style
@@ -209,10 +221,6 @@ The actual header does not contain spaces or line feeds.
 If you know of other tar implementations that have
 full or partial support for NFS4-style ACLs, please
 let me know.
-
-== Libarchive's implementation ==
-
-As of February 2017, libarchive uses the SCHILY.acl.ace header to store NFSv4-style ACLs.
 
 == Tim Kienzle's considerations ==
 
