@@ -265,7 +265,7 @@ the file bodies.
   {
     const char *outname;
     argv++;
-    outname = argv++;
+    outname = *argv++;
     write_archive(outname, argv);
     return 0;
   }
