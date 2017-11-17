@@ -113,7 +113,7 @@ Returns a count of the number of files processed by this archive object.
 The count is incremented by calls to 
 [[ManPageArchiveWriteHeader3]] 
 or 
-[[ManPageArchiveReadNextHeader3]]. 
+[[ManPageArchiveReadHeader3]]. 
 </dd><dt>'''archive_filter_code'''()</dt><dd> 
 Returns a numeric code identifying the indicated filter. 
 See 
