@@ -285,7 +285,7 @@ unless they fill the entire field.
 (In particular, it is possible to store a 256-character pathname if it 
 happens to have a 
 ''/'' 
-as the 156th character.) 
+as the 256th character.) 
 POSIX requires numeric fields to be zero-padded in the front, and requires 
 them to be terminated with either space or 
 NUL 
