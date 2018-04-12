@@ -112,3 +112,110 @@ all metadata (including EAs) precede the file data.
 I've seen references to an 'E' entry used by Solaris tar
 but haven't yet found any detailed documentation or examples
 of this entry.
+
+From [http://illumos.org/man/5/fsattr ''fsattr(5)'' in illumos]:
+
+       The extended attribute project extends the above header format by
+       defining a new header type (for the Typeflag field). The type 'E' is
+       defined to be used for all extended attribute files. Attribute files
+       are stored in the tar archive as a sequence of two <header ,data>
+       pairs. The first file contains the data necessary to locate and name
+       the extended attribute in the file system. The second file contains the
+       actual attribute file data.  Both files use an 'E' type header. The
+       prefix and name fields in extended attribute headers are ignored,
+       though they should be set to meaningful values for the benefit of
+       archivers that do not process these headers. Solaris archivers set the
+       prefix field to "'''/dev/null'''" to prevent archivers that do not understand
+       the type 'E' header from trying to restore extended attribute files in
+       inappropriate places.
+
+[http://src.illumos.org/source/xref/illumos-gate/usr/src/head/archives.h <tt>usr/src/head/archives.h</tt>] describes the structures in the first file:
+<pre>
+/*
+ * Define archive formats for extended attributes.
+ *
+ * Extended attributes are stored in two pieces.
+ * 1. An attribute header which has information about
+ *    what file the attribute is for and what the attribute
+ *    is named.
+ * 2. The attribute record itself.  Stored as a normal file type
+ *    of entry.
+ * Both the header and attribute record have special modes/typeflags
+ * associated with them.
+ *
+ * The names of the header in the archive look like:
+ * /dev/null/attr.hdr
+ *
+ * The name of the attribute looks like:
+ * /dev/null/attr.
+ *
+ * This is done so that an archiver that doesn't understand these formats
+ * can just dispose of the attribute records unless the user chooses to
+ * rename them via cpio -r or pax -i
+ *
+ * The format is composed of a fixed size header followed
+ * by a variable sized xattr_buf. If the attribute is a hard link
+ * to another attribute, then another xattr_buf section is included
+ * for the link.
+ *
+ * The xattr_buf is used to define the necessary "pathing" steps
+ * to get to the extended attribute.  This is necessary to support
+ * a fully recursive attribute model where an attribute may itself
+ * have an attribute.
+ *
+ * The basic layout looks like this.
+ *
+ *     --------------------------------
+ *     |                              |
+ *     |         xattr_hdr            |
+ *     |                              |
+ *     --------------------------------
+ *     --------------------------------
+ *     |                              |
+ *     |        xattr_buf             |
+ *     |                              |
+ *     --------------------------------
+ *     --------------------------------
+ *     |                              |
+ *     |      (optional link info)    |
+ *     |                              |
+ *     --------------------------------
+ *     --------------------------------
+ *     |                              |
+ *     |      attribute itself        |
+ *     |      stored as normal tar    |
+ *     |      or cpio data with       |
+ *     |      special mode or         |
+ *     |      typeflag                |
+ *     |                              |
+ *     --------------------------------
+ *
+ */
+#define	XATTR_ARCH_VERS	"1.0"
+
+/*
+ * extended attribute fixed header
+ *
+ * h_version		format version.
+ * h_size               size of header + variable sized data sections.
+ * h_component_len      Length of entire pathing section.
+ * h_link_component_len Length of link component section.  Again same definition
+ *                      as h_component_len.
+ */
+struct xattr_hdr {
+	char	h_version[7];
+	char	h_size[10];
+	char	h_component_len[10];	   /* total length of path component */
+	char	h_link_component_len[10];
+};
+
+/*
+ * The name is encoded like this:
+ * filepathNULattrpathNUL[attrpathNULL]...
+ */
+struct xattr_buf {
+	char	h_namesz[7];   /* length of h_names */
+	char	h_typeflag;    /* actual typeflag of file being archived */
+	char	h_names[1];	/* filepathNULattrpathNUL... */
+};
+</pre>
