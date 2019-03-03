@@ -107,11 +107,11 @@ Using the GUI:
 ** If there are any failures reported, please report it in our Issue Tracker
 
 Using the command prompt:
-* cmake
+* cmake.exe .
 ** You may add the "-G" option to use a specific version, e.g. -G "Visual Studio 15 2017"
-** cmake --help displays all available generators
-* cmake --build . --target ALL_BUILD
-* cmake --build . --target RUN_TESTS
+** cmake.exe --help displays all available generators
+* cmake.exe --build . --target ALL_BUILD
+* cmake.exe --build . --target RUN_TESTS
 
 ==== Windows/MinGW ====
 
