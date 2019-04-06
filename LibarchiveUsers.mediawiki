@@ -2,12 +2,21 @@ A few projects and people who use libarchive.
 
 == Who Uses Libarchive? ==
 
-* FreeBSD
+* '''FreeBSD'''
 ** libarchive was originally developed for [http://freebsd.org/ FreeBSD]; it was first released with FreeBSD 5.3 in November 2004.
 ** bsdtar is the default system tar starting with FreeBSD 6
 ** bsdcpio is the default system cpio starting with FreeBSD 8
 ** Kai Wang's "ar" is standard with FreeBSD 8
 ** Dag-Erling Smørgrav's "unzip" is standard with FreeBSD 8
+
+* '''Apple Mac OS X'''
+** since 2009 libarchive is part of OS X
+** bsdtar ist the default system tar
+** bsdcpio is the default system cpio
+
+* '''Microsoft Windows'''
+** since 2017 (Windows 10 insider build 17063) libarchive is shipped with the command line tools
+** bsdtar is dhe default system tar
 
 * Package Managers
 ** [http://www.archlinux.org/pacman/ Pacman] package manager on [http://www.archlinux.org/ Arch Linux] uses libarchive
