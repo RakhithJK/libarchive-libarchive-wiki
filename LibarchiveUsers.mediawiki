@@ -20,7 +20,7 @@ A few projects and people who use libarchive.
 
 * Package Managers
 ** [http://www.archlinux.org/pacman/ Pacman] package manager on [http://www.archlinux.org/ Arch Linux] uses libarchive
-** [http://xtraeme.github.io/xbps XBPS] package manager on [http://www.voidlinux.eu/ Void Linux] uses libarchive
+** [http://github.com/void-linux/xbps XBPS] package manager on [http://www.voidlinux.org/ Void Linux] uses libarchive
 ** [http://www.netbsd.org/ NetBSD]'s pkg_install package manager uses libarchive.
 ** [http://cmake.org/ CMake] uses libarchive
 ** [http://crux.nu/gitweb/?p=tools/pkgutils.git pkgutils] from the [http://crux.nu/ CRUX distribution] use libarchive
