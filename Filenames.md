@@ -6,7 +6,7 @@ Naming files is a tricky business.  There are two fundamentally different approa
 
 * POSIX identifies each file with a specific sequences of *bytes* terminated with a zero byte.  Typically, these bytes correspond to some sequence of characters, but that correspondence is not fixed; two users may name the same file using entirely different character sequences as long as they generate the same sequence of bytes.  Indeed, POSIX does not require the sequence of bytes identifying a file to have *any* meaningful interpretation in any character encoding at all.
 
-* Newer systems, beginning with Windows NT (but now including Mac OS X and others) identify files with a specific sequence of *characters.*  These systems as a rule store the filenames on disk as some variant of Unicode, though they will translate various user character sets to and from Unicode as necessary.
+* Newer systems, beginning with Windows NT (but now including macOS and others) identify files with a specific sequence of *characters.*  These systems as a rule store the filenames on disk as some variant of Unicode, though they will translate various user character sets to and from Unicode as necessary.
 
 This variation is reflected in archive formats as well:  old tar, cpio, and zip archives store filenames as a sequence of bytes; newer pax, zip, and ISO archives store filenames as a Unicode character sequence.  Of course, there are subtle variations that complicate this basic picture.
 
