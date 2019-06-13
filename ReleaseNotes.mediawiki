@@ -10,14 +10,95 @@ the work.
 Alpha and Beta releases are not listed here.
 They are not recommended for general use, though we usually leave them available in the Downloads section for historical reference.
 
-== Libarchive 3.1.x ==
+== Libarchive 3.4.0 ==
 
-''Anticipated: ?''
+''Released: Jun 11, 2019''
 
-* Switch bsdtar to use archive_read_disk for directory traversals - Michihiro has mostly finished this
-* Pax front-end?  Michihiro has been working on this for a while.
-* Multivolume RAR support?  Andres has this prototyped in a branch.
-* NFS4 ACL support - Tim has been working on this off and on for some time.
+New features:
+* Support for file and directory symlinks on Windows
+* Read support for RAR 5.0 archives
+* Read support for ZIPX archives with xz, lzma, ppmd8 and bzip2 compression
+* Support for non-recursive list and extract
+* New tar option: --exclude-vcs
+* Improved file attribute support on Linux and file flags support on FreeBSD
+* 64-bit ar format support
+
+Important bugfixes:
+* fix reading Android APK archives (#1055 )
+* fix problems related to unreadable directories (#1167)
+* patches from OpenBSD to libarchive_fe/passphrase.c
+* support extracting ACLs with in-entry comments (#1096)
+* support extracting extattrs as non-root on non-user-writable files (#1023)
+* a two-digit number of OSS-Fuzz issues was resolved in this release
+* various resource leak, use-after-free and crash fixes
+
+== Libarchive 3.3.3 ==
+
+''Released: Sep 03, 2018''
+
+New features:
+* support for zstandard read and write filters
+
+Important bugfixes:
+* NO_OVERWRITE doesn't change existing directory attributes
+* Many fixes for building with Visual Studio
+* Avoid super-linear slowdown on malformed mtree files
+
+== Libarchive 3.3.2 ==
+
+''Released: Jul 09, 2017''
+
+* NFSv4 ACL support for Linux (librichacl)
+
+== Libarchive 3.3.1 ==
+
+''Released: Feb 26, 2017''
+
+New features:
+* Tar format can archive and restore NFSv4 ACLs on FreeBSD, Linux, and macOS. This is fully interoperable with star.
+* Tar format can read and write SCHILY.xattr extended file attributes in addition to the LIBARCHIVE.xattr format, thanks to Stefan Berger. This provides compatibility with archives created by star and GNU tar.
+* Many bugs reported by the OSS-Fuzz project have been fixed.
+* Ngie Cooper fixed a number of issues reported by the Coverity source scanner.
+* Jan Osusky contributed improvements to libarchive's file detection logic.
+
+== Libarchive 3.2.1 ==
+
+''Released: Jun 20, 2016''
+
+== Libarchive 3.2.0 ==
+
+''Released: Apr 30, 2016''
+
+New features:
+* bsdcat: New command-line program automatically detects and decompresses a variety of files
+* LZ4 compression
+* Warc format support
+* 'Raw' format writer
+* Zip: Support archives >4GB, entries >4GB
+* Zip: Support encrypting and decrypting entries
+* Zip: Support experimental streaming extension
+* Identify encrypted entries in several formats
+* Libarchive now builds on AIX
+* Libarchive now builds for Android
+* New --clear-nochange-flags option to bsdtar tries to remove noschg and similar flags before deleting files
+* New --ignore-zeros option to bsdtar to handle concatenated tar archives
+* Use multi-threaded LZMA decompression if liblzma supports it
+* Expose version info for libraries used by libarchive
+
+Notable Bug Fixes
+* Many crash bugs fixed
+* Many test bugs fixed
+* Fixes to several formats to correctly handle empty filenames
+* Limit recursion when selecting decompression; don't crash on quines
+* Improved handling of sparse files, including files that consist of only a single large hole
+* Improved test for extraction through symlinks
+* Remove some properties from "restricted pax" that prevent using libarchive to build bit-for-bit identical results.
+* Reduce memory usage when reading corrupted RAR archives
+* Warn if hardlink extraction fails due to a missing target
+* Limit recursion when assembling directories from ISO images
+
+Security fixes
+CVE-2016-1541, aka TALOS-CAN-155:  Libarchive 3.1.2 and early mishandle the "compressed" and "uncompressed" sizes in certain Zip archive entries in a way that would allow someone to overwrite parts of the heap in a controlled fashion. 
 
 == Libarchive 3.1.2 ==
 
