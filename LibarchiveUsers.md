@@ -43,6 +43,8 @@ A few projects and people who use libarchive.
 * [yextend](https://github.com/BayshoreNetworks/yextend) uses libarchive
 
 ### Other Software
+* [ardour](https://ardour.org) digital audio workstation uses libarchive
+* [Avogadro 2](https://www.openchemistry.org/projects/avogadro2) chemical editor and visualization application uses libarchive
 * [Hydrogen](http://www.hydrogen-music.org) advanced drum machine uses libarchive
 * [libgepub](https://github.com/danigm/libgepub) GObject based library for handling and rendering epub documents uses libarchive
 * [libgxps](https://wiki.gnome.org/Projects/libgxps) GObject based library for handling and rendering XPS documents uses libarchive
