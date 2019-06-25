@@ -23,11 +23,11 @@ _Released: Jun 11, 2019_
 * 64-bit ar format support
 
 ### Important bugfixes
-* fix reading Android APK archives (#1055 )
-* fix problems related to unreadable directories (#1167)
+* fix reading Android APK archives ([#1055](https://github.com/libarchive/libarchive/issues/1055))
+* fix problems related to unreadable directories ([#1167](https://github.com/libarchive/libarchive/issues/1167))
 * patches from OpenBSD to libarchive_fe/passphrase.c
-* support extracting ACLs with in-entry comments (#1096)
-* support extracting extattrs as non-root on non-user-writable files (#1023)
+* support extracting ACLs with in-entry comments ([#1096](https://github.com/libarchive/libarchive/issues/1096))
+* support extracting extattrs as non-root on non-user-writable files ([#1023](https://github.com/libarchive/libarchive/issues/1023))
 * a two-digit number of OSS-Fuzz issues was resolved in this release
 * various resource leak, use-after-free and crash fixes
 
@@ -56,6 +56,12 @@ _Released: Feb 26, 2017_
 * Many bugs reported by the OSS-Fuzz project have been fixed.
 * Ngie Cooper fixed a number of issues reported by the Coverity source scanner.
 * Jan Osusky contributed improvements to libarchive's file detection logic.
+
+## Libarchive 3.2.2
+_Released: Oct 24, 2016_
+
+### Security Fixes
+* Four security bugs discovered by the FreeBSD project ([#743](https://github.com/libarchive/libarchive/issues/743))
 
 ## Libarchive 3.2.1
 _Released: Jun 20, 2016_
@@ -252,7 +258,7 @@ _Released April, 2007_
 _Released March, 2007_
 
 Libarchive 2.0 fixed a couple of early API gaffes but mostly it introduced a regression suite that has helped immensely to improve stability.
-It also introduced some [http://lists.freebsd.org/pipermail/freebsd-current/2007-March/069860.html significant performance improvements].
+It also introduced some [significant performance improvements](http://lists.freebsd.org/pipermail/freebsd-current/2007-March/069860.html).
 
 ## Libarchive 1.x
 
