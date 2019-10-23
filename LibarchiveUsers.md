@@ -16,7 +16,7 @@ A few projects and people who use libarchive.
 
 ### Microsoft Windows
 * since 2017 (Windows 10 insider build 17063) libarchive is shipped with the command line tools
-* bsdtar is dhe default system tar
+* bsdtar is the default system tar
 
 ## Individual Software
 
