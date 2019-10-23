@@ -11,7 +11,7 @@ A few projects and people who use libarchive.
 
 ### Apple Mac OS X
 * since 2009 libarchive is part of OS X
-* bsdtar ist the default system tar
+* bsdtar is the default system tar
 * bsdcpio is the default system cpio
 
 ### Microsoft Windows
