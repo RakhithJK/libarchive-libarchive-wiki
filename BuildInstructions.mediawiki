@@ -155,7 +155,7 @@ XXX Need to verify which additional libraries are pre-installed on Mac OS and wh
 
 === MacOS/Homebrew ===
 
-[http://brew.sh/ Homebrew], a package manager for OSX, includes a [https://github.com/Homebrew/homebrew/blob/master/Library/Formula/libarchive.rb libarchive formula].
+[http://brew.sh/ Homebrew], a package manager for OSX, includes a [https://github.com/Homebrew/homebrew-core/blob/master/Formula/libarchive.rb libarchive formula].
 
     brew install libarchive
 
