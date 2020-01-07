@@ -10,6 +10,20 @@ the work.
 Alpha and Beta releases are not listed here.
 They are not recommended for general use, though we usually leave them available in the Downloads section for historical reference.
 
+## Libarchive 3.4.1
+_Released: Dec 30, 2019_
+
+### New features
+* Unicode filename support for reading lha/lzh archives
+* New pax write option "xattrhdr"
+
+### Important bugfixes
+* security fixes in wide string processing
+* security fixes in RAR5 reader
+* security fixes and optimizations to write filter logic
+* security fix related to use of readlink(2)
+* sparse file handling fixes
+
 ## Libarchive 3.4.0
 _Released: Jun 11, 2019_
 
