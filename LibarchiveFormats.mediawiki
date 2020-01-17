@@ -19,10 +19,9 @@ Libarchive 3.0 supports multiple filters when writing archives.
 * gzip (read and write, uses zlib)
 * bzip2 (read and write, uses bzlib)
 * compress (read and write, uses an internal implementation)
-* uudecode (read and write)
+* uudecode and base64 (read and write)
 * separate command-line compressors with fixed-signature auto-detection
 * xz, lzip, and lzma (read and write using liblzma)
-* lzma (if you lack liblzma, you can get read-only lzma support through the lzmadec library; this will likely be dropped when liblzma is stable and widely-available)
 * Most of the above fall back to using command-line tools if the libraries were unavailable at build time.  Due to the additional overhead, the command-line tools are usually slower than using the libraries directly.
 
 == Archive Formats Supported ==
