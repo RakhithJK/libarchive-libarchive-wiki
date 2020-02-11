@@ -10,6 +10,20 @@ the work.
 Alpha and Beta releases are not listed here.
 They are not recommended for general use, though we usually leave them available in the Downloads section for historical reference.
 
+## Libarchive 3.4.2
+_Released: Feb 11, 2020_
+
+### New features
+* Atomic file extraction support (bsdtar -x --safe-writes)
+* mbed TLS (PolarSSL) support
+
+### Important bugfixes
+* security fixes in RAR5 reader
+* compression buffer fix in XAR writer
+* fix for uname and gname longer than 32 characters in PAX writer
+* fix segfault when archiving hard links in ISO9660 and XAR writers
+* fix extracting 7z archives with Delta filter
+
 ## Libarchive 3.4.1
 _Released: Dec 30, 2019_
 
