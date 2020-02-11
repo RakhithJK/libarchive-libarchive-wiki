@@ -22,7 +22,7 @@ _Released: Feb 11, 2020_
 * compression buffer fix in XAR writer
 * fix for uname and gname longer than 32 characters in PAX writer
 * fix segfault when archiving hard links in ISO9660 and XAR writers
-* fix extracting 7z archives with Delta filter
+* fix support for extracting 7z archive entries with Delta filter
 
 ## Libarchive 3.4.1
 _Released: Dec 30, 2019_
