@@ -10,6 +10,17 @@ the work.
 Alpha and Beta releases are not listed here.
 They are not recommended for general use, though we usually leave them available in the Downloads section for historical reference.
 
+## Libarchive 3.4.3
+_Released: May 20, 2020_
+
+### New features
+* support for pzstd compressed files
+* support for RHT.security.selinux tar extended attribute
+
+### Important bugfixes:
+* various zstd fixes and improvements
+* child process handling fixes
+
 ## Libarchive 3.4.2
 _Released: Feb 11, 2020_
 
