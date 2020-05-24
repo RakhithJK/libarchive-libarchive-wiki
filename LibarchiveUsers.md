@@ -14,8 +14,8 @@ A few projects and people who use libarchive.
 * bsdtar is the default system tar since NetBSD 9.0
 * bsdcpio is the default system cpio since NetBSD 9.0
 
-### Apple Mac OS X
-* since 2009 libarchive is part of OS X
+### Apple MacOS
+* since 2009 libarchive is part of MacOS
 * bsdtar is the default system tar
 * bsdcpio is the default system cpio
 
