@@ -18,6 +18,11 @@ A few projects and people who use libarchive.
 * since 2017 (Windows 10 insider build 17063) libarchive is shipped with the command line tools
 * bsdtar is the default system tar
 
+### NetBSD
+* since release 5.0 libarchive is part of NetBSD
+* bsdtar is the default system tar since NetBSD 9.0
+* bsdcpio is the default system cpio since NetBSD 9.0
+
 ## Individual Software
 
 ### Package Managers
