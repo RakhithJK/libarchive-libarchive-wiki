@@ -10,6 +10,23 @@ the work.
 Alpha and Beta releases are not listed here.
 They are not recommended for general use, though we usually leave them available in the Downloads section for historical reference.
 
+## Libarchive 3.5.0
+_Released: Dec 1, 2020_
+
+### New features
+* mtree digest reader support
+* completed support for UTF-8 encoding conversion
+* minor API enhancements
+* support for system extended attributes
+* support for decompression of symbolic links in zipx archives
+
+### Important bugfixes
+* fixed extraction of archives with hard links pointing to itself
+* fixed writing of cpio archives containing hardlinks without file type
+* fixed rdev field in cpio format for device nodes
+* fixed uninitialized size in rar5_read_data
+* fixed memory leaks in error case of archive_write_open() functions
+
 ## Libarchive 3.4.3
 _Released: May 20, 2020_
 
