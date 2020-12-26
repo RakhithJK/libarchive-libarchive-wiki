@@ -10,6 +10,15 @@ the work.
 Alpha and Beta releases are not listed here.
 They are not recommended for general use, though we usually leave them available in the Downloads section for historical reference.
 
+
+## Libarchive 3.5.1
+_Released: Dec 26, 2020_
+
+### Important bugfixes
+* various compilation fixes
+* fixed undefined behavior in a function in warc reader
+* Windows binary uses xz 5.2.5
+
 ## Libarchive 3.5.0
 _Released: Dec 1, 2020_
 
