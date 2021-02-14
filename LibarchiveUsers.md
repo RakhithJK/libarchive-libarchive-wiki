@@ -63,5 +63,5 @@ A few projects and people who use libarchive.
 * [GnuWin32](http://gnuwin32.sourceforge.net), [Cygwin](http://cygwin.org) and [MSYS](http://mingw.org/wiki/msys) for Windows.
 * [Darwinports](http://libarchive.darwinports.com) and [Homebrew](https://brew.sh) for MacOS
 * [Debian Linux](http://packages.qa.debian.org/liba/libarchive.html)
-* [Gentoo](http://packages.gentoo.org/package/app-arch/libarchive)
+* [Gentoo](http://packages.gentoo.org/package/app-arch/libarchive)  
 If you know of other projects that should be in this list, please let us know.
