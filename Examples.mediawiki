@@ -36,7 +36,7 @@ Here's a very basic example that simply opens a file and lists the contents of t
   if (r != ARCHIVE_OK)
     exit(1);
   while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
-    printf("%s\\n",archive_entry_pathname(entry));
+    printf("%s\n",archive_entry_pathname(entry));
     archive_read_data_skip(a);  // Note 2
   }
   r = archive_read_free(a);  // Note 3
