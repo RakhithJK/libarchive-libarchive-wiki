@@ -63,7 +63,7 @@ When you run the cmake tool, you need to provide three pieces of information:
 CMake supports several popular Windows development environments.
 You'll need:
 * CMake for Windows, version 2.6 or later:  [http://www.cmake.org/cmake/resources/software.html]
-* Git Extensions: [http://code.google.com/p/gitextensions/]
+* Git Extensions: [https://gitextensions.github.io/]
 ** If you are building from the git repository and building for Windows, using Git Extensions is highly recommended. It comes with the git command-line programs, a graphical user interface, and Windows integration.
 * MinGW: [http://sourceforge.net/projects/mingw/files/Installer/mingw-get-inst/]
 ** If you are going to build with all libarchive features enabled (such as lzma and lzo), it is recommended that you setup MinGW on your system. It is recommended you install MinGW by using the [http://sourceforge.net/projects/mingw/files/Installer/mingw-get-inst/ mingw-get-inst] installer. Certain libraries, such as liblzo2, do not support builds using Visual Studio builds (since they do not use cmake) and also do not provide pre-compiled binaries for Windows.
