@@ -116,7 +116,7 @@ Here is a somewhat edited excerpt from `test_compat_zip`, which verifies compati
      assertEqualString("META-INF/MANIFEST.MF", archive_entry_pathname(ae));
 ```
 
-The `assertXXXX` macros check that their arguments satisfy
+The `assertXXX` macros check that their arguments satisfy
 certain conditions.  If the assertion fails--for example, if the name
 of the first entry is not "META-INF/MANIFEST.MF"--the macro
 will report the problem.
@@ -185,7 +185,7 @@ Most tests are not platform-specific and will thus end up running
 on many different platforms.
 In order to simplify writing such tests, try to use platform-independent coding:
 * Use stdio `fopen()`, `fwrite()`, `fread()`, and `fclose()` to access files whenever feasible.
-* Look through the `test.h` header to see if there are assertXxx() functions that you can use.  There's a list of the more popular ones below, but new ones are often added.
+* Look through the `test.h` header to see if there are assertXXX() functions that you can use.  There's a list of the more popular ones below, but new ones are often added.
 
 == Assert macros ==
 
