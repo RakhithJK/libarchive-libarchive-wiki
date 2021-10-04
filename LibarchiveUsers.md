@@ -30,17 +30,17 @@ A few projects and people who use libarchive.
 * [XBPS](http://www.voidlinux.org/xbps) package manager on [Void Linux](http://www.voidlinux.org) uses libarchive
 * [NetBSD](http://www.netbsd.org)'s pkg_install package manager uses libarchive.
 * [CMake](http://cmake.org) uses libarchive
-* [pkgutils](http://crux.nu/gitweb/?p=tools/pkgutils.git) from the [http://crux.nu/ CRUX distribution] use libarchive
+* [pkgutils](http://crux.nu/gitweb/?p=tools/pkgutils.git) from the [CRUX distribution](http://crux.nu/) uses libarchive
 * The [Paludis](http://paludis.pioto.org) multi-format package manager for [Gentoo](http://www.gentoo.org) and [Exherbo](http://www.exherbo.org) uses libarchive
 
 ### Archiving tools and File Browsers
 * The [tarsnap](http://www.tarsnap.com) service uses libarchive in its client software.
-* [Springy](http://www.springyarchiver.com) for Mac OS X uses libarchive to process TAR, PAX and CPIO archives.
-* [Nautilus](http://projects.gnome.org/nautilus) file browser file-roller plugin uses libarchive
-* The [archivemount](http://www.cybernoia.de/software/archivemount) filesystem (part of [FUSE](http://fuse.sourceforge.net)) uses libarchive
+* [Springy](https://www.macupdate.com/app/mac/22103/springy) for Mac OS X uses libarchive to process TAR, PAX and CPIO archives.
+* [Files](https://wiki.gnome.org/Apps/Files) (formerly Nautilus) file browser file-roller plugin uses libarchive
+* The [archivemount](https://www.cybernoia.de/software/archivemount.html) filesystem (part of [FUSE](http://fuse.sourceforge.net)) uses libarchive
 * [KDE](http://kde.org)'s [ark](http://utils.kde.org/projects/ark) file browser uses libarchive for tar, deb, and ISO files.
-* [CARE](http://reproducible.io) — short for "Comprehensive Archiver for Reproducible Execution" — uses libarchive.
-* [ZIP Unpacker Component Extension]( https://plus.google.com/+FrancoisBeaufort/posts/7JU15yqC4HR) uses libarchive in Chrome OS
+* [CARE](https://github.com/proot-me/proot) — short for "Comprehensive Archiver for Reproducible Execution" — uses libarchive.
+* [ZIP Unpacker Component Extension]( https://chromium.googlesource.com/apps/unpacker/+/refs/heads/master/README.md) uses libarchive in Chrome OS
 * [GVfs](https://wiki.gnome.org/Projects/gvfs) GNOME Virtual file system uses libarchive as one of its [backends](https://wiki.gnome.org/Projects/gvfs/backends) to access archive files
 * [Samba](https://www.samba.org) version 4.2 and higher uses libarchive in [smbclient(1)](https://www.samba.org/samba/docs/man/manpages/smbclient.1.html)
 
@@ -60,8 +60,8 @@ A few projects and people who use libarchive.
 * [Zeal](https://zealdocs.org) offline documentation browser uses libarchive
 
 ## Ports of libarchive, bsdtar, etc.
-* [GnuWin32](http://gnuwin32.sourceforge.net), [Cygwin](http://cygwin.org) and [MSYS](http://mingw.org/wiki/msys) for Windows.
-* [Darwinports](http://libarchive.darwinports.com) and [Homebrew](https://brew.sh) for MacOS
+* [GnuWin32](http://gnuwin32.sourceforge.net), [Cygwin](http://cygwin.org) and [MSYS](http://www.msys2.org) for Windows.
+* [MacPorts](https://ports.macports.org/port/libarchive/summary) (formerly Darwinports) and [Homebrew](https://formulae.brew.sh/formula/libarchive) for MacOS
 * [Debian Linux](http://packages.qa.debian.org/liba/libarchive.html)
 * [Gentoo](http://packages.gentoo.org/package/app-arch/libarchive)  
   
