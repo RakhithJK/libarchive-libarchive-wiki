@@ -9,8 +9,8 @@ on almost any POSIX-like system.
 
 Typical installation:
 ```
-$ tar xzf libarchive-2.7.0.tar.gz
-$ cd libarchive-2.7.0
+$ tar xzf libarchive-XX.YY.ZZ.tar.gz
+$ cd libarchive-XX.YY.ZZ
 $ ./configure
 $ make
 $ make check
