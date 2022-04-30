@@ -15,7 +15,7 @@ XXX TODO Example here XXX
 
 === Caveat: File metadata is stubbed out ===
 
-The single entry will have the name "data" and all other fields will be unset.  You'll need to account for these missing fields by hand.
+Since 3.4.0, Some entry metadata can be populated from filters that support it, such as the gzip filter. If you are using an older version or the filter does not support this, the single entry will have the name "data" and all other fields will be unset. You'll need to account for these missing fields by hand.
 
 === Caveat: Don't mix _raw_ with other handlers ===
 
